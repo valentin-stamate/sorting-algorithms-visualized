@@ -5,7 +5,7 @@ int sector;
 int i = 0, j = 0;
 void setup(){
   size(800,400);
-  frameRate(45);
+  frameRate(40);
   background(20);
   sector = line_w + 2;
   v_size = width / sector; // a sector must be bigger than the line width in order to have a space betweel lines
