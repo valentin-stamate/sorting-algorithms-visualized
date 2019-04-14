@@ -5,7 +5,7 @@ int sector;
 int i = 0, j = 0;
 void setup(){
   size(300,200);
-  frameRate(30);
+  frameRate(10);
   background(20);
   sector = line_w + 2;
   v_size = width / sector; // a sector must be biggre than line width in order to have a space betweel lines
@@ -20,14 +20,20 @@ void draw(){
   background(20);
   //do the thing "manually"
   if(i<v_size - 1){
-    if(vector[i]>vector[j]){
-     swap(vector, i, j); 
-    }
-    j++;
-    if(j==v_size){
-      i++;
-      j = i + 1;
-    }
+
+     int a = i, b = j,min = vector[a];//finds the minimum number and after swaps it
+     for(int o = a + 1; o<v_size; o++){
+       if(min>vector[o]){
+         min = vector[o];
+         b = o;
+       }
+     }
+       if(b!=j) // this means that it finds ome minumum , ele v[i] is the minumum and doesn't need to change
+        swap(vector, a, b); 
+
+     i++;
+     j = i;
+    
   } else {
    println("Done");
    noLoop();

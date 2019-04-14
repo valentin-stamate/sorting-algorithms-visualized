@@ -1,3 +1,7 @@
 # Sorting Algorithms Visualized
 
-Don't blame me , i just started
+Well , i'm dome , with first algorithm
+
+This include : 
+
+ **• Selection Sort/Bubble Sort** (finds the minumum value and place it in front)
