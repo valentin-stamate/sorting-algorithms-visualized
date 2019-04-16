@@ -1,7 +1,7 @@
 # Sorting Algorithms Visualized
 
-Well , i'm dome , with first algorithm
+This is made in Processing using javascript, and all you see it's magie
 
 This include : 
 
- **• Selection Sort/Bubble Sort** (finds the minumum value and place it in front)
+ **• Selection Sort**
