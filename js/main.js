@@ -4,31 +4,32 @@ let v = new Array();
 let line_w = 4; //line width
 let v_size, sector;
 
-let bble;
+let bubble;
 
 function setup(){
   createCanvas(800,400);
   background(20);
-  frameRate(50);
+  frameRate(60);
   sector = line_w + 2;
   v_size = width / sector - 2;  // a sector must be bigger than the line width in order to have a space betweel lines // -2 is for letting a space between canvas and lines
 
-  bble = new BubbleSort(v_size);
+  bubble = new BubbleSort(v_size);
   
 }
 
 function draw(){
   background(20);
 
-  if(bble.Sort()){
+  if(bubble.Sort()){
     noLoop();
+    console.log("Done");
   }
 
-  v = bble.v;
+  v = bubble.v;
 
 
   for(let i = 0; i<v_size; i++){
-    switch(bble.status[i]){
+    switch(bubble.status[i]){
       case 0:
         stroke(255); break;
       case 1:
