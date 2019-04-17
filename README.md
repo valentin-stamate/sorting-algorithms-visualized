@@ -9,3 +9,5 @@ This include :
 **• Bubble Sort**
 
 **• Insertion Sort**
+
+**• Quick Sort**
