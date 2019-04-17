@@ -6,4 +6,6 @@ This include :
 
  **• Selection Sort**
 
-  **• Bubble Sort**
+**• Bubble Sort**
+
+**• Insertion Sort**
