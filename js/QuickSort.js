@@ -1,13 +1,10 @@
 class QuickSort{
     constructor(size) {
-      this.v = new Array();
       this.status = new Array();
-      this.v = [size];
       this.status = [size];
       this.i = 0;
       this.j = 0;
       for(let i = 0; i < size; i++){
-          this.v[i] = parseInt( random( height-30 ) );
           this.status[i] = 0;
       }
       this.low = 0;
@@ -33,7 +30,7 @@ class QuickSort{
       let pivotIndex = start;
       let pivotValue = arr[end];
 
-      for(let i = start;i<end - 1;i++){
+      for(let i = start;i < end;i++){
         this.status[i] = 3;
       }
 

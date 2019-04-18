@@ -12,9 +12,9 @@ class HeapSort {
   async Sort(v) {
     let n = this.status.length;
 
-    for (let i = n / 2 - 1; i >= 0; i--)
+    for (let i = parseInt(n / 2) - 1; i >= 0; i--) {
       await this.heapify(v, n, i);
-
+    }
 
     for (let i = n - 1; i >= 0; i--) {
       await this.swap(v, 0, i);//
@@ -24,9 +24,12 @@ class HeapSort {
   }
 
   async heapify(v, n, i) {
+    this.status[n] = 1;
+
     let largest = i;
     let l = 2 * i + 1
     let r = 2 * i + 2;
+    this.status[r] = 3;
 
     if (l < n && v[l] > v[largest])
       largest = l;
@@ -36,9 +39,11 @@ class HeapSort {
 
     if (largest != i) {
       await this.swap(v, i, largest);//
-
       await this.heapify(v, n, largest);
     }
+
+    this.status[r] = 0;
+    this.status[n] = 0;
   }
 
   async swap(v, i, j) {

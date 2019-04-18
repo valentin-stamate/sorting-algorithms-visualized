@@ -15,3 +15,9 @@ This include :
 **• Cocktail Sort**
 
 **• Heap Sort**
+
+**• Shell Sort**
+
+**• Gnome Sort**
+
+**• Bogo Sort**
