@@ -11,3 +11,7 @@ This include :
 **• Insertion Sort**
 
 **• Quick Sort**
+
+**• Cocktail Sort**
+
+**• Heap Sort**

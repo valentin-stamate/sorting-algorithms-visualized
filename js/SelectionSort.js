@@ -36,6 +36,7 @@ class SelectionSort{
       return false;
     } else {
       this.status[this.v.length - 1] = 0;
+      alg_finished = true;
       return true;
     }
   }
