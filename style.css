@@ -1,0 +1,23 @@
+.toolBar{
+  width: auto;
+  height: 30px;
+  
+  padding:20px; 
+}
+.mdl-card.screen{
+  width: 800px;
+  height: 400px;
+}
+.center-content {
+  display: flex; /* establish flex container */
+  justify-content: center; /* center #inner horizontally */
+   /* align-items: center; center #inner vertically  */
+}
+.margin-10{
+  margin: 10px;
+}
+.width-100{
+  width: 100px;
+}
+
+

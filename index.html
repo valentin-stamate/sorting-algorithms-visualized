@@ -1,49 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- INCLUDING MATERIAL LITE FOR BUTTONS -->
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- INCLUDING MATERIAL LITE FOR BUTTONS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-    <title>Sorting Algorithms</title>
-    <style>
-        html, body {
-            height: 100%;
-            background: #303030;
-        }
-  
-        body {
-            margin: 20px;
-            display: flex;
-            justify-content: center;
-        }
-            /* align-items: center; */
-        button{
-            position: absolute;
-        }
-    
-    </style>
+  <link rel="stylesheet" href="style.css">
 
+  <title>Sorting Algorithms</title>
 </head>
+
 <body>
 
-    <script src="p5/p5.min.js"></script>
-    <script src="js/SelectionSort.js"></script>
-    <script src="js/BubbleSort.js"></script>
-    <script src="js/InsertionSort.js"></script>
-    <script src="js/QuickSort.js"></script>
-    <script src="js/CockTailSort.js"></script>
-    <script src="js/MergeSort.js"></script>
-    <script src="js/HeapSort.js"></script>
-    <script src="js/RadixSort.js"></script>
-    <script src="js/ShellSort.js"></script>
-    <script src="js/GnomeSort.js"></script>
-    <script src="js/BitonicSort.js"></script>
-    <script src="js/BogoSort.js"></script>
-    <script src="js/main.js"></script>
-    
+  <!-- Always shows a header, even in smaller screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Title</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <!-- Your content goes here -->
+
+        <div class="mdl-grid">
+
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet center-content">
+            <!-- TOOLBAR -->
+            <div class="">
+              <!-- Algorithm List -->
+              <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon margin-10">
+                <i class="material-icons">more_vert</i>
+              </button>
+              <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+                <li id="selection" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Selection Sort</li>
+                <li id="bubble" class="mdl-menu__item">Bubble Sort</li>
+              </ul>
+
+
+              <!-- Duration -->
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-10 width-100">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+                <label class="mdl-textfield__label" for="sample4">Duration</label>
+                <span class="mdl-textfield__error">Enter a number!</span>
+              </div>
+
+              <!-- Array Size -->
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-10 width-100">
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+                  <label class="mdl-textfield__label" for="sample4">Array Size</label>
+                  <span class="mdl-textfield__error">Enter a number!</span>
+                </div>
+
+
+              <!-- Start Button -->
+
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored margin-10" onclick="start()">
+                Sort
+              </button>
+
+              <!-- Test Button -->
+
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored margin-10" onclick="simulate()">
+                  Test
+                </button>
+            </div>
+
+
+          </div>
+
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet center-content">
+            <!-- SCREEN CARD -->
+            <div class="mdl-card mdl-shadow--4dp screen">
+              <div id="screen"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- End Content -->
+  </div>
+  </main>
+  </div>
+
+
+
+
+  <script src="p5/p5.min.js"></script>
+  <script src="js/SelectionSort.js"></script>
+  <script src="js/BubbleSort.js"></script>
+  <script src="js/InsertionSort.js"></script>
+  <script src="js/QuickSort.js"></script>
+  <script src="js/CockTailSort.js"></script>
+  <script src="js/MergeSort.js"></script>
+  <script src="js/HeapSort.js"></script>
+  <script src="js/RadixSort.js"></script>
+  <script src="js/ShellSort.js"></script>
+  <script src="js/GnomeSort.js"></script>
+  <script src="js/BitonicSort.js"></script>
+  <script src="js/BogoSort.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
 </html>

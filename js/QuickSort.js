@@ -1,67 +1,55 @@
-class QuickSort{
-    constructor(size) {
-      this.status = new Array();
-      this.status = [size];
-      this.i = 0;
-      this.j = 0;
-      for(let i = 0; i < size; i++){
-          this.status[i] = 0;
-      }
-      this.low = 0;
-      this.high = size -1;
-    }
-    // weird stuff going here
-    async Sort(arr, start, end) {
-      if(start>=end)
-        return true;
-
-      let index = await this.partition(arr, start, end);
-
-      this.status[index] = 0;
-      await Promise.all([//this for wating both of them to finish(i don't know what i am writing about)
-          await this.Sort(arr, start, index - 1),
-          await this.Sort(arr, index + 1, end
-      )]);
-
-
-    }
-
-    async partition(arr, start, end){
-      let pivotIndex = start;
-      let pivotValue = arr[end];
-
-      for(let i = start;i < end;i++){
-        this.status[i] = 3;
-      }
-
-      this.status[pivotIndex] = 1;
-
-      for(let i = start; i < end; i++){
-        if(arr[i] < pivotValue) {
-            await this.swap(arr, i, pivotIndex);
-            this.status[pivotIndex] = 0;
-            pivotIndex++;
-            this.status[pivotIndex] = 1;
-        }
-      }
-      await this.swap(arr, pivotIndex, end);
-
-      for(let i = start;i< end;i++){
-        if(i!= pivotIndex)
-          this.status[i] = 0;
-      }
-      return pivotIndex;
-    }
-
-    async swap(v, i, j) {
-      await this.sleep(10);
-      let aux = v[i];
-      v[i] = v[j];
-      v[j] = aux;
-    }
-
-    sleep(ms){
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-  
+class QuickSort {
+  constructor(v, status) {
+    this.v = v;
+    this.status = status;
   }
+  // weird stuff going here
+  async Sort(low, high) {
+    if (low < high) {
+      let pi = await this.partition(low, high);
+
+      await this.Sort(low, pi - 1);
+      await this.Sort(pi + 1, high);
+    }
+  }
+
+  async partition(low, high) {
+    let pivot = this.v[high];
+    let i = (low - 1);
+    for (let j = low; j < high; j++) {
+
+      if (this.v[j] <= pivot) {
+
+        for (let l = i + 1; l < j; l++)
+          this.status[l] = 3;
+
+        this.status[i] = 1;
+        this.status[j] = 2;
+        i++;
+        
+        await this.swap(i, j);
+
+        for (let l = i; l < j; l++)
+          this.status[l] = 0;
+        this.status[i - 1] = 0;
+        this.status[j] = 0;
+      }
+
+    }
+
+    let temp = this.v[i + 1];
+    this.v[i + 1] = this.v[high];
+    this.v[high] = temp;
+
+    return i + 1;
+  }
+
+  async swap(i, j) {
+    await sleep();
+
+    let aux = this.v[i];
+    this.v[i] = this.v[j];
+    this.v[j] = aux;
+  }
+
+}
