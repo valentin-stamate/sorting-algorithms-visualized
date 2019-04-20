@@ -5,17 +5,17 @@ class SelectionSort{
   }
   // sleep() is an external function
   async Sort() {
-    let n = this.v.length;
+    let n = v.length;
     for(let i = 0;i < n - 1; i++){
       for(let j = i+1; j<n;j++){
-        if(this.v[i]>this.v[j]){
-          this.status[i] = 1;
-          this.status[j] = 2;
+        if(v[i]>v[j]){
+          status[i] = 1;
+          status[j] = 2;
 
           await this.swap(i, j);
 
-          this.status[i] = 0;
-          this.status[j] = 0;
+          status[i] = 0;
+          status[j] = 0;
         }
       }
     }
@@ -26,9 +26,9 @@ class SelectionSort{
   async swap(i, j) {
     await sleep();
     
-    let aux = this.v[i];
-    this.v[i] = this.v[j];
-    this.v[j] = aux;
+    let aux = v[i];
+    v[i] = v[j];
+    v[j] = aux;
   }
 
 }

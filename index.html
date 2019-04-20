@@ -22,25 +22,19 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">Title</span>
+        <span class="mdl-layout-title">Sorting Algorithms</span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
+          <!-- <a class="mdl-navigation__link" href="">Link</a> -->
         </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Title</span>
+      <span class="mdl-layout-title">Menu</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="https://github.com/StamateValentin" target="_blank">See My GitHub</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -58,24 +52,26 @@
               </button>
               <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
                 <li id="selection" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Selection Sort</li>
-                <li id="bubble" class="mdl-menu__item">Bubble Sort</li>
+                <li id="bubble" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Bubble Sort</li>
+                <li id="insertion" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Insertion Sort</li>
+                <li id="quick" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Quick Sort</li>
+                <li id="cocktail" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Cocktail Sort</li>
+                <li id="merge" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Merge Sort</li>
+                <li id="heap" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Heap Sort</li>
+                <li id="shell" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Shell Sort</li>
+                <li id="radix" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Radix Sort</li>
+                <li id="gnome" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Gnome Sort</li>
+                <li id="bitonic" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Bitonic Sort</li>
+                <li id="bogo" class="mdl-menu__item" onclick="setAlgorithm(this.id)">Bogo Sort</li>
               </ul>
 
 
               <!-- Duration -->
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-10 width-100">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+                <input id="duration" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
                 <label class="mdl-textfield__label" for="sample4">Duration</label>
                 <span class="mdl-textfield__error">Enter a number!</span>
               </div>
-
-              <!-- Array Size -->
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-10 width-100">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
-                  <label class="mdl-textfield__label" for="sample4">Array Size</label>
-                  <span class="mdl-textfield__error">Enter a number!</span>
-                </div>
-
 
               <!-- Start Button -->
 
@@ -85,11 +81,10 @@
 
               <!-- Test Button -->
 
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored margin-10" onclick="simulate()">
-                  Test
-                </button>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored margin-10" onclick="reset()">
+                Reset
+              </button>
             </div>
-
 
           </div>
 
@@ -102,13 +97,103 @@
 
         </div>
 
+        <!-- Second Layout -->
+        <div class="mdl-layout" style="margin-top:20px;">
+          <div class="mdl-grid">
+
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <a id="selectionSort" class="mdl-chip" href="https://www.geeksforgeeks.org/selection-sort/" target="_blank">
+                <span class="mdl-chip__text">Selection Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="selectionSort">
+                Average : <strong>O(n^2)</strong>
+              </div>
+
+              <a id="bubbleSort" class="mdl-chip" href="https://www.geeksforgeeks.org/bubble-sort/" target="_blank">
+                <span class="mdl-chip__text">Bubble Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="bubbleSort">
+                Average : <strong>O(n^2)</strong>
+              </div>
+
+              <a id="insertionSort" class="mdl-chip" href="https://www.geeksforgeeks.org/insertion-sort/" target="_blank">
+                <span class="mdl-chip__text">Insertion Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="insertionSort">
+                Average : <strong>O(n^2)</strong>
+              </div>
+
+              <a id="quickSort" class="mdl-chip" href="https://www.geeksforgeeks.org/quick-sort/" target="_blank">
+                <span class="mdl-chip__text">Quick Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="quickSort">
+                Average : <strong>O(n log(n))</strong>
+              </div>
+
+              <a id="cocktailSort" class="mdl-chip" href="https://www.geeksforgeeks.org/cocktail-sort/" target="_blank">
+                <span class="mdl-chip__text">Cocktail Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="cocktailSort">
+                Average : <strong>O(n^2)</strong>
+              </div>
+
+              <a id="heapSort" class="mdl-chip" href="https://www.geeksforgeeks.org/heap-sort/" target="_blank">
+                <span class="mdl-chip__text">Heap Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="heapSort">
+                Average : <strong>O(n log(n))</strong>
+              </div>
+
+              <a id="mergeSort" class="mdl-chip" href="https://www.geeksforgeeks.org/merge-sort/" target="_blank">
+                <span class="mdl-chip__text">Merge Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="mergeSort">
+                Average : <strong>O(n log(n))</strong>
+              </div>
+
+              <a id="shellSort" class="mdl-chip" href="https://www.geeksforgeeks.org/shellsort/" target="_blank">
+                <span class="mdl-chip__text">Shell Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="shellSort">
+                Average : <strong>O(n (log(n))^2)</strong>
+              </div>
+
+              <a id="radixSort" class="mdl-chip" href="https://www.geeksforgeeks.org/radix-sort/" target="_blank">
+                <span class="mdl-chip__text">Radix Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="radixSort">
+                Average : <strong>O(nk)</strong>
+              </div>
+
+              <a id="gnomeSort" class="mdl-chip" href="https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/" target="_blank">
+                <span class="mdl-chip__text">Gnome Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="gnomeSort">
+                Average : <strong>O(n^2)</strong>
+              </div>
+
+              <a id="bogoSort" class="mdl-chip" href="https://www.geeksforgeeks.org/bogosort-permutation-sort/" target="_blank">
+                <span class="mdl-chip__text">Bogo Sort</span>
+              </a>
+              <div class="mdl-tooltip" data-mdl-for="bogoSort">
+                Average : <strong>O((n+1)!)</strong>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
       </div>
 
-      <!-- End Content -->
   </div>
+  
   </main>
+
+  
   </div>
 
+<!-- FOOTER -->
 
 
 

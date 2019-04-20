@@ -1,7 +1,5 @@
 class BitonicSort {
-  constructor(v, status) {
-    this.v = v;
-    this.status = status;
+  constructor() {
   }
 
   async Sort(n, up) {
@@ -22,15 +20,15 @@ class BitonicSort {
   async bitonicMerge(low, cnt, dir) {
     if (cnt > 1) {
       let k = parseInt(cnt / 2);
-      for (let i = low; i < low + k; i++) {
+      for (let i = low; i < low + k && isStarted; i++) {
 
-        this.status[i] = 2;
-        this.status[i + k] = 4;
+        status[i] = 2;
+        status[i + k] = 4;
 
         await this.compAndSwap(i, i + k, dir);
 
-        this.status[i] = 0;
-        this.status[i + k] = 0;
+        status[i] = 0;
+        status[i + k] = 0;
         
       }
       await this.bitonicMerge(low, k, dir);
@@ -40,12 +38,12 @@ class BitonicSort {
 
   async compAndSwap(i, j, dir) {
     await sleep();
-    if ((this.v[i] > this.v[j] && dir == 1) ||
-      (this.v[i] < this.v[j] && dir == 0)) {
+    if ((v[i] > v[j] && dir == 1) ||
+      (v[i] < v[j] && dir == 0)) {
 
-      let temp = this.v[i];
-      this.v[i] = this.v[j];
-      this.v[j] = temp;
+      let temp = v[i];
+      v[i] = v[j];
+      v[j] = temp;
     }
   }
   

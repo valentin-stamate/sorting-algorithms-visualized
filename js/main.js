@@ -1,19 +1,18 @@
 'use strict';
 let v = new Array();
 let status = new Array();
-// 0 - normal , 1 - pivot, 2 - line to switch, 3 - where it goes?
-let line_w = 4; //line width
-let arraySize, sector;
+
+let lineWidth = 2;
+let sector = lineWidth + 1;
+let arraySize = 256;
 let algorithmType = 'none';
 let isStarted = false;
-let isSorted = false;
-sector = line_w + 2;
-let sleepTime = 1;
+let sleepTime = 10;
 
 let sort;//sort object
 
 function setup() {
-  let canvas = createCanvas(800, 400);
+  let canvas = createCanvas(772, 400);
   canvas.parent('screen');
   background(20);
   frameRate(60);
@@ -37,23 +36,22 @@ function draw() {
       case 4:
         stroke("#f789ff"); break;
     }
-    strokeWeight(line_w);
-    line(i * sector + 4 * line_w, height - line_w, i * sector + 4 * line_w, height - v[i] - line_w);
+    strokeWeight(lineWidth);
+    line((i + 1) * sector, height - 3, (i + 1) * sector, height - v[i] - 3);
   }
 
 }
 
 function checkAlgorithm(type) {
-  if (type === 'selection') {//done
+  if (type === 'selection') {
 
     if (!isStarted) {
-      sort = new SelectionSort(v, status);
+      sort = new SelectionSort();
       sort.Sort();
-
       isStarted = true;
     }
 
-  } else if (type === 'bubble') {//done
+  } else if (type === 'bubble') {
     if (!isStarted) {
       sort = new BubbleSort(v, status);
       sort.Sort();
@@ -61,23 +59,23 @@ function checkAlgorithm(type) {
       isStarted = true;
     }
 
-  } else if (type === 'insertion') {//done
+  } else if (type === 'insertion') {
     if (!isStarted) {
       sort = new InsertionSort(v, status);
       sort.Sort();
 
       isStarted = true;
     }
-  } else if (type === 'quick') {//done
+  } else if (type === 'quick') {
     if (!isStarted) {
-      sort = new QuickSort(v, status);
+      sort = new QuickSort();
       sort.Sort(0, arraySize - 1);
 
       isStarted = true;
     }
-  } else if (type === 'cocktail') {//done
+  } else if (type === 'cocktail') {
     if (!isStarted) {
-      sort = new CockTailSort(v, status);
+      sort = new CockTailSort();
       isStarted = true;
 
       sort.Sort();
@@ -85,33 +83,31 @@ function checkAlgorithm(type) {
     if (sort.finished)
       alg_finished = true;
 
-  } else if (type === 'merge') {//merge
+  } else if (type === 'merge') {
     if (!isStarted) {
-      sort = new MergeSort(v, status);
+      sort = new MergeSort();
       isStarted = true;
 
       sort.Sort(0, arraySize - 1);
     }
 
-  } else if (type === 'heap') {//done
+  } else if (type === 'heap') {
     if (!isStarted) {
-      sort = new HeapSort(v, status);
+      sort = new HeapSort();
       isStarted = true;
 
       sort.Sort();
     }
-    if (sort.finished)
-      alg_finished = true;
 
-  } else if (type === 'radix') {//done
+  } else if (type === 'radix') {
     if (!isStarted) {
-      sort = new RadixSort(v, status);
+      sort = new RadixSort();
       isStarted = true;
 
       sort.Sort(arraySize);
     }
 
-  } else if (type === 'shell') {//done
+  } else if (type === 'shell') {
     if (!isStarted) {
       sort = new ShellSort(v, status);
       isStarted = true;
@@ -119,7 +115,7 @@ function checkAlgorithm(type) {
       sort.Sort();
     }
 
-  } else if (type === 'gnome') {//done
+  } else if (type === 'gnome') {
     if (!isStarted) {
       sort = new GnomeSort(v, status);
       isStarted = true;
@@ -128,7 +124,7 @@ function checkAlgorithm(type) {
     }
     if (sort.finished)
       alg_finished = true;
-  } else if (type === 'bitonic') {//done
+  } else if (type === 'bitonic') {
     //must use a power of 2
     if (!isStarted) {
       sort = new BitonicSort(v, status);
@@ -150,12 +146,10 @@ function checkAlgorithm(type) {
   } else if (type === 'none') {
     if (!isStarted) {
       console.log("Select Algorithm");
-      isStarted = true;
     }
   } else {
     if (!isStarted) {
       console.log("Don't try to hack me ;)");
-      isStarted = true;
     }
   }
 
@@ -169,43 +163,33 @@ function setAlgorithm(id) {
   algorithmType = id;
   console.log(id);
 }
-// fun stuff
 
 function start() {
-  reset();
-
   if (!isStarted) {
-    sort = new SelectionSort(v, status);
-    sort.Sort();
-    console.log('ceva');
+    
+    sleepTime = parseInt(document.getElementById('duration').value);
+    
+    if (sleepTime > 1000 && sleepTime <= 0) {
+      sleepTime = 10;
+    }
 
-  }
-
-}
-
-function simulate() {
-  if (!isStarted) {
-    sort = new QuickSort(v, status);
-    sort.Sort(0, arraySize - 1);
-
-    isStarted = true;
+    checkAlgorithm(algorithmType);
   }
 }
 
-function reset() {
-  arraySize = 0;
+async function reset() {
+  isStarted = false;
+  v = [0];
 
-  arraySize = parseInt(width / sector) - 2;
+  await sleep();
+  await sleep();
+
+  //arraySize = parseInt(width / sector) - 1;
+  v = [arraySize];
+
   for (let i = 0; i < arraySize; i++) {
     v[i] = parseInt(random(height - 30));
     status[i] = 0;
   }
 
-
-  // for (let i = 0; i < arraySize; i++) {
-  //   v[i] = parseInt(random(height - 30));
-  //   status[i] = 0;
-  // }
-
-  // sleepTime = 0;
 }

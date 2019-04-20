@@ -1,30 +1,28 @@
 class ShellSort {
-  constructor(v, status) {
-    this.v = v;
-    this.status = status;
+  constructor() {
   }
 
   async Sort() {
-    let n = this.v.length;
+    let n = v.length;
 
     for (let gap = parseInt(n / 2); gap > 0; gap = parseInt(gap / 2)) {
       
-      for (let i = gap; i < n; i++) {
-        let temp = this.v[i];
+      for (let i = gap; i < n && isStarted; i++) {
+        let temp = v[i];
         let j;
 
-        for (j = i; j >= gap && this.v[j - gap] > temp; j -= gap) {
-          this.status[j] = 1;
-          this.status[j - gap] = 2;
+        for (j = i; j >= gap && v[j - gap] > temp && isStarted; j -= gap) {
+          status[j] = 1;
+          status[j - gap] = 2;
 
           await sleep();
 
-          this.v[j] = this.v[j - gap];
+          v[j] = v[j - gap];
 
-          this.status[j] = 0;
-          this.status[j - gap] = 0;
+          status[j] = 0;
+          status[j - gap] = 0;
         }
-        this.v[j] = temp;
+        v[j] = temp;
       }
     }
 

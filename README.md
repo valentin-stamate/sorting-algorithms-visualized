@@ -16,7 +16,11 @@ This include :
 
 **• Heap Sort**
 
+**• Merge Sort**
+
 **• Shell Sort**
+
+**• Radix Sort**
 
 **• Gnome Sort**
 

@@ -1,25 +1,23 @@
 class GnomeSort {
-  constructor(size) {
-    this.v = v;
-    this.status = status;
+  constructor() {
   }
 
   async Sort(n) {
     let index = 0;
 
-    while (index < n) {
+    while (index < n && isStarted) {
       if (index == 0)
         index++;  
-      if (this.v[index] >= this.v[index - 1])
+      if (v[index] >= v[index - 1])
         index++;
       else {
-        this.status[index] = 2;
+        status[index] = 2;
         await sleep();
         let temp = 0;
-        temp = this.v[index];
-        this.v[index] = this.v[index - 1];
-        this.v[index - 1] = temp;
-        this.status[index] = 0;
+        temp = v[index];
+        v[index] = v[index - 1];
+        v[index - 1] = temp;
+        status[index] = 0;
         index--;
       }
     }

@@ -1,10 +1,11 @@
 class MergeSort {
-  constructor(v, status) {
-    this.v = v;
-    this.status = status;
+  constructor() {
   }
 
   async Sort(l, r) {
+    if(!isStarted)
+      return;
+
     if (l < r) {
       let m = parseInt((l + r) / 2);
       
@@ -16,7 +17,8 @@ class MergeSort {
   }
 
   async merge(l, m, r) {
-    this.status[r] = 1;
+    
+    status[r] = 1;
     let i, j, k;
     let n1 = m - l + 1;
     let n2 = r - m;
@@ -24,46 +26,46 @@ class MergeSort {
     let L = [n1], R = [n2];
 
 
-    for (i = 0; i < n1; i++)
-      L[i] = this.v[l + i];
-    for (j = 0; j < n2; j++)
-      R[j] = this.v[m + 1 + j];
+    for (i = 0; i < n1 && isStarted; i++)
+      L[i] = v[l + i];
+    for (j = 0; j < n2 && isStarted; j++)
+      R[j] = v[m + 1 + j];
 
 
     i = 0;
     j = 0;
     k = l;
-    while (i < n1 && j < n2) {
-      this.status[k] = 2;
+    while (i < n1 && j < n2 && isStarted) {
+      status[k] = 2;
       if (L[i] <= R[j]) {
         await sleep();
-        this.v[k] = L[i];
+        v[k] = L[i];
         i++;
       }
       else {
         await sleep();
-        this.v[k] = R[j];
+        v[k] = R[j];
         j++;
       }
-      this.status[k] = 0;
+      status[k] = 0;
       k++;
       
     }
     /* Copy remaining elements of L[] if any */
-    while (i < n1) {
+    while (i < n1 && isStarted) {
       await sleep();//
-      this.v[k] = L[i];
+      v[k] = L[i];
       i++;
       k++;
     }
     /* Copy remaining elements of R[] if any */
-    while (j < n2) {
+    while (j < n2 && isStarted) {
       await sleep();
-      this.v[k] = R[j];
+      v[k] = R[j];
       j++;
       k++;
     }
-    this.status[r] = 0;
+     status[r] = 0;
   }
 
 }
