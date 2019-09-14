@@ -8,9 +8,7 @@ public class SortingAlgorithm implements Runnable{
   }
 
   @Override
-  public void run(){
-    
-  }
+  public void run(){}
 
   public void start(){
     if(t == null){
@@ -19,11 +17,19 @@ public class SortingAlgorithm implements Runnable{
     t.start();
   }
 
+  private void animate(){
+    for(int i = 0; i < v.length; i++){
+      try{ Thread.sleep(5); }
+      catch (Exception e){}
+      status[i] = 1;
+    }
+  }
+
   void draw(){
     for(int i = 0; i < length; i++){
-      stroke(255);
+      stroke(colorArray.get(status[i]));
       strokeWeight(3);
-      line(i * 5 + 3, height, i * 5 + 3, height - v[i] * 0.95);
+      line(i * 5 + 3, (height - 40), i * 5 + 3, (height - 40) - v[i]);
     }
   }
 
