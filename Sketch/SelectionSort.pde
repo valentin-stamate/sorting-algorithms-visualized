@@ -1,5 +1,5 @@
 class SelectionSort extends SortingAlgorithm{
-  SelectionSort(int[] v){
+  SelectionSort(float[] v){
     super(v);
   }
 
@@ -16,14 +16,12 @@ class SelectionSort extends SortingAlgorithm{
         if(status[j - 1] == 2){
           status[j - 1] = 0;
         }
+
+        super.sleep();
+
         if(v[i] > v[j]){
           status[j] = 2;
-          try{ Thread.sleep(2); }
-          catch (Exception e){}
-
-          int aux = v[i];
-          v[i] = v[j];
-          v[j] = aux;
+          swap(i, j);
         }
       }
     }
@@ -32,6 +30,10 @@ class SelectionSort extends SortingAlgorithm{
     status[v.length - 2] = 0;
     super.animate();
 
+  }
+
+  public void start(){
+    super.start(this);
   }
 
 }

@@ -1,21 +1,23 @@
 public class SortingAlgorithm implements Runnable{
-  private int[] v;
+  private float[] v;
   private Thread t;
+  final static short DELAY = 10;
 
-  SortingAlgorithm(int[] v){
+  SortingAlgorithm(float[] v){
     this.v = v;
-    registerMethod("draw", this);
   }
 
   @Override
-  public void run(){}
-
-  public void start(){
-    if(t == null){
-      t = new Thread(this, "thred");
-    }
-    t.start();
+  public void run(){
+    // look into subclass
   }
+  private void start(SortingAlgorithm sa){
+    if(t == null){
+      t = new Thread(sa);
+      t.start();
+    }
+  }
+
 
   private void animate(){
     for(int i = 0; i < v.length; i++){
@@ -23,14 +25,15 @@ public class SortingAlgorithm implements Runnable{
       catch (Exception e){}
       status[i] = 1;
     }
+    t = null;
   }
 
-  void draw(){
-    for(int i = 0; i < length; i++){
-      stroke(colorArray.get(status[i]));
-      strokeWeight(3);
-      line(i * 5 + 3, (height - 40), i * 5 + 3, (height - 40) - v[i]);
-    }
+  private void sleep(){
+    try{ Thread.sleep(SortingAlgorithm.DELAY); }
+    catch (Exception e){}
+
+    try{while(pause){ Thread.sleep(100); }}
+    catch (Exception e){}
   }
 
 }

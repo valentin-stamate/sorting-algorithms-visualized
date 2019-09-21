@@ -5,24 +5,31 @@ import java.util.ArrayList;
 
 // TODO ADD SOUND
 
-int length;
-int[] v, status;
+int length, minLength, maxLength;
+float[] v;
+int[] status;
+int navSize = 80;
 SelectionSort selectionSort;
+BubbleSort bubbleSort;
+ShuffleArray shuffleArray;
+boolean pause = false;
 
 color staticColor, iteratorColor, pivotColor;
 ArrayList<Integer> colorArray;
-ControlP5 button;
+ControlP5 cp5;
 
 void setup(){
-  size(1027, 520);
+  size(1602, 520);
   background(15);
   frameRate(60);
 
+  minLength = 200;
+  maxLength = width;
   initialize();
 }
 
 void initialize(){
-  length = width / 5;
+  length = minLength + 20; // let's say that
 
   colorArray = new ArrayList<Integer>();
   staticColor = color(255);
@@ -32,64 +39,88 @@ void initialize(){
   colorArray.add(pivotColor);
   colorArray.add(iteratorColor);
 
-  v = new int[length];
+  v = new float[length];
   status = new int[length];
-  int n = (height - 40) / length;
-  println("This is n : " + n);
+  float n = height * 1.0 / length;
+
   for(int i = 0; i < length; i++){
-    v[i] = n * i;
-    println(v[i]);
+    v[i] = i * n;
   }
-  shuffleArray(v);
 
   selectionSort = new SelectionSort(v);
+  bubbleSort = new BubbleSort(v);
+  shuffleArray = new ShuffleArray(v);
 
-  button = new ControlP5(this);
-  button.addButton("pause")
-    .setPosition(10, height - 30)
+  int bxPoz = width - navSize + 10;
+  cp5 = new ControlP5(this);
+  cp5.addButton("pause")
+    .setPosition(bxPoz, 10)
     .setSize(60, 20)
   ;
-  button.addButton("shuffle")
-    .setPosition(80, height - 30)
+  cp5.addButton("shuffle")
+    .setPosition(bxPoz, 40)
     .setSize(60, 20)
   ;
-  button.addButton("selectionsort")
-    .setPosition(160, height - 30)
-    .setSize(80, 20)
+  cp5.addButton("selection")
+    .setPosition(bxPoz, 80)
+    .setSize(60, 20)
+  ;
+  cp5.addButton("bubble")
+    .setPosition(bxPoz, 110)
+    .setSize(60, 20)
+  ;
+  cp5.addSlider("asize")
+    .setRange(minLength, maxLength)
+    .setPosition(bxPoz, 140)
+    .setSize(25, 20)
   ;
 }
 
 void draw(){
   background(15);
+  drawArray();
+  drawRightNav();
 }
 
-void drawDownNav(){
+void drawRightNav(){
   noStroke();
-  fill(color(15));
-  rect(0, height - 40, width, 40 );
+  fill(color(10));
+  rect(width - navSize, 0, width, height);
 }
 
-// BUTTONS
+void drawArray(){
+  for(int i = 0; i < length; i++){
+
+    float lineWidth = 1.0;
+    float dist = (width - navSize) * 1.0 / length;
+
+    stroke(colorArray.get(status[i]));
+    strokeWeight(1);
+    int lOffset = 2;
+    line(i * 1.0 * dist + lOffset, height + lOffset, i * 1.0 * dist + lOffset, height * 1.0 - v[i] + lOffset);
+  }
+}
+
+// BUTTONS & OTHER
 void pause(){
-  println("pause");
+  pause = !pause;
 }
 void shuffle(){
-  println("shuffle");
+  shuffleArray.start();
 }
-void selectionsort(){
+void selection(){
   selectionSort.start();
 }
+void bubble(){
+  bubbleSort.start();
+}
+void asize(int value){
 
-// TODO code taken from :
-static void shuffleArray(int[] ar) {
-  // If running on Java 6 or older, use `new Random()` on RHS here
-  Random rnd = ThreadLocalRandom.current();
-  for (int i = ar.length - 1; i > 0; i--)
-  {
-    int index = rnd.nextInt(i + 1);
-    // Simple swap
-    int a = ar[index];
-    ar[index] = ar[i];
-    ar[i] = a;
-  }
+}
+
+//
+void swap(int i, int j){
+  float aux = v[i];
+  v[i] = v[j];
+  v[j] = aux;
 }
