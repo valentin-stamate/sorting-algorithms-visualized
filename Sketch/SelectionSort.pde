@@ -17,10 +17,13 @@ class SelectionSort extends SortingAlgorithm{
           status[j - 1] = 0;
         }
 
-        super.sleep();
-
         if(v[i] > v[j]){
+
+          comparisons++;
+          arrayAccess+=4;
+
           status[j] = 2;
+          super.sleep();
           swap(i, j);
         }
       }
@@ -28,8 +31,12 @@ class SelectionSort extends SortingAlgorithm{
 
     status[v.length - 1] = 0;
     status[v.length - 2] = 0;
-    super.animate();
 
+    if(DELAY != 0){
+      super.animate();
+    } else {
+      super.t = null;
+    }
   }
 
   public void start(){

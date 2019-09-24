@@ -1,7 +1,6 @@
 public class SortingAlgorithm implements Runnable{
   private float[] v;
   private Thread t;
-  final static short DELAY = 10;
 
   SortingAlgorithm(float[] v){
     this.v = v;
@@ -12,6 +11,8 @@ public class SortingAlgorithm implements Runnable{
     // look into subclass
   }
   private void start(SortingAlgorithm sa){
+    comparisons = 0;
+    arrayAccess = 0;
     if(t == null){
       t = new Thread(sa);
       t.start();
@@ -20,7 +21,7 @@ public class SortingAlgorithm implements Runnable{
 
 
   private void animate(){
-    for(int i = 0; i < v.length; i++){
+    for(int i = 0; i < status.length; i++){
       try{ Thread.sleep(5); }
       catch (Exception e){}
       status[i] = 1;
@@ -29,7 +30,7 @@ public class SortingAlgorithm implements Runnable{
   }
 
   private void sleep(){
-    try{ Thread.sleep(SortingAlgorithm.DELAY); }
+    try{ Thread.sleep(DELAY); }
     catch (Exception e){}
 
     try{while(pause){ Thread.sleep(100); }}
