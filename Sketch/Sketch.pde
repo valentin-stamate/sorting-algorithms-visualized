@@ -73,6 +73,7 @@ void initialize(){
     .setPosition(bxPoz, 140)
     .setSize(60, 20)
   ;
+
   cp5.addSlider("asize")
     .setRange(minLength, maxLength)
     .setPosition(bxPoz, height - 60)
