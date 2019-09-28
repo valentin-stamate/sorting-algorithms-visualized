@@ -1,20 +1,22 @@
+import controlP5.*;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import controlP5.*;
 import java.util.ArrayList;
 
-// TODO ADD SOUND
+SortingSound ss;
+Sound s;
 
 int length, minLength, maxLength, DELAY = 5, newALength, newDELAY = 5, arrayAccess = 0, comparisons = 0;
 float[] v;
 int[] status;
 int navSize = 80;
+boolean pause = false, sortStart = false;
+
+ShuffleArray shuffleArray;
 SelectionSort selectionSort;
 BubbleSort bubbleSort;
-ShuffleArray shuffleArray;
-boolean pause = false;
+QuickSort quickSort;
 
-color staticColor, iteratorColor, pivotColor;
 ArrayList<Integer> colorArray;
 ControlP5 cp5;
 
@@ -22,6 +24,10 @@ void setup(){
   size(1602, 520, P2D);
   background(15);
   frameRate(60);
+  strokeCap(ROUND);
+
+  s = new Sound(this);
+  s.volume(0.5);
 
   minLength = 200;
   maxLength = width - navSize;
@@ -29,22 +35,21 @@ void setup(){
 }
 
 void initialize(){
-  length = minLength + 20; // let's say that
+  length = minLength; // let's say that
   newALength = length;
 
   colorArray = new ArrayList<Integer>();
-  staticColor = color(255);
-  iteratorColor = color(229, 57, 53);
-  pivotColor = color(0, 121, 107);
-  colorArray.add(staticColor);
-  colorArray.add(pivotColor);
-  colorArray.add(iteratorColor);
-
+  colorArray.add(color(255));          // white
+  colorArray.add(color(0, 121, 107));  // green
+  colorArray.add(color(229, 57, 53));  // red
+  colorArray.add(color(3, 169, 244));  // blue
+  colorArray.add(color(230, 74, 25));  // orange
   newArray();
 
-  selectionSort = new SelectionSort(v);
-  bubbleSort = new BubbleSort(v);
-  shuffleArray = new ShuffleArray(v);
+  selectionSort = new SelectionSort();
+  bubbleSort = new BubbleSort();
+  shuffleArray = new ShuffleArray();
+  quickSort = new QuickSort();
 
   int bxPoz = width - navSize + 10;
   cp5 = new ControlP5(this);
@@ -64,17 +69,23 @@ void initialize(){
     .setPosition(bxPoz, 110)
     .setSize(60, 20)
   ;
+  cp5.addButton("quick")
+    .setPosition(bxPoz, 140)
+    .setSize(60, 20)
+  ;
   cp5.addSlider("asize")
     .setRange(minLength, maxLength)
-    .setPosition(bxPoz, 140)
+    .setPosition(bxPoz, height - 60)
     .setSize(25, 20)
   ;
   cp5.addSlider("delay")
     .setValue(DELAY)
     .setRange(0, 20)
-    .setPosition(bxPoz, 170)
+    .setPosition(bxPoz, height - 30)
     .setSize(25, 20)
   ;
+
+  ss = new SortingSound(this);
 }
 // DRAW FUNCTIONS
 void draw(){
@@ -91,7 +102,11 @@ void drawRightNav(){
 }
 
 void drawArray(){
-  strokeWeight(1);
+  int strokeWeight = (width - navSize) / length / 2;
+  if(strokeWeight < 1){
+    strokeWeight = 1;
+  }
+  strokeWeight(strokeWeight);
   //stroke(255);
   beginShape(LINES);
   for(int i = 0; i < length; i++){
@@ -116,6 +131,8 @@ void drawScore(){
 
 
 void newArray(){
+  comparisons = 0;
+  arrayAccess = 0;
   v = new float[length];
   status = new int[length];
   float n = (height - 20) * 1.0 / length;
@@ -131,6 +148,7 @@ void pause(){
   pause = !pause;
 }
 void shuffle(){
+  sortStart = false;
   shuffleArray.start();
 }
 void selection(){
@@ -138,6 +156,9 @@ void selection(){
 }
 void bubble(){
   bubbleSort.start();
+}
+void quick(){
+  quickSort.start();
 }
 void asize(int value){
   newALength = value;
@@ -149,10 +170,11 @@ void delay(int delay){
 //
 void mouseReleased() {
   if(newALength != length){
-    length = newALength;
     // FINISH THE SEARCH AND AFTER CREATES A NEW ARRAY
-    DELAY = 0;
+    sortStart = false;
     sleep(100);
+
+    length = newALength;
     newArray();
   }
   if(newDELAY != DELAY){
@@ -162,6 +184,7 @@ void mouseReleased() {
 
 //
 void swap(int i, int j){
+  arrayAccess+=3;
   float aux = v[i];
   v[i] = v[j];
   v[j] = aux;
@@ -170,4 +193,8 @@ void swap(int i, int j){
 void sleep(int time){
   try{ Thread.sleep(time); }
   catch (Exception e){}
+}
+
+void SoundPlay(int n){
+  //ss.play(n);
 }

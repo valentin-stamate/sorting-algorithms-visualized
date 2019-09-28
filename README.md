@@ -1,6 +1,6 @@
 # Sorting Algorithms Visualized
 
-<img width="600" src="https://i.postimg.cc/B62whM2v/Capture.png">
+<img width="600" src="https://i.postimg.cc/MKgp1sgX/Capture.png">
 
 An easy way for visualizing popular sorting algorithms. The UI is very intuitive and you can swich very easily between then.
 
@@ -9,13 +9,20 @@ An easy way for visualizing popular sorting algorithms. The UI is very intuitive
 The project is write in Java 8.
 If you wonder how I was able to visualize an algorithm wich is using recursive calls, I used the `thread` concept.
 
-This include:
-
-* `Selection Sort`
-
+Sorting Algorithms :
+```
+• Selection Sort
+• Bubble Sort
+• Quick Sort
+```
 ## How To Run
 
-In order to run this, you'll need to install [Processing](https://processing.org/) first. Open Sketch.pde under Sketch folder and you are done.
+### Must Have :
+
+* [Processing](https://processing.org/)
+* [ControlP5](http://www.sojamo.de/libraries/controlP5/)
+
+To run it, open Sketch.pde under Sketch folder.
 
 ## Built With
 
