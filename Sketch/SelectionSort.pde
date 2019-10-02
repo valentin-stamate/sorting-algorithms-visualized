@@ -4,22 +4,23 @@ class SelectionSort extends SortingAlgorithm{
   public void run() {
     for(int i = 0; i < v.length - 1; i++){
 
-      status[i] = 1;
+      ArrayColor(i, 1);
 
       for(int j = i + 1; j < v.length; j++){
         if(v[i] > v[j]){
           comparisons++;
           arrayAccess+=2;
 
-          status[j] = 2;
+          ArrayColor(j, 2);
+
           SoundPlay(i);
 
           super.sleep();
           swap(i, j);
         }
-        status[j] = 0;
+        ResetArrayColor(j);
       }
-      status[i] = 0;
+      ResetArrayColor(i);
     }
 
     if(sortStart){

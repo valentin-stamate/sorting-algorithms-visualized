@@ -18,13 +18,19 @@ class ShuffleArray extends SortingAlgorithm{
 
     for (int i = 0; i < v.length; i++) {
 
+      int index = rnd.nextInt(i + 1);
+
+      ArrayColor(i, 2);
+      ArrayColor(index, 3);
+
       try{ Thread.sleep(sleepTime); }
       catch (Exception e){}
 
-      status[i] = 0;
+      ResetArrayColor(i);
+      ResetArrayColor(index);
 
-      int index = rnd.nextInt(i + 1);
       SoundPlay(index);
+
       swap(index, i);
     }
     super.t = null;

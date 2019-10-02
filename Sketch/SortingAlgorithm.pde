@@ -32,6 +32,14 @@ public class SortingAlgorithm implements Runnable{
     try{ if(sortStart) { Thread.sleep(DELAY); }}
     catch (Exception e){}
 
+    try{ while(pause){ Thread.sleep(100); }}
+    catch (Exception e){}
+  }
+
+  private void sleep(int t){
+    try{ if(sortStart) { Thread.sleep(t); }}
+    catch (Exception e){}
+
     try{while(pause){ Thread.sleep(100); }}
     catch (Exception e){}
   }

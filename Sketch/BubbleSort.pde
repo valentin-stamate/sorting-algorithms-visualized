@@ -9,15 +9,15 @@ class BubbleSort extends SortingAlgorithm{
           comparisons++;
           arrayAccess+=2;
 
-          status[j] = 1;
-          status[j + 1] = 2;
+          ArrayColor(j, 1);
+          ArrayColor(j + 1, 2);
           swap(j, j + 1);
 
           SoundPlay(j);
 
           super.sleep();
-          status[j] = 0;
-          status[j + 1] = 0;
+          ResetArrayColor(j);
+          ResetArrayColor(j + 1);
         }
       }
     }

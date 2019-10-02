@@ -7,7 +7,7 @@ SortingSound ss;
 Sound s;
 
 int length, minLength, maxLength, DELAY = 5, newALength, newDELAY = 5, arrayAccess = 0, comparisons = 0;
-float[] v;
+int[] v;
 int[] status;
 int navSize = 80;
 boolean pause = false, sortStart = false;
@@ -16,6 +16,10 @@ ShuffleArray shuffleArray;
 SelectionSort selectionSort;
 BubbleSort bubbleSort;
 QuickSort quickSort;
+RadixSort radixSort;
+MergeSort mergeSort;
+PigeonholeSort pigSort;
+GravitySort gravitySort;
 
 ArrayList<Integer> colorArray;
 ControlP5 cp5;
@@ -50,6 +54,10 @@ void initialize(){
   bubbleSort = new BubbleSort();
   shuffleArray = new ShuffleArray();
   quickSort = new QuickSort();
+  radixSort = new RadixSort();
+  mergeSort = new MergeSort();
+  pigSort = new PigeonholeSort();
+  gravitySort = new GravitySort();
 
   int bxPoz = width - navSize + 10;
   cp5 = new ControlP5(this);
@@ -73,6 +81,24 @@ void initialize(){
     .setPosition(bxPoz, 140)
     .setSize(60, 20)
   ;
+  cp5.addButton("radix")
+    .setPosition(bxPoz, 170)
+    .setSize(60, 20)
+  ;
+  cp5.addButton("merge")
+    .setPosition(bxPoz, 200)
+    .setSize(60, 20)
+  ;
+  cp5.addButton("pigeonhole")
+    .setPosition(bxPoz, 200)
+    .setSize(60, 20)
+  ;
+  // ISSUE WITH VISUALIZASON
+  // cp5.addButton("gravity")
+  //   .setPosition(bxPoz, 200)
+  //   .setSize(60, 20)
+  // ;
+
 
   cp5.addSlider("asize")
     .setRange(minLength, maxLength)
@@ -81,7 +107,7 @@ void initialize(){
   ;
   cp5.addSlider("delay")
     .setValue(DELAY)
-    .setRange(0, 20)
+    .setRange(1, 20)
     .setPosition(bxPoz, height - 30)
     .setSize(25, 20)
   ;
@@ -118,7 +144,7 @@ void drawArray(){
     int lOffset = 2;
     stroke(colorArray.get(status[i]));
     vertex(i * 1.0 * dist + lOffset, height + lOffset);
-    vertex(i * 1.0 * dist + lOffset, height * 1.0 - v[i] + lOffset);
+    vertex(i * 1.0 * dist + lOffset, height * 1.0 - v[i] * 1.0 / 10 + lOffset);
   }
   endShape();
 }
@@ -134,12 +160,12 @@ void drawScore(){
 void newArray(){
   comparisons = 0;
   arrayAccess = 0;
-  v = new float[length];
+  v = new int[length];
   status = new int[length];
   float n = (height - 20) * 1.0 / length;
 
   for(int i = 0; i < length; i++){
-    v[i] = i * n;
+    v[i] = (int)( (n * i) * 10 );
     status[i] = 0;
   }
 }
@@ -161,6 +187,19 @@ void bubble(){
 void quick(){
   quickSort.start();
 }
+void radix(){
+  radixSort.start();
+}
+void merge(){
+  mergeSort.start();
+}
+void pigeonhole(){
+  pigSort.start();
+}
+void gravity(){
+  gravitySort.start();
+}
+
 void asize(int value){
   newALength = value;
 }
@@ -184,9 +223,16 @@ void mouseReleased() {
 }
 
 //
+void ArrayColor(int index, int col){
+  status[index] = col;
+}
+void ResetArrayColor(int index){
+  status[index] = 0;
+}
+
 void swap(int i, int j){
   arrayAccess+=3;
-  float aux = v[i];
+  int aux = v[i];
   v[i] = v[j];
   v[j] = aux;
 }

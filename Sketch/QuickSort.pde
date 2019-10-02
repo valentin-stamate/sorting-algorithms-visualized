@@ -35,26 +35,27 @@ class QuickSort extends SortingAlgorithm{
 
   private int partition(int l, int r){
     float pivot = v[r];
-    status[r] = 4;
+    ArrayColor(r, 4);
     int i = l;
     // put the ellements smaller than pivot int the left side
     for(int j = l; j < r; j++){
-      status[j] = 2;
-      status[i] = 1;
+      ArrayColor(j, 2);
+      ArrayColor(i, 1);
       if(v[j] < pivot){
         comparisons++;
 
-        status[i] = 1;
+        ArrayColor(i, 1);
+
         SoundPlay(i);
         swap(i, j);
         super.sleep();
-        status[i] = 0;
+        ResetArrayColor(i);
         i++;
       }
-      status[j] = 0;
+      ResetArrayColor(j);
     }
     // swap v[i] with pivot -> v[r]
-    status[r] = 0;
+    ResetArrayColor(r);
     swap(i, r);
     return i;
   }

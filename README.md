@@ -1,13 +1,13 @@
 # Sorting Algorithms Visualized
 
-<img width="600" src="https://i.postimg.cc/MKgp1sgX/Capture.png">
+<img width="1000" src="https://i.postimg.cc/MKgp1sgX/Capture.png">
 
-An easy way for visualizing popular sorting algorithms. The UI is very intuitive and you can swich very easily between then.
+An easy way for visualizing popular sorting algorithms. The UI is very intuitive and you can switch very easily between then.
 
 ## About
 
 The project is write in Java 8.
-If you wonder how I was able to visualize an algorithm wich is using recursive calls, I used the `thread` concept.
+If you wonder how I was able to visualize an algorithm witch is using recursive calls, I used the `thread` concept.
 
 Sorting Algorithms :
 ```
