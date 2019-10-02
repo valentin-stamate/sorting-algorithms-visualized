@@ -14,6 +14,9 @@ Sorting Algorithms :
 • Selection Sort
 • Bubble Sort
 • Quick Sort
+* Merge Sort
+* Radix Sort
+* Pigeonhole Sort
 ```
 ## How To Run
 
