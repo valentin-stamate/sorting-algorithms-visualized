@@ -20,6 +20,7 @@ RadixSort radixSort;
 MergeSort mergeSort;
 PigeonholeSort pigSort;
 GravitySort gravitySort;
+HeapSort heapSort;
 
 ArrayList<Integer> colorArray;
 ControlP5 cp5;
@@ -58,6 +59,7 @@ void initialize(){
   mergeSort = new MergeSort();
   pigSort = new PigeonholeSort();
   gravitySort = new GravitySort();
+  heapSort = new HeapSort();
 
   int bxPoz = width - navSize + 10;
   cp5 = new ControlP5(this);
@@ -89,8 +91,12 @@ void initialize(){
     .setPosition(bxPoz, 200)
     .setSize(60, 20)
   ;
+  cp5.addButton("heap")
+    .setPosition(bxPoz, 230)
+    .setSize(60, 20)
+  ;
   cp5.addButton("pigeonhole")
-    .setPosition(bxPoz, 200)
+    .setPosition(bxPoz, 260)
     .setSize(60, 20)
   ;
   // ISSUE WITH VISUALIZASON
@@ -156,7 +162,6 @@ void drawScore(){
   text("array access: " + arrayAccess, 180, 20);
 }
 
-
 void newArray(){
   comparisons = 0;
   arrayAccess = 0;
@@ -196,10 +201,12 @@ void merge(){
 void pigeonhole(){
   pigSort.start();
 }
+void heap(){
+  heapSort.start();
+}
 void gravity(){
   gravitySort.start();
 }
-
 void asize(int value){
   newALength = value;
 }

@@ -1,6 +1,6 @@
 # Sorting Algorithms Visualized
 
-<img width="1000" src="https://i.postimg.cc/MKgp1sgX/Capture.png">
+<img width="1000" src="https://i.postimg.cc/BQSGrMtD/Capture.png">
 
 An easy way for visualizing popular sorting algorithms. The UI is very intuitive and you can switch very easily between then.
 
@@ -17,6 +17,7 @@ Sorting Algorithms :
 * Merge Sort
 * Radix Sort
 * Pigeonhole Sort
+* Heap Sort
 ```
 ## How To Run
 
@@ -29,7 +30,7 @@ To run it, open Sketch.pde under Sketch folder.
 
 ## Built With
 
-* [Processing](https://processing.org/) - The software for visualizing sorting algorithms
+* [Processing](https://processing.org/)
 
 ## Credits
 
