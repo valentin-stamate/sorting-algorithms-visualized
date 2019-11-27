@@ -13,8 +13,6 @@ class SelectionSort extends SortingAlgorithm{
 
           ArrayColor(j, 2);
 
-          SoundPlay(i);
-
           super.sleep();
           swap(i, j);
         }

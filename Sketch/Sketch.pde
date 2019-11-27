@@ -3,8 +3,6 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 
-SortingSound ss;
-Sound s;
 
 int length, minLength, maxLength, DELAY = 5, newALength, newDELAY = 5, arrayAccess = 0, comparisons = 0;
 int[] v;
@@ -30,9 +28,6 @@ void setup(){
   background(15);
   frameRate(60);
   strokeCap(ROUND);
-
-  s = new Sound(this);
-  s.volume(0.5);
 
   minLength = 200;
   maxLength = width - navSize;
@@ -118,7 +113,6 @@ void initialize(){
     .setSize(25, 20)
   ;
 
-  ss = new SortingSound(this);
 }
 // DRAW FUNCTIONS
 void draw(){
@@ -247,8 +241,4 @@ void swap(int i, int j){
 void sleep(int time){
   try{ Thread.sleep(time); }
   catch (Exception e){}
-}
-
-void SoundPlay(int n){
-  //ss.play(n);
 }

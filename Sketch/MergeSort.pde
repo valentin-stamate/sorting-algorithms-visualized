@@ -18,7 +18,7 @@ class MergeSort extends SortingAlgorithm{
 
   void mergeSort(int l, int r){
     if(l < r){
-
+      comparisons++;
       int m = (l + r) / 2;
       ArrayColor(m, 3);
 
@@ -40,9 +40,11 @@ class MergeSort extends SortingAlgorithm{
 
     for(int i = l; i <= m; i++){
       L[i - l] = v[i];
+      arrayAccess++;
     }
     for(int i = m + 1; i <= r; i++){
       R[i - (m + 1)] = v[i];
+      arrayAccess++;
     }
 
     // Merge these arrays
@@ -51,9 +53,13 @@ class MergeSort extends SortingAlgorithm{
     while(i < n1 && j < n2){
       if(L[i] < R[j]){
         v[k] = L[i++];
+        arrayAccess++;
       } else {
         v[k] = R[j++];
+        arrayAccess++;
       }
+
+      comparisons+=3;
 
       ArrayColor(k, 2);
 
@@ -65,10 +71,14 @@ class MergeSort extends SortingAlgorithm{
     while(i < n1){
       v[k] = L[i++];
       k++;
+      comparisons++;
+      arrayAccess++;
     }
     while(j < n2){
       v[k] = R[j++];
       k++;
+      comparisons++;
+      arrayAccess++;
     }
 
   }

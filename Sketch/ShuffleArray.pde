@@ -29,8 +29,6 @@ class ShuffleArray extends SortingAlgorithm{
       ResetArrayColor(i);
       ResetArrayColor(index);
 
-      SoundPlay(index);
-
       swap(index, i);
     }
     super.t = null;

@@ -26,7 +26,7 @@ Sorting Algorithms :
 * [Processing](https://processing.org/)
 * [ControlP5](http://www.sojamo.de/libraries/controlP5/)
 
-To run it, open Sketch.pde under Sketch folder.
+To run it, open Sketch.pde under Sketch folder or download the binaries under [releases](https://github.com/StamateValentin/SortingAlgorithms/releases).
 
 ## Built With
 

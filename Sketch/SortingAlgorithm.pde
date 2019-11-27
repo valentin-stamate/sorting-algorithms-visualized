@@ -23,7 +23,6 @@ public class SortingAlgorithm implements Runnable{
       try{ Thread.sleep(sleepTime); }
       catch (Exception e){}
       status[i] = 1;
-      SoundPlay(i);
     }
     t = null;
   }

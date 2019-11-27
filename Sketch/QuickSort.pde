@@ -46,7 +46,6 @@ class QuickSort extends SortingAlgorithm{
 
         ArrayColor(i, 1);
 
-        SoundPlay(i);
         swap(i, j);
         super.sleep();
         ResetArrayColor(i);

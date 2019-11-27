@@ -13,8 +13,6 @@ class BubbleSort extends SortingAlgorithm{
           ArrayColor(j + 1, 2);
           swap(j, j + 1);
 
-          SoundPlay(j);
-
           super.sleep();
           ResetArrayColor(j);
           ResetArrayColor(j + 1);
