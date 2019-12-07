@@ -3,6 +3,8 @@ class MergeSort extends SortingAlgorithm{
   @Override
   public void run() {
 
+    algorithmFlag = "Algorithm : Merge Sort";
+
     mergeSort(0, v.length - 1);
 
     if(sortStart){

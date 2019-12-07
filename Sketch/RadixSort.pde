@@ -3,6 +3,8 @@ class RadixSort extends SortingAlgorithm{
   @Override
   public void run() {
 
+    algorithmFlag = "Algorithm : Radix Sort";
+
     radixSort();
 
     if(sortStart){

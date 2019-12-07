@@ -3,6 +3,8 @@ class BubbleSort extends SortingAlgorithm{
   @Override
   public void run() {
 
+    algorithmFlag = "Algorithm : Bubble Sort";
+
     for(int i = 0; i < length; i++){
       for(int j = 0; j < length - 1; j++){
         if(v[j] > v[j + 1]){

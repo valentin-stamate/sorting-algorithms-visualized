@@ -2,6 +2,9 @@ class SelectionSort extends SortingAlgorithm{
 
   @Override
   public void run() {
+
+    algorithmFlag = "Algorithm : Selection Sort";
+
     for(int i = 0; i < v.length - 1; i++){
 
       ArrayColor(i, 1);

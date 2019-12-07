@@ -2,8 +2,12 @@ class ShuffleArray extends SortingAlgorithm{
 
   @Override
   public void run() {
+
+    algorithmFlag = "Shuffling";
+
     // END THE RUNNING SORTING THREAD
     sortStart = false;
+
 
     try{ Thread.sleep(100); }
     catch (Exception e){}
@@ -35,6 +39,7 @@ class ShuffleArray extends SortingAlgorithm{
     sortStart = false;
     comparisons = 0;
     arrayAccess = 0;
+    algorithmFlag = "";
     return;
   }
 

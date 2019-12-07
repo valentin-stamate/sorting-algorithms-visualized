@@ -3,6 +3,8 @@ class GravitySort extends SortingAlgorithm{
   @Override
   public void run() {
 
+    algorithmFlag = "Algorithm : Gravity Sort";
+
     gravitySort();
 
     if(sortStart){

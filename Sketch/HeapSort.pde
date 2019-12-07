@@ -3,6 +3,8 @@ class HeapSort extends SortingAlgorithm{
   @Override
   public void run() {
 
+    algorithmFlag = "Algorithm : Heap Sort";
+
     boolean isSorted = super.isSorted();
 
     if(!isSorted)

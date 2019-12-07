@@ -3,6 +3,8 @@ class QuickSort extends SortingAlgorithm{
   @Override
   public void run() {
 
+    algorithmFlag = "Algorithm : Quick Sort";
+
     boolean isSorted = super.isSorted();
 
     if(!isSorted)

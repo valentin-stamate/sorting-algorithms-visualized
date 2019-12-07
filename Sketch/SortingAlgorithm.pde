@@ -25,6 +25,7 @@ public class SortingAlgorithm implements Runnable{
       status[i] = 1;
     }
     t = null;
+    algorithmFlag = "";
   }
 
   private void sleep(){

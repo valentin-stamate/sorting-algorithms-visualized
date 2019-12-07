@@ -10,9 +10,12 @@ int[] status;
 int navSize = 80;
 boolean pause = false, sortStart = false;
 
+String algorithmFlag = "";
+
 ShuffleArray shuffleArray;
-SelectionSort selectionSort;
 BubbleSort bubbleSort;
+InsertionSort insertionSort;
+SelectionSort selectionSort;
 QuickSort quickSort;
 RadixSort radixSort;
 MergeSort mergeSort;
@@ -44,10 +47,11 @@ void initialize(){
   colorArray.add(color(229, 57, 53));  // red
   colorArray.add(color(3, 169, 244));  // blue
   colorArray.add(color(230, 74, 25));  // orange
-  newArray();
+  Ascending();
 
-  selectionSort = new SelectionSort();
   bubbleSort = new BubbleSort();
+  insertionSort = new InsertionSort();
+  selectionSort = new SelectionSort();
   shuffleArray = new ShuffleArray();
   quickSort = new QuickSort();
   radixSort = new RadixSort();
@@ -66,32 +70,44 @@ void initialize(){
     .setPosition(bxPoz, 40)
     .setSize(60, 20)
   ;
-  cp5.addButton("selection")
+  cp5.addButton("ascending")
     .setPosition(bxPoz, 80)
     .setSize(60, 20)
   ;
-  cp5.addButton("bubble")
+  cp5.addButton("descending")
     .setPosition(bxPoz, 110)
     .setSize(60, 20)
   ;
+  cp5.addButton("bubble")
+    .setPosition(bxPoz, 150)
+    .setSize(60, 20)
+  ;
+  cp5.addButton("insertion")
+    .setPosition(bxPoz, 180)
+    .setSize(60, 20)
+  ;
+  cp5.addButton("selection")
+    .setPosition(bxPoz, 210)
+    .setSize(60, 20)
+  ;
   cp5.addButton("quick")
-    .setPosition(bxPoz, 140)
+    .setPosition(bxPoz, 240)
     .setSize(60, 20)
   ;
   cp5.addButton("radix")
-    .setPosition(bxPoz, 170)
+    .setPosition(bxPoz, 270)
     .setSize(60, 20)
   ;
   cp5.addButton("merge")
-    .setPosition(bxPoz, 200)
+    .setPosition(bxPoz, 300)
     .setSize(60, 20)
   ;
   cp5.addButton("heap")
-    .setPosition(bxPoz, 230)
+    .setPosition(bxPoz, 330)
     .setSize(60, 20)
   ;
   cp5.addButton("pigeonhole")
-    .setPosition(bxPoz, 260)
+    .setPosition(bxPoz, 360)
     .setSize(60, 20)
   ;
   // ISSUE WITH VISUALIZASON
@@ -108,7 +124,7 @@ void initialize(){
   ;
   cp5.addSlider("delay")
     .setValue(DELAY)
-    .setRange(1, 20)
+    .setRange(1, 50)
     .setPosition(bxPoz, height - 30)
     .setSize(25, 20)
   ;
@@ -119,7 +135,7 @@ void draw(){
   background(15);
   drawArray();
   drawRightNav();
-  drawScore();
+  drawInfo();
 }
 
 void drawRightNav(){
@@ -134,7 +150,7 @@ void drawArray(){
     strokeWeight = 1;
   }
   strokeWeight(strokeWeight);
-  //stroke(255);
+
   beginShape(LINES);
   for(int i = 0; i < length; i++){
 
@@ -149,14 +165,15 @@ void drawArray(){
   endShape();
 }
 
-void drawScore(){
+void drawInfo(){
   textSize(12);
   fill(255);
   text("comparisons: " + comparisons, 10, 20);
   text("array access: " + arrayAccess, 180, 20);
+  text(algorithmFlag, 350, 20);
 }
 
-void newArray(){
+void Ascending(){
   comparisons = 0;
   arrayAccess = 0;
   v = new int[length];
@@ -169,19 +186,55 @@ void newArray(){
   }
 }
 
+void Descending(){
+  comparisons = 0;
+  arrayAccess = 0;
+  v = new int[length];
+  status = new int[length];
+  float n = (height - 20) * 1.0 / length;
+
+  for(int i = length - 1; i >= 0; i--){
+    v[i] = (int)( (n * (length - 1 - i)) * 10 );
+    status[i] = 0;
+  }
+}
+
 // BUTTONS & OTHER
 void pause(){
   pause = !pause;
 }
 void shuffle(){
-  sortStart = false;
-  shuffleArray.start();
+  if(!pause){
+    sortStart = false;
+    shuffleArray.start();
+  }
 }
-void selection(){
-  selectionSort.start();
+void ascending(){
+  if(!pause){
+    sortStart = false;
+    sleep(100);
+    algorithmFlag = "";
+
+    Ascending();
+  }
+}
+void descending(){
+  if(!pause){
+    sortStart = false;
+    sleep(100);
+    algorithmFlag = "";
+
+    Descending();
+  }
 }
 void bubble(){
   bubbleSort.start();
+}
+void insertion(){
+  insertionSort.start();
+}
+void selection(){
+  selectionSort.start();
 }
 void quick(){
   quickSort.start();
@@ -212,11 +265,11 @@ void delay(int delay){
 void mouseReleased() {
   if(newALength != length){
     // FINISH THE SEARCH AND AFTER CREATES A NEW ARRAY
+    pause = false;
     sortStart = false;
     sleep(100);
-
     length = newALength;
-    newArray();
+    Ascending();
   }
   if(newDELAY != DELAY){
     DELAY = newDELAY;

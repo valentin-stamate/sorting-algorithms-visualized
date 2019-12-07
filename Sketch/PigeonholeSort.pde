@@ -3,6 +3,8 @@ class PigeonholeSort extends SortingAlgorithm{
   @Override
   public void run() {
 
+    algorithmFlag = "Algorithm : Pigeonhole Sort";
+
     pigeonholeSort();
 
     if(sortStart){
