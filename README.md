@@ -1,6 +1,6 @@
 # Sorting Algorithms Visualized
 
-<img width="1000" src="https://i.postimg.cc/vZBDxXTh/Capture.png">
+<img width="1000" src="https://i.postimg.cc/B69Wdvkg/Capture.png">
 
 Now you can see how sorting algorithms work by watching them in real time. You can change the input size and delay, and when the algorithm is running the `comparisons` and `array access` are updating for a better view. If you want to learn these algorithms, watching their code is a good practice but for a better understanding I also recommend their visualization. 
 
@@ -18,6 +18,7 @@ Sorting Algorithms :
 * Merge Sort
 * Heap Sort
 * Radix Sort
+* Counting Sort
 * Pigeonhole Sort
 ```
 ## How To Run

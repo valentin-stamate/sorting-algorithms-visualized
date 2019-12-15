@@ -10,9 +10,9 @@ int[] status;
 int navSize = 80;
 boolean pause = false, sortStart = false;
 
-boolean darkMode=false;
-int backgroundColor=15;
-int fontColor=255;
+boolean darkMode = true;
+int backgroundColor = 15;
+int fontColor = 255;
 String algorithmFlag = "";
 
 ShuffleArray shuffleArray;
@@ -25,6 +25,7 @@ MergeSort mergeSort;
 PigeonholeSort pigSort;
 GravitySort gravitySort;
 HeapSort heapSort;
+CountingSort countingSort;
 
 ArrayList<Integer> colorArray;
 ControlP5 cp5;
@@ -61,6 +62,7 @@ void initialize() {
   pigSort = new PigeonholeSort();
   gravitySort = new GravitySort();
   heapSort = new HeapSort();
+  countingSort = new CountingSort();
 
   int bxPoz = width - navSize + 10;
   cp5 = new ControlP5(this);
@@ -108,18 +110,26 @@ void initialize() {
     .setPosition(bxPoz, 330)
     .setSize(60, 20)
     ;
-  cp5.addButton("pigeonhole")
+  cp5.addButton("counting")
     .setPosition(bxPoz, 360)
     .setSize(60, 20)
     ;
-  cp5.addButton("mode")
-    .setPosition(bxPoz, 400)
-    .setSize(60, 20);
+  cp5.addButton("pigeonhole")
+    .setPosition(bxPoz, 390)
+    .setSize(60, 20)
+    ;
+
   // ISSUE WITH VISUALIZASON
   // cp5.addButton("gravity")
   //   .setPosition(bxPoz, 200)
   //   .setSize(60, 20)
   // ;
+
+  //
+  cp5.addButton("mode")
+  .setPosition(bxPoz, height - 90)
+  .setSize(60, 20)
+  ;
   cp5.addSlider("asize")
     .setRange(minLength, maxLength)
     .setPosition(bxPoz, height - 60)
@@ -186,7 +196,12 @@ void drawArray() {
 
 void drawInfo() {
   textSize(12);
-  fill(colorArray.get(status[0]));
+
+  if(darkMode)
+    fill(255);
+  else
+    fill(0);
+
   text("comparisons: " + comparisons, 10, 20);
   text("array access: " + arrayAccess, 180, 20);
   text(algorithmFlag, 350, 20);
@@ -270,6 +285,9 @@ void pigeonhole() {
 void heap() {
   heapSort.start();
 }
+void counting() {
+  countingSort.start();
+}
 void gravity() {
   gravitySort.start();
 }
@@ -311,7 +329,7 @@ void swap(int i, int j) {
 }
 
 void sleep(int time) {
-  try { 
+  try {
     Thread.sleep(time);
   }
   catch (Exception e) {
