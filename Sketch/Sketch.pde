@@ -10,6 +10,9 @@ int[] status;
 int navSize = 80;
 boolean pause = false, sortStart = false;
 
+boolean darkMode=false;
+int backgroundColor=15;
+int fontColor=255;
 String algorithmFlag = "";
 
 ShuffleArray shuffleArray;
@@ -26,7 +29,7 @@ HeapSort heapSort;
 ArrayList<Integer> colorArray;
 ControlP5 cp5;
 
-void setup(){
+void setup() {
   size(1602, 520, P2D);
   background(15);
   frameRate(60);
@@ -36,8 +39,7 @@ void setup(){
   maxLength = width - navSize;
   initialize();
 }
-
-void initialize(){
+void initialize() {
   length = minLength; // let's say that
   newALength = length;
 
@@ -65,94 +67,111 @@ void initialize(){
   cp5.addButton("pause")
     .setPosition(bxPoz, 10)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("shuffle")
     .setPosition(bxPoz, 40)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("ascending")
     .setPosition(bxPoz, 80)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("descending")
     .setPosition(bxPoz, 110)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("bubble")
     .setPosition(bxPoz, 150)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("insertion")
     .setPosition(bxPoz, 180)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("selection")
     .setPosition(bxPoz, 210)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("quick")
     .setPosition(bxPoz, 240)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("radix")
     .setPosition(bxPoz, 270)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("merge")
     .setPosition(bxPoz, 300)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("heap")
     .setPosition(bxPoz, 330)
     .setSize(60, 20)
-  ;
+    ;
   cp5.addButton("pigeonhole")
     .setPosition(bxPoz, 360)
     .setSize(60, 20)
-  ;
+    ;
+  cp5.addButton("mode")
+    .setPosition(bxPoz, 400)
+    .setSize(60, 20);
   // ISSUE WITH VISUALIZASON
   // cp5.addButton("gravity")
   //   .setPosition(bxPoz, 200)
   //   .setSize(60, 20)
   // ;
-
-
   cp5.addSlider("asize")
     .setRange(minLength, maxLength)
     .setPosition(bxPoz, height - 60)
     .setSize(25, 20)
-  ;
+    ;
   cp5.addSlider("delay")
     .setValue(DELAY)
     .setRange(1, 50)
     .setPosition(bxPoz, height - 30)
     .setSize(25, 20)
-  ;
-
+    ;
 }
 // DRAW FUNCTIONS
-void draw(){
-  background(15);
+void draw() {
+  background(backgroundColor);
   drawArray();
   drawRightNav();
   drawInfo();
 }
-
-void drawRightNav(){
+void mode() {
+  if (darkMode==true) {
+    backgroundColor=230; //whitish
+    colorArray.set(0, color(15));       //  dark greish
+    colorArray.set(1, color(0, 121, 107));  // green
+    colorArray.set(2, color(229, 57, 53));  // red
+    colorArray.set(3, color(3, 169, 244));  // blue
+    colorArray.set(4, color(230, 74, 25));  // orange
+  } else {
+    backgroundColor=15; //dark greish
+    colorArray.set(0, color(255));          // whitish
+    colorArray.set(1, color(0, 121, 107));  // green
+    colorArray.set(2, color(229, 57, 53));  // red
+    colorArray.set(3, color(3, 169, 244));  // blue
+    colorArray.set(4, color(230, 74, 25));  // orange
+  }
+  darkMode=!darkMode;
+}
+void drawRightNav() {
   noStroke();
   fill(color(10));
   rect(width - navSize, 0, width, height);
 }
 
-void drawArray(){
+void drawArray() {
   int strokeWeight = (width - navSize) / length / 2;
-  if(strokeWeight < 1){
+  if (strokeWeight < 1) {
     strokeWeight = 1;
   }
   strokeWeight(strokeWeight);
 
   beginShape(LINES);
-  for(int i = 0; i < length; i++){
+  for (int i = 0; i < length; i++) {
 
     float lineWidth = 1.0;
     float dist = (width - navSize) * 1.0 / length;
@@ -165,52 +184,52 @@ void drawArray(){
   endShape();
 }
 
-void drawInfo(){
+void drawInfo() {
   textSize(12);
-  fill(255);
+  fill(colorArray.get(status[0]));
   text("comparisons: " + comparisons, 10, 20);
   text("array access: " + arrayAccess, 180, 20);
   text(algorithmFlag, 350, 20);
 }
 
-void Ascending(){
+void Ascending() {
   comparisons = 0;
   arrayAccess = 0;
   v = new int[length];
   status = new int[length];
   float n = (height - 20) * 1.0 / length;
 
-  for(int i = 0; i < length; i++){
+  for (int i = 0; i < length; i++) {
     v[i] = (int)( (n * i) * 10 );
     status[i] = 0;
   }
 }
 
-void Descending(){
+void Descending() {
   comparisons = 0;
   arrayAccess = 0;
   v = new int[length];
   status = new int[length];
   float n = (height - 20) * 1.0 / length;
 
-  for(int i = length - 1; i >= 0; i--){
+  for (int i = length - 1; i >= 0; i--) {
     v[i] = (int)( (n * (length - 1 - i)) * 10 );
     status[i] = 0;
   }
 }
 
 // BUTTONS & OTHER
-void pause(){
+void pause() {
   pause = !pause;
 }
-void shuffle(){
-  if(!pause){
+void shuffle() {
+  if (!pause) {
     sortStart = false;
     shuffleArray.start();
   }
 }
-void ascending(){
-  if(!pause){
+void ascending() {
+  if (!pause) {
     sortStart = false;
     sleep(100);
     algorithmFlag = "";
@@ -218,8 +237,8 @@ void ascending(){
     Ascending();
   }
 }
-void descending(){
-  if(!pause){
+void descending() {
+  if (!pause) {
     sortStart = false;
     sleep(100);
     algorithmFlag = "";
@@ -227,43 +246,43 @@ void descending(){
     Descending();
   }
 }
-void bubble(){
+void bubble() {
   bubbleSort.start();
 }
-void insertion(){
+void insertion() {
   insertionSort.start();
 }
-void selection(){
+void selection() {
   selectionSort.start();
 }
-void quick(){
+void quick() {
   quickSort.start();
 }
-void radix(){
+void radix() {
   radixSort.start();
 }
-void merge(){
+void merge() {
   mergeSort.start();
 }
-void pigeonhole(){
+void pigeonhole() {
   pigSort.start();
 }
-void heap(){
+void heap() {
   heapSort.start();
 }
-void gravity(){
+void gravity() {
   gravitySort.start();
 }
-void asize(int value){
+void asize(int value) {
   newALength = value;
 }
 
-void delay(int delay){
+void delay(int delay) {
   newDELAY = delay;
 }
 //
 void mouseReleased() {
-  if(newALength != length){
+  if (newALength != length) {
     // FINISH THE SEARCH AND AFTER CREATES A NEW ARRAY
     pause = false;
     sortStart = false;
@@ -271,27 +290,30 @@ void mouseReleased() {
     length = newALength;
     Ascending();
   }
-  if(newDELAY != DELAY){
+  if (newDELAY != DELAY) {
     DELAY = newDELAY;
   }
 }
 
 //
-void ArrayColor(int index, int col){
+void ArrayColor(int index, int col) {
   status[index] = col;
 }
-void ResetArrayColor(int index){
+void ResetArrayColor(int index) {
   status[index] = 0;
 }
 
-void swap(int i, int j){
+void swap(int i, int j) {
   arrayAccess+=3;
   int aux = v[i];
   v[i] = v[j];
   v[j] = aux;
 }
 
-void sleep(int time){
-  try{ Thread.sleep(time); }
-  catch (Exception e){}
+void sleep(int time) {
+  try { 
+    Thread.sleep(time);
+  }
+  catch (Exception e) {
+  }
 }
