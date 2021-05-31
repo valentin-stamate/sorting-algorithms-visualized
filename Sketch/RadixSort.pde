@@ -1,4 +1,4 @@
-class RadixSort extends SortingAlgorithm{
+class RadixSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -41,7 +41,7 @@ class RadixSort extends SortingAlgorithm{
       sleepTime = sleepTime < 1 ? 1 : sleepTime;
       super.sleep(sleepTime);
 
-      count[ (v[i] / pow) % 10 ] ++;
+      count[(v[i] / pow) % 10] ++;
       arrayAccess++;
       status[i] = 0;
     }
@@ -52,14 +52,17 @@ class RadixSort extends SortingAlgorithm{
 
     for(int i = v.length - 1; i >= 0; i--){
       int index = (v[i] / pow) % 10;
-      output[ --count[index] ] = v[i];
+
+      output[--count[index]] = v[i];
       arrayAccess+=2;
     }
 
     for(int i = 0; i < v.length; i++){
       v[i] = output[i];
       status[i] = 1;
+
       super.sleep();
+
       status[i] = 0;
     }
 
@@ -67,10 +70,12 @@ class RadixSort extends SortingAlgorithm{
 
   private int getMax(){
     int max = v[0];
+
     for(int i = 1; i < v.length; i++){
       if(v[i] > max)
         max = v[i];
     }
+
     return max;
   }
 

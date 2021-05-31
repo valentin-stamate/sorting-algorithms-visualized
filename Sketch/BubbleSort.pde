@@ -1,4 +1,4 @@
-class BubbleSort extends SortingAlgorithm{
+class BubbleSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -11,13 +11,13 @@ class BubbleSort extends SortingAlgorithm{
           comparisons++;
           arrayAccess+=2;
 
-          ArrayColor(j, 1);
-          ArrayColor(j + 1, 2);
+          arrayColor(j, 1);
+          arrayColor(j + 1, 2);
           swap(j, j + 1);
 
           super.sleep();
-          ResetArrayColor(j);
-          ResetArrayColor(j + 1);
+          resetArrayColor(j);
+          resetArrayColor(j + 1);
         }
       }
     }
@@ -25,6 +25,7 @@ class BubbleSort extends SortingAlgorithm{
     if(sortStart){
       super.animate();
     }
+
     super.t = null;
     sortStart = false;
   }
@@ -32,5 +33,5 @@ class BubbleSort extends SortingAlgorithm{
   public void start(){
     super.start(this);
   }
-
+  
 }

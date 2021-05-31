@@ -1,4 +1,4 @@
-class MergeSort extends SortingAlgorithm{
+class MergeSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -10,6 +10,7 @@ class MergeSort extends SortingAlgorithm{
     if(sortStart){
       super.animate();
     }
+
     super.t = null;
     sortStart = false;
   }
@@ -21,15 +22,16 @@ class MergeSort extends SortingAlgorithm{
   void mergeSort(int l, int r){
     if(l < r){
       comparisons++;
+
       int m = (l + r) / 2;
-      ArrayColor(m, 3);
+      arrayColor(m, 3);
 
       mergeSort(l, m);
       mergeSort(m + 1, r);
 
       merge(l, m, r);
 
-      ResetArrayColor(m);
+      resetArrayColor(m);
     }
   }
 
@@ -44,14 +46,15 @@ class MergeSort extends SortingAlgorithm{
       L[i - l] = v[i];
       arrayAccess++;
     }
+
     for(int i = m + 1; i <= r; i++){
       R[i - (m + 1)] = v[i];
       arrayAccess++;
     }
 
     // Merge these arrays
-
     int k = l, i = 0, j = 0;
+
     while(i < n1 && j < n2){
       if(L[i] < R[j]){
         v[k] = L[i++];
@@ -63,26 +66,27 @@ class MergeSort extends SortingAlgorithm{
 
       comparisons+=3;
 
-      ArrayColor(k, 2);
+      arrayColor(k, 2);
 
       super.sleep();
-      ResetArrayColor(k);
+      resetArrayColor(k);
       k++;
     }
 
     while(i < n1){
       v[k] = L[i++];
       k++;
+
       comparisons++;
       arrayAccess++;
     }
     while(j < n2){
       v[k] = R[j++];
       k++;
+
       comparisons++;
       arrayAccess++;
     }
-
   }
 
 }

@@ -1,4 +1,4 @@
-class PigeonholeSort extends SortingAlgorithm{
+class PigeonHoleSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -10,6 +10,7 @@ class PigeonholeSort extends SortingAlgorithm{
     if(sortStart){
       super.animate();
     }
+
     super.t = null;
     sortStart = false;
   }
@@ -20,13 +21,13 @@ class PigeonholeSort extends SortingAlgorithm{
 
   void pigeonholeSort(){
     int min = v[0], max = v[0];
-    comparisons+=2;
+    comparisons += 2;
 
     for(int i = 1; i < v.length; i++){
 
-      ArrayColor(i, 1);
+      arrayColor(i, 1);
       super.sleep();
-      ResetArrayColor(i);
+      resetArrayColor(i);
 
       if(v[i] < min){
         min = v[i];
@@ -36,8 +37,8 @@ class PigeonholeSort extends SortingAlgorithm{
         max = v[i];
         arrayAccess++;
       }
-      arrayAccess+=2;
-      comparisons+=2;
+      arrayAccess += 2;
+      comparisons += 2;
     }
 
     int range = max - min + 1;
@@ -48,9 +49,9 @@ class PigeonholeSort extends SortingAlgorithm{
     }
 
     for(int i = 0; i < v.length; i++){
-      ArrayColor(i, 3);
+      arrayColor(i, 3);
       super.sleep();
-      ResetArrayColor(i);
+      resetArrayColor(i);
 
       pHole[v[i] - min]++;
       arrayAccess++;
@@ -64,9 +65,9 @@ class PigeonholeSort extends SortingAlgorithm{
 
         arrayAccess++;
 
-        ArrayColor(index, 1);
+        arrayColor(index, 1);
         super.sleep();
-        ResetArrayColor(index);
+        resetArrayColor(index);
 
         index++;
         pHole[i]--;

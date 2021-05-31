@@ -1,4 +1,4 @@
-class HeapSort extends SortingAlgorithm{
+class HeapSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -7,12 +7,14 @@ class HeapSort extends SortingAlgorithm{
 
     boolean isSorted = super.isSorted();
 
-    if(!isSorted)
+    if(!isSorted) {
       sort(v.length);
+    }
 
     if(sortStart){
       super.animate();
     }
+
     super.t = null;
     sortStart = false;
 
@@ -32,11 +34,11 @@ class HeapSort extends SortingAlgorithm{
     }
 
     for(int i = n - 1; i >= 0; i--){
-      ArrayColor(i, 1);
+      arrayColor(i, 1);
       super.sleep();
       swap(i, 0);
       heapify(i, 0);
-      ResetArrayColor(i);
+      resetArrayColor(i);
     }
 
   }
@@ -52,19 +54,24 @@ class HeapSort extends SortingAlgorithm{
     if(left < n && v[root] < v[left]){
       root = left;
     }
+    
     if(right < n && v[root] < v[right]){
       root = right;
     }
-    comparisons+=4;
+
+    comparisons += 4;
 
     // IF THE ROOT CHAMGES:
     if(root != i){
-      ArrayColor(i, 2);
+      arrayColor(i, 2);
+
       super.sleep();
+      
       swap(root, i);
       heapify(n, root);
-      ResetArrayColor(i);
+      resetArrayColor(i);
     }
+
     comparisons++;
   }
 

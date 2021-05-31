@@ -1,10 +1,11 @@
-public class SortingAlgorithm implements Runnable{
+public class SortingAlgorithm implements Runnable {
   private Thread t;
 
   @Override
   public void run(){
     // look into subclass
   }
+
   private void start(SortingAlgorithm sa){
     if(t == null && !sortStart){
       comparisons = 0;
@@ -24,6 +25,7 @@ public class SortingAlgorithm implements Runnable{
       catch (Exception e){}
       status[i] = 1;
     }
+
     t = null;
     algorithmFlag = "";
   }
@@ -50,6 +52,7 @@ public class SortingAlgorithm implements Runnable{
       if(v[i] > v[i + 1])
         n++;
     }
+    
     return (n == 0);
   }
 

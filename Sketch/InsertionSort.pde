@@ -1,4 +1,4 @@
-class InsertionSort extends SortingAlgorithm{
+class InsertionSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -8,8 +8,6 @@ class InsertionSort extends SortingAlgorithm{
     int n = v.length;
 
     for(int i = 1; i < n; i++){
-
-
       int key = v[i];
 
       arrayAccess++;
@@ -18,9 +16,9 @@ class InsertionSort extends SortingAlgorithm{
       while(j >= 0 && key < v[j]){
         comparisons+=2;
 
-        ArrayColor(j, 1);
+        arrayColor(j, 1);
         super.sleep();
-        ResetArrayColor(j);
+        resetArrayColor(j);
         v[j + 1] = v[j];
         j--;
 
@@ -34,6 +32,7 @@ class InsertionSort extends SortingAlgorithm{
     if(sortStart){
       super.animate();
     }
+    
     super.t = null;
     sortStart = false;
   }

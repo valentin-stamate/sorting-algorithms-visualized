@@ -1,4 +1,4 @@
-class ShuffleArray extends SortingAlgorithm{
+class ShuffleArray extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -24,14 +24,14 @@ class ShuffleArray extends SortingAlgorithm{
 
       int index = rnd.nextInt(i + 1);
 
-      ArrayColor(i, 2);
-      ArrayColor(index, 3);
+      arrayColor(i, 2);
+      arrayColor(index, 3);
 
       try{ Thread.sleep(sleepTime); }
       catch (Exception e){}
 
-      ResetArrayColor(i);
-      ResetArrayColor(index);
+      resetArrayColor(i);
+      resetArrayColor(index);
 
       swap(index, i);
     }

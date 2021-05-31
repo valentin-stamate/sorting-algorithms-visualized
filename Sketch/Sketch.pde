@@ -22,7 +22,7 @@ SelectionSort selectionSort;
 QuickSort quickSort;
 RadixSort radixSort;
 MergeSort mergeSort;
-PigeonholeSort pigSort;
+PigeonHoleSort pigSort;
 GravitySort gravitySort;
 HeapSort heapSort;
 CountingSort countingSort;
@@ -50,7 +50,7 @@ void initialize() {
   colorArray.add(color(229, 57, 53));  // red
   colorArray.add(color(3, 169, 244));  // blue
   colorArray.add(color(230, 74, 25));  // orange
-  Ascending();
+  ascendingOrder();
 
   bubbleSort = new BubbleSort();
   insertionSort = new InsertionSort();
@@ -59,7 +59,7 @@ void initialize() {
   quickSort = new QuickSort();
   radixSort = new RadixSort();
   mergeSort = new MergeSort();
-  pigSort = new PigeonholeSort();
+  pigSort = new PigeonHoleSort();
   gravitySort = new GravitySort();
   heapSort = new HeapSort();
   countingSort = new CountingSort();
@@ -207,7 +207,7 @@ void drawInfo() {
   text(algorithmFlag, 350, 20);
 }
 
-void Ascending() {
+void ascendingOrder() {
   comparisons = 0;
   arrayAccess = 0;
   v = new int[length];
@@ -220,7 +220,7 @@ void Ascending() {
   }
 }
 
-void Descending() {
+void descendingOrder() {
   comparisons = 0;
   arrayAccess = 0;
   v = new int[length];
@@ -249,7 +249,7 @@ void ascending() {
     sleep(100);
     algorithmFlag = "";
 
-    Ascending();
+    ascendingOrder();
   }
 }
 void descending() {
@@ -258,39 +258,50 @@ void descending() {
     sleep(100);
     algorithmFlag = "";
 
-    Descending();
+    descendingOrder();
   }
 }
+
 void bubble() {
   bubbleSort.start();
 }
+
 void insertion() {
   insertionSort.start();
 }
+
 void selection() {
   selectionSort.start();
 }
+
 void quick() {
   quickSort.start();
 }
+
 void radix() {
   radixSort.start();
 }
+
 void merge() {
   mergeSort.start();
 }
+
 void pigeonhole() {
   pigSort.start();
 }
+
 void heap() {
   heapSort.start();
 }
+
 void counting() {
   countingSort.start();
 }
+
 void gravity() {
   gravitySort.start();
 }
+
 void asize(int value) {
   newALength = value;
 }
@@ -306,7 +317,7 @@ void mouseReleased() {
     sortStart = false;
     sleep(100);
     length = newALength;
-    Ascending();
+    ascendingOrder();
   }
   if (newDELAY != DELAY) {
     DELAY = newDELAY;
@@ -314,10 +325,10 @@ void mouseReleased() {
 }
 
 //
-void ArrayColor(int index, int col) {
+void arrayColor(int index, int col) {
   status[index] = col;
 }
-void ResetArrayColor(int index) {
+void resetArrayColor(int index) {
   status[index] = 0;
 }
 

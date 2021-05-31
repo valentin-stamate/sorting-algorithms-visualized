@@ -1,4 +1,4 @@
-class GravitySort extends SortingAlgorithm{
+class GravitySort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -10,6 +10,7 @@ class GravitySort extends SortingAlgorithm{
     if(sortStart){
       super.animate();
     }
+
     super.t = null;
     sortStart = false;
   }
@@ -19,12 +20,13 @@ class GravitySort extends SortingAlgorithm{
   }
 
   // code taken from https://www.geeksforgeeks.org/bead-sort-natural-sorting-algorithm/
-  private void gravitySort(){
+  private void gravitySort() {
 
     int max = v[0];
-    for (int i = 1; i <v.length; i++)
-      if (v[i] > max)
-         max = v[i];
+    for (int i = 1; i < v.length; i++)
+      if (v[i] > max) {
+        max = v[i];
+      }
 
     int[] beads = new int[max * v.length];
     for(int i = 0; i < beads.length; i++){
@@ -37,6 +39,7 @@ class GravitySort extends SortingAlgorithm{
 
     for (int j = 0; j < max; j++){
       int sum = 0;
+
       for(int i = 0; i < v.length; i++){
         sum += beads[i * max + j];
         beads[i * max + j] = 0;
@@ -54,5 +57,5 @@ class GravitySort extends SortingAlgorithm{
       v[i] = j;
     }
   }
-
+  
 }

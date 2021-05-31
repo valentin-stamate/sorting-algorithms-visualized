@@ -1,4 +1,4 @@
-class QuickSort extends SortingAlgorithm{
+class QuickSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -37,27 +37,31 @@ class QuickSort extends SortingAlgorithm{
 
   private int partition(int l, int r){
     float pivot = v[r];
-    ArrayColor(r, 4);
+    arrayColor(r, 4);
     int i = l;
+
     // put the ellements smaller than pivot int the left side
     for(int j = l; j < r; j++){
-      ArrayColor(j, 2);
-      ArrayColor(i, 1);
+      arrayColor(j, 2);
+      arrayColor(i, 1);
+
       if(v[j] < pivot){
         comparisons++;
 
-        ArrayColor(i, 1);
+        arrayColor(i, 1);
 
         swap(i, j);
         super.sleep();
-        ResetArrayColor(i);
+        resetArrayColor(i);
         i++;
       }
-      ResetArrayColor(j);
+      resetArrayColor(j);
     }
+
     // swap v[i] with pivot -> v[r]
-    ResetArrayColor(r);
+    resetArrayColor(r);
     swap(i, r);
+
     return i;
   }
 

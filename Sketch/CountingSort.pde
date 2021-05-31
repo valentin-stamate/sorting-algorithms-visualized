@@ -1,4 +1,4 @@
-class CountingSort extends SortingAlgorithm{
+class CountingSort extends SortingAlgorithm {
 
   @Override
   public void run() {
@@ -8,58 +8,62 @@ class CountingSort extends SortingAlgorithm{
     int n = v.length;
     int sorted[] = new int[n];
 
-    int k = 0;
+    int maxValue = 0;
     for(int i = 0; i < n; i++){
-      if(k < v[i])
-        k = v[i];
+      if(maxValue < v[i]) {
+        maxValue = v[i];
+      }
 
       arrayAccess++;
     }
 
-    int c[] = new int[k + 1];
+    int c[] = new int[maxValue + 1];
 
-    for(int i = 0; i <= k; i++){
+    for(int i = 0; i <= maxValue; i++){
       c[i] = 0;
     }
 
     for(int i = 0; i < n; i++){
-      ArrayColor(i, 3);
+      arrayColor(i, 3);
       super.sleep();
 
-      c[ v[i] ] ++;
+      c[v[i]] ++;
 
       arrayAccess++;
-      ResetArrayColor(i);
+      resetArrayColor(i);
     }
 
-    for(int i = 2; i <= k; i++){
+    for(int i = 2; i <= maxValue; i++){
       c[i] += c[i - 1];
     }
 
     for(int i = n - 1; i >= 0; i--){
-      ArrayColor(i, 4);
+      arrayColor(i, 4);
 
-      sorted[ c[ v[i] ] ] = v[i];
-      c[ v[i] ]--;
+      sorted[ c[v[i]]] = v[i];
+      c[v[i]]--;
 
       arrayAccess++;
       super.sleep();
-      ResetArrayColor(i);
+      
+      resetArrayColor(i);
     }
 
     for(int i = 0; i < n; i++){
-      ArrayColor(i, 1);
+      arrayColor(i, 1);
 
       v[i] = sorted[i];
 
       arrayAccess++;
       super.sleep();
-      ResetArrayColor(i);
+
+      resetArrayColor(i);
     }
 
     if(sortStart){
       super.animate();
     }
+
     super.t = null;
     sortStart = false;
   }
