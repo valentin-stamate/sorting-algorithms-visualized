@@ -11,9 +11,14 @@ public abstract class SortingAlgorithm implements Runnable {
     protected boolean stop = false;
     protected int sleepTime = 10;
 
-    public SortingAlgorithm(int[] vector, Color[] color) {
+    protected int comparisons;
+    protected int arrayAccess;
+    protected final String algorithm;
+
+    public SortingAlgorithm(int[] vector, Color[] color, String algorithm) {
         this.vector = vector;
         this.color = color;
+        this.algorithm = algorithm;
     }
 
     public void start() {
@@ -52,6 +57,19 @@ public abstract class SortingAlgorithm implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /* GETTERS AND SETTERS */
+    public int getComparisons() {
+        return comparisons;
+    }
+
+    public int getArrayAccess() {
+        return arrayAccess;
+    }
+
+    public String getAlgorithm() {
+        return algorithm;
     }
 
 }

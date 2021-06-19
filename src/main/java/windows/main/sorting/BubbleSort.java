@@ -7,7 +7,7 @@ import windows.main.sorting.colors.Colors;
 public class BubbleSort extends SortingAlgorithm {
 
     public BubbleSort(int[] vector, Color[] color) {
-        super(vector, color);
+        super(vector, color, "Bubble Sort");
     }
 
     @Override
@@ -18,6 +18,8 @@ public class BubbleSort extends SortingAlgorithm {
             for (int j = 0; j < n - 1; j++) {
                 if (vector[j] > vector[j + 1]) {
                     swap(j, j + 1);
+                    comparisons++;
+                    arrayAccess += 2;
 
                     setColor(j, Colors.BLUE);
                     setColor(j + 1, Colors.RED);

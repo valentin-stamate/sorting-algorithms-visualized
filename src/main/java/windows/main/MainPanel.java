@@ -51,7 +51,7 @@ public class MainPanel extends Panel {
     }
 
     private double mapValueToWindowSize(int x) {
-        int windowHeight = height - 75;
+        int windowHeight = height - 50;
         int vectorMaxValue = vector.length - 1;
 
         return (1.0 * x / vectorMaxValue) * windowHeight + 5;
@@ -78,5 +78,34 @@ public class MainPanel extends Panel {
                     break;
             }
         });
+    }
+
+    /* GETTERS AND SETTERS */
+    public int getComparisons() {
+        if (sortingAlgorithm == null) {
+            return 0;
+        }
+
+        return sortingAlgorithm.getComparisons();
+    }
+
+    public int getArrayAccess() {
+        if (sortingAlgorithm == null) {
+            return 0;
+        }
+
+        return sortingAlgorithm.getArrayAccess();
+    }
+
+    public String getAlgorithm() {
+        if (sortingAlgorithm == null) {
+            return "";
+        }
+
+        return sortingAlgorithm.getAlgorithm();
+    }
+
+    public int getVectorSize() {
+        return vector.length;
     }
 }

@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Shuffle extends SortingAlgorithm {
 
     public Shuffle(int[] vector, Color[] color) {
-        super(vector, color);
+        super(vector, color, "Shuffle");
     }
 
     /** INSPIRED FROM : https://stackoverflow.com/q/1519736/10805602 */

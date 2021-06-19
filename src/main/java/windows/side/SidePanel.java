@@ -20,11 +20,7 @@ public class SidePanel extends Panel {
     }
 
     @Override
-    public void draw() {
-//        pApplet.fill(panelColor);
-//        pApplet.noStroke();
-//        pApplet.rect(x, y, width, height);
-    }
+    public void draw() { }
 
     private void initializeButtons() {
         final int buttonWidth = 60;
@@ -90,10 +86,10 @@ public class SidePanel extends Panel {
 
         Slider vectorSizeSlider = cp5.addSlider(Buttons.VECTOR_SIZE)
                 .setRange(100, 1024)
-                .setValue(100)
+                .setValue(128)
                 .setSize(30, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 18);
-        vectorSizeSlider.getValueLabel().setText("100");
+        vectorSizeSlider.getValueLabel().setText("128");
 
         Slider delaySlider = cp5.addSlider(Buttons.DELAY)
                 .setRange(1, 50)
@@ -103,6 +99,7 @@ public class SidePanel extends Panel {
         delaySlider.getValueLabel().setText("20");
 
         /* LISTENER TO CONVERT FLOAT VALUES TO INT */
+        /* TAKEN FROM: https://forum.processing.org/two/discussion/2905/controlp5-slider-linked-to-int-variable-doesn-t-show-some-values */
         CallbackListener callbackListener = c -> {
             Object controller = c.getController();
 

@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import windows.Window;
 
 public class MainClass extends PApplet {
@@ -11,8 +12,9 @@ public class MainClass extends PApplet {
         background(25);
         frameRate(60);
 
+        PFont font36 = createFont("Arial", 36);
+        textFont(font36);
         surface.setTitle("Sorting Algorithms Visualized");
-//        surface.setResizable(true);
 
         strokeCap(SQUARE);
         shapeMode(CENTER);
@@ -24,7 +26,7 @@ public class MainClass extends PApplet {
 
     @Override
     public void draw() {
-        background(10);
+        background(15);
     }
 
     public static void main(String... args){
