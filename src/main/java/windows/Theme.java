@@ -1,5 +1,7 @@
 package windows;
 
+import windows.main.sorting.colors.Color;
+
 public final class Theme {
-    public static final int LINE_COLOR = 16777215;
+    public static final Color LINE_COLOR = new Color(255, 255, 255);
 }

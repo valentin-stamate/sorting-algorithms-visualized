@@ -1,19 +1,19 @@
 package windows.main;
 
 import processing.core.PApplet;
+import windows.Buttons;
 import windows.Panel;
 import windows.Theme;
 import windows.main.sorting.BubbleSort;
 import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
-
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+import windows.main.sorting.colors.Colors;
+import windows.side.SidePanel;
 
 public class MainPanel extends Panel {
 
     private int[] vector = new int[0];
-    private int[] color = new int[0];
+    private Color[] color = new Color[0];
 
     private float lineWeight = 2;
     private float lineMargin = 2;
@@ -23,9 +23,6 @@ public class MainPanel extends Panel {
     public MainPanel(PApplet pApplet, int x, int y, int width, int height) {
         super(pApplet, x, y, width, height);
         resizeVector(128);
-
-        sortingAlgorithm = new BubbleSort(vector, color);
-        sortingAlgorithm.start();
     }
 
     @Override
@@ -37,9 +34,11 @@ public class MainPanel extends Panel {
         float lineSpace = 1.0f * width / vector.length;
 
         for (int i = 0; i < vector.length; i++) {
-            pApplet.stroke(color[i]);
-            if (color[i] == Color.DEFAULT) {
-                pApplet.stroke(Theme.LINE_COLOR);
+            Color col = color[i];
+            pApplet.stroke(col.r, col.g, col.b);
+            if (col == Colors.DEFAULT) {
+                Color defCol = Theme.LINE_COLOR;
+                pApplet.stroke(defCol.r, defCol.g, defCol.b);
             }
 
             pApplet.strokeWeight(lineWeight);
@@ -60,20 +59,24 @@ public class MainPanel extends Panel {
 
     public void resizeVector(int newSize) {
         vector = new int[newSize];
-        color = new int[newSize];
+        color = new Color[newSize];
 
         for (int i = 0; i < vector.length; i++) {
-            vector[i] = (int)mapValueToWindowSize(i);
-            color[i] = Color.DEFAULT;
+            vector[i] = (int)mapValueToWindowSize(vector.length - i);
+            color[i] = Colors.DEFAULT;
         }
+    }
 
-        /* SHUFFLE THE ARRAY */
-        Random rnd = ThreadLocalRandom.current();
-        for (int i = vector.length - 1; i > 0; i--) {
-            int index = rnd.nextInt(i + 1);
-            int a = vector[index];
-            vector[index] = vector[i];
-            vector[i] = a;
-        }
+    public void setSidePanelEvents(SidePanel sidePanel) {
+        sidePanel.addControlListener((name, value) -> {
+            switch (name) {
+                case Buttons.BUBBLE_SORT:
+                    sortingAlgorithm = new BubbleSort(vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 }

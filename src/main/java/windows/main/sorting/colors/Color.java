@@ -1,10 +1,18 @@
 package windows.main.sorting.colors;
 
-public final class Color {
-    public static final int DEFAULT = 0;
+public class Color {
+    public final int r;
+    public final int g;
+    public final int b;
 
-    public static final int GREEN = 31083;
-    public static final int RED = 15022389;
-    public static final int BLUE = 240116;
-    public static final int ORANGE = 15092249;
+    public Color(int r, int g, int b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+
+    public Color(int c) {
+        this.r = this.g = this.b = c;
+    }
+
 }

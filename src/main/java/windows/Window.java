@@ -35,6 +35,8 @@ public class Window {
         MainPanel mainPanel = new MainPanel(pApplet, 0, 0, mainPanelWidth, windowHeight);
         SidePanel sidePanel = new SidePanel(pApplet, mainPanelWidth, 0, sidePanelWidth, windowHeight);
 
+        mainPanel.setSidePanelEvents(sidePanel);
+
         mainPanel.setColor(20);
         sidePanel.setColor(10);
 

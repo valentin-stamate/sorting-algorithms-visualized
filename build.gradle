@@ -12,6 +12,8 @@ repositories {
 dependencies {
     implementation 'org.processing:core:3.3.7'
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }

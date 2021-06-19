@@ -54,5 +54,4 @@ public abstract class Panel {
     public void setColor(int c) {
         panelColor = pApplet.color(c);
     }
-
 }

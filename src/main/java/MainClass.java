@@ -4,7 +4,7 @@ import windows.Window;
 public class MainClass extends PApplet {
 
     public void settings() {
-        size(1440, 600);
+        size(1520, 600, P2D);
     }
 
     public void setup() {
@@ -24,7 +24,7 @@ public class MainClass extends PApplet {
 
     @Override
     public void draw() {
-
+        background(10);
     }
 
     public static void main(String... args){

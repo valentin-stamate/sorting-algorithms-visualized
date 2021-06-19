@@ -1,15 +1,17 @@
 package windows.main.sorting;
 
+import windows.main.sorting.colors.Color;
+
 public abstract class SortingAlgorithm implements Runnable {
 
     protected int[] vector;
-    protected int[] color;
+    protected Color[] color;
 
     protected boolean pause = false;
     protected boolean stop = false;
     protected int sleepTime = 10;
 
-    public SortingAlgorithm(int[] vector, int[] color) {
+    public SortingAlgorithm(int[] vector, Color[] color) {
         this.vector = vector;
         this.color = color;
     }
@@ -40,7 +42,7 @@ public abstract class SortingAlgorithm implements Runnable {
         vector[j] = aux;
     }
 
-    protected void setColor(int i, int color) {
+    protected void setColor(int i, Color color) {
         this.color[i] = color;
     }
 

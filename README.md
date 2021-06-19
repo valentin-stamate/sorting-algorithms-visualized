@@ -1,6 +1,6 @@
 # Sorting Algorithms Visualized
 
-<img width="1000" src="https://i.postimg.cc/B69Wdvkg/Capture.png">
+<img width="1000" src="https://i.postimg.cc/B69Wdvkg/Capture.png" alt="">
 
 Now you can see how sorting algorithms work by watching them in real time. You can change the input size and delay, and when the algorithm is running the `comparisons` and `array access` are updating for a better view. If you want to learn these algorithms, watching their code is a good practice but for a better understanding I also recommend their visualization. 
 
@@ -38,8 +38,11 @@ To run directly, download the binaries under under [releases](https://github.com
 
 * [Processing](https://processing.org/)
 
-## Credits
+## Inspired From
 
 * [The Coding Train](https://www.youtube.com/user/shiffman)
-* [Google](https://www.google.com/)
 * [Timo Bingmann](https://www.youtube.com/watch?v=kPRA0W1kECg)
+
+## Resources
+
+* [Add Libraries to Gradle Project](https://stackoverflow.com/a/48930705/10805602)
