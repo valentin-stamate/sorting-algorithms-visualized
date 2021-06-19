@@ -4,7 +4,7 @@ import windows.Window;
 public class MainClass extends PApplet {
 
     public void settings() {
-        size(980, 600);
+        size(1440, 600);
     }
 
     public void setup() {
@@ -12,13 +12,19 @@ public class MainClass extends PApplet {
         frameRate(60);
 
         surface.setTitle("Sorting Algorithms Visualized");
+//        surface.setResizable(true);
 
-        strokeCap(ROUND);
+        strokeCap(SQUARE);
         shapeMode(CENTER);
 
         Window window = new Window(this);
         window.addComponents();
         window.start();
+    }
+
+    @Override
+    public void draw() {
+
     }
 
     public static void main(String... args){

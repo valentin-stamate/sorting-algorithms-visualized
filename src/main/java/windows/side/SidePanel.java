@@ -7,7 +7,6 @@ public class SidePanel extends Panel {
 
     public SidePanel(PApplet pApplet, int x, int y, int width, int height) {
         super(pApplet, x, y, width, height);
-
     }
 
     @Override

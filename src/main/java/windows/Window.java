@@ -8,8 +8,8 @@ import java.util.List;
 
 /* THE MAIN WINDOW CLASS THAT BUILDS ... WELL THE WINDOW */
 public class Window {
-    private final int windowWidth;
-    private final int windowHeight;
+    private int windowWidth;
+    private int windowHeight;
 
     private final PApplet pApplet;
 
@@ -21,11 +21,13 @@ public class Window {
         this.pApplet = pApplet;
 
         this.panels = new ArrayList<>();
+
+        pApplet.registerMethod("pre", this);
     }
 
     public void addComponents() {
-        int mainPanelPercentage = 75;
-        int sidePanelPercentage = 25;
+        int mainPanelPercentage = 95;
+        int sidePanelPercentage = 5;
 
         int mainPanelWidth = (int)(1.0 * mainPanelPercentage / 100 * windowWidth);
         int sidePanelWidth = (int)(1.0 * sidePanelPercentage / 100 * windowWidth);
@@ -33,10 +35,20 @@ public class Window {
         MainPanel mainPanel = new MainPanel(pApplet, 0, 0, mainPanelWidth, windowHeight);
         SidePanel sidePanel = new SidePanel(pApplet, mainPanelWidth, 0, sidePanelWidth, windowHeight);
 
+        mainPanel.setColor(20);
         sidePanel.setColor(10);
 
         this.panels.add(mainPanel);
         this.panels.add(sidePanel);
+    }
+
+    /* TODO: maybe resize the window */
+    public void pre() {
+        if (pApplet.width != windowWidth || pApplet.height != windowHeight) {
+            windowWidth = pApplet.width;
+            windowHeight = pApplet.height;
+            System.out.println("resize");
+        }
     }
 
     public void start() {
