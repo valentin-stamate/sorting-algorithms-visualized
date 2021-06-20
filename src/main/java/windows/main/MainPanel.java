@@ -15,8 +15,7 @@ public class MainPanel extends Panel {
     private int[] vector = new int[0];
     private Color[] color = new Color[0];
 
-    private float lineWeight = 2;
-    private float lineMargin = 2;
+    private float lineWeight = 3;
 
     private SortingAlgorithm sortingAlgorithm;
 
@@ -45,7 +44,7 @@ public class MainPanel extends Panel {
             pApplet.strokeWeight(lineWeight);
 
             int height = pApplet.height;
-            float lineX = lineSpace * i + lineWeight + lineMargin;
+            float lineX = lineSpace * i + lineWeight;
 
             pApplet.line(lineX, height, lineX, height - vector[i]);
         }
@@ -64,6 +63,8 @@ public class MainPanel extends Panel {
             vector[i] = (int) mapValueToWindowSize(height, vector.length - 1, vector.length - i - 1);
             color[i] = Colors.DEFAULT;
         }
+
+        lineWeight = (int) (1.0 * width / vector.length / 1.4);
     }
 
     public void setSidePanelEvents(SidePanel sidePanel) {
@@ -112,6 +113,18 @@ public class MainPanel extends Panel {
                 case Buttons.STOP:
                     sortingAlgorithm.stop();
                     break;
+                case Buttons.VECTOR_SIZE:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    Config.arraySize = controlValue;
+                    break;
+                case Buttons.DELAY:
+                    Config.delayTime = controlValue;
+                    break;
+                case Buttons.PAUSE:
+                    sortingAlgorithm.togglePause();
                 default:
                     break;
             }
@@ -123,6 +136,14 @@ public class MainPanel extends Panel {
         super.stop();
 
         sortingAlgorithm.stop();
+    }
+
+    @Override
+    public void mouseReleased() {
+        if (Config.arraySize != vector.length) {
+            resizeVector(Config.arraySize);
+            sortingAlgorithm = new BlankAlgorithm(pApplet, vector, color);
+        }
     }
 
     /* GETTERS AND SETTERS */

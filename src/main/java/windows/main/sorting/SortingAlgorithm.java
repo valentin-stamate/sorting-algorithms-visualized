@@ -58,6 +58,14 @@ public abstract class SortingAlgorithm implements Runnable {
         }
     }
 
+    protected void pauseSleep() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void playSound(int value) {
         if (!Config.sound) {
             return;
@@ -117,12 +125,8 @@ public abstract class SortingAlgorithm implements Runnable {
         stopSound();
     }
 
-    public void pause() {
-        pause = true;
-    }
-
-    public void resume() {
-        pause = false;
+    public void togglePause() {
+        pause = !pause;
     }
 
     /* GETTERS AND SETTERS */

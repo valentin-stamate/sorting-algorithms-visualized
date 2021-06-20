@@ -1,4 +1,4 @@
-package windows.side;
+package windows.side.events;
 
 import controlP5.ControlEvent;
 

@@ -32,8 +32,16 @@ public class BubbleSort extends SortingAlgorithm {
                     playSound(vector[j]);
                     playSound(vector[j + 1]);
                     sleep();
-                    swap(j, j + 1);
                     stopSound();
+
+                    swap(j, j + 1);
+
+                    while (pause) {
+                        if (stop) {
+                            return;
+                        }
+                        pauseSleep();
+                    }
 
                     setColor(j, Theme.LINE_COLOR);
                     setColor(j + 1, Theme.LINE_COLOR);

@@ -1,7 +1,6 @@
 package windows;
 
 import processing.core.PApplet;
-import windows.config.Config;
 import windows.config.Size;
 import windows.main.MainPanel;
 import windows.side.SidePanel;
@@ -75,6 +74,12 @@ public class Window {
     public void stop() {
         for (Panel panel : panels) {
             panel.stop();
+        }
+    }
+
+    public void mouseReleased() {
+        for (Panel panel : panels) {
+            panel.mouseReleased();
         }
     }
 

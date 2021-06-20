@@ -19,13 +19,26 @@ public class Descending extends SortingAlgorithm {
         int n = vector.length;
 
         for (int i = n - 1; i >= 0; i--) {
+            if (stop) {
+                return;
+            }
+
             vector[i] = (int) MainPanel.mapValueToWindowSize(Size.mainWindowHeight, n - 1, n - i - 1);
             arrayAccess++;
 
             setColor(i, Colors.CURRENT_INDEX);
+
             playSound(vector[i]);
             sleep();
             stopSound();
+
+            while (pause) {
+                if (stop) {
+                    return;
+                }
+                pauseSleep();
+            }
+
             setColor(i, Theme.LINE_COLOR);
         }
 

@@ -5,6 +5,7 @@ import processing.core.PApplet;
 import windows.config.Buttons;
 import windows.Panel;
 import windows.config.Config;
+import windows.side.events.ControlListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 public class SidePanel extends Panel {
 
     private final ControlP5 cp5;
-    private final List<ControlListener> controlListenerList;
+    private final List<windows.side.events.ControlListener> controlListenerList;
 
     public SidePanel(PApplet pApplet, int x, int y, int width, int height) {
         super(pApplet, x, y, width, height);
@@ -103,7 +104,7 @@ public class SidePanel extends Panel {
         vectorSizeSlider.getValueLabel().setText("" + Config.arraySize);
 
         Slider delaySlider = cp5.addSlider(Buttons.DELAY)
-                .setRange(Config.MAX_DELAY_TIME, Config.MAX_DELAY_TIME)
+                .setRange(Config.MIN_DELAY_TIME, Config.MAX_DELAY_TIME)
                 .setValue(Config.delayTime)
                 .setSize(30, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 20 + marginTop);
@@ -120,7 +121,7 @@ public class SidePanel extends Panel {
 
             Slider slider = (Slider) c.getController();
 
-            if(c.getAction()==ControlP5.ACTION_BROADCAST) {
+            if(c.getAction() == ControlP5.ACTION_BROADCAST) {
                 slider.getValueLabel().setText(String.format("%.0f" , slider.getValue()));
             }
         };
@@ -130,7 +131,7 @@ public class SidePanel extends Panel {
 
         /* REACT TO BUTTON CLICK */
         cp5.addListener((event) -> {
-            for (ControlListener controlListener : controlListenerList) {
+            for (windows.side.events.ControlListener controlListener : controlListenerList) {
                 controlListener.notify(event);
             }
         });

@@ -28,13 +28,22 @@ public class Shuffle extends SortingAlgorithm {
             int index = rnd.nextInt(i + 1);
             swap(index, i);
 
-            playSound(vector[index]);
             setColor(i, Colors.CURRENT_INDEX);
             setColor(index, Colors.SWAPPING_INDEX);
+
+            playSound(vector[index]);
             sleep();
+            stopSound();
+
+            while (pause) {
+                if (stop) {
+                    return;
+                }
+                pauseSleep();
+            }
+
             setColor(i, Theme.LINE_COLOR);
             setColor(index, Theme.LINE_COLOR);
-            stopSound();
 
         }
 

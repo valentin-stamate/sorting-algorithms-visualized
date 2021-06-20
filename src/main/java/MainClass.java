@@ -1,6 +1,5 @@
 import processing.core.PApplet;
 import processing.core.PFont;
-import processing.sound.SinOsc;
 import windows.Window;
 import windows.config.Config;
 
@@ -38,6 +37,11 @@ public class MainClass extends PApplet {
     public void stop() {
         window.stop();
         System.out.println("Sketch closed");
+    }
+
+    @Override
+    public void mouseReleased() {
+        window.mouseReleased();
     }
 
     public static void main(String... args){
