@@ -1,7 +1,6 @@
 package windows.main.sorting.algorithms;
 
 import processing.core.PApplet;
-import windows.config.Theme;
 import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
@@ -49,13 +48,13 @@ public class InsertionSort extends SortingAlgorithm {
                 vector[j + 1] = vector[j];
                 arrayAccess += 2;
 
-                setColor(j, Theme.LINE_COLOR);
-                setColor(j + 1, Theme.LINE_COLOR);
+                resetColor(j);
+                resetColor(j + 1);
 
                 j = j - 1;
             }
 
-            setColor(i, Theme.LINE_COLOR);
+            resetColor(i);
 
             vector[j + 1] = current;
             arrayAccess++;

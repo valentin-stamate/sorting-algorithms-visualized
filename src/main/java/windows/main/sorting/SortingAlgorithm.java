@@ -4,6 +4,8 @@ import processing.core.PApplet;
 import processing.sound.TriOsc;
 import windows.config.Config;
 import windows.main.sorting.colors.Color;
+import windows.main.sorting.colors.Colors;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,6 +134,10 @@ public abstract class SortingAlgorithm implements Runnable {
     /* GETTERS AND SETTERS */
     protected void setColor(int i, Color color) {
         this.color[i] = color;
+    }
+
+    protected void resetColor(int i) {
+        this.color[i] = Colors.DEFAULT_LINE_COLOR;
     }
 
     public int getComparisons() {

@@ -47,10 +47,6 @@ public class Window {
 
         mainPanel.setSidePanelEvents(sidePanel);
 
-        mainPanel.setColor(20);
-        sidePanel.setColor(10);
-        topPanel.setColor(30);
-
         this.panels.add(mainPanel);
         this.panels.add(sidePanel);
         this.panels.add(topPanel);

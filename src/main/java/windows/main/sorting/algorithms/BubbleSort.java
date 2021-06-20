@@ -1,7 +1,6 @@
 package windows.main.sorting.algorithms;
 
 import processing.core.PApplet;
-import windows.config.Theme;
 import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
@@ -30,7 +29,6 @@ public class BubbleSort extends SortingAlgorithm {
                     setColor(j, Colors.CURRENT_INDEX);
                     setColor(j + 1, Colors.SWAPPING_INDEX);
 
-                    playSound(vector[j]);
                     playSound(vector[j + 1]);
                     sleep();
                     stopSound();
@@ -44,8 +42,8 @@ public class BubbleSort extends SortingAlgorithm {
                         pauseSleep();
                     }
 
-                    setColor(j, Theme.LINE_COLOR);
-                    setColor(j + 1, Theme.LINE_COLOR);
+                    resetColor(j);
+                    resetColor(j + 1);
                 }
             }
         }

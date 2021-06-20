@@ -2,6 +2,8 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import windows.Window;
 import windows.config.Config;
+import windows.config.Theme;
+import windows.main.sorting.colors.Color;
 
 public class MainClass extends PApplet {
 
@@ -29,7 +31,8 @@ public class MainClass extends PApplet {
 
     @Override
     public void draw() {
-        background(15);
+        Color backCol = Theme.backgroundColor;
+        background(backCol.r, backCol.g, backCol.b);
     }
 
     /* TODO: make this work */

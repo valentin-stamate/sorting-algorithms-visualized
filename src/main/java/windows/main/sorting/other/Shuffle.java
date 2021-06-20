@@ -1,7 +1,6 @@
 package windows.main.sorting.other;
 
 import processing.core.PApplet;
-import windows.config.Theme;
 import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
@@ -43,8 +42,8 @@ public class Shuffle extends SortingAlgorithm {
                 pauseSleep();
             }
 
-            setColor(i, Theme.LINE_COLOR);
-            setColor(index, Theme.LINE_COLOR);
+            resetColor(i);
+            resetColor(index);
 
         }
 

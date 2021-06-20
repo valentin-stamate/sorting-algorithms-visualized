@@ -18,11 +18,12 @@ public class TopPanel extends Panel {
 
     @Override
     public void draw() {
-        pApplet.fill(panelColor);
+        Color backCol = Theme.topPanelColor;
+        pApplet.fill(backCol.r, backCol.g, backCol.b);
         pApplet.noStroke();
         pApplet.rect(x, y, width, height);
 
-        Color textCol = Theme.TEXT_COLOR;
+        Color textCol = Theme.textColor;
         pApplet.textSize(Config.MAX_FONT_SIZE);
         pApplet.fill(textCol.r, textCol.g, textCol.b);
         pApplet.text(String.format("Array Size: %-7d %5s Delay: %-4s %5s Comparisons: %-7d %5s Array Access: %-7d %5s Swaps: %-7s %5s Algorithm: %s",

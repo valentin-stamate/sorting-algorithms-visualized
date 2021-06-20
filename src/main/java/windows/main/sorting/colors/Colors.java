@@ -1,7 +1,7 @@
 package windows.main.sorting.colors;
 
 public final class Colors {
-    public static final Color DEFAULT = Color.getColor(0);
+    public static final Color DEFAULT_LINE_COLOR = Color.getColor(0);
 
     private static final Color GREEN = Color.getColor(0, 121, 107);
     private static final Color RED = Color.getColor(229, 57, 53);

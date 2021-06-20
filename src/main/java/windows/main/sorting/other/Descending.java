@@ -2,7 +2,6 @@ package windows.main.sorting.other;
 
 import processing.core.PApplet;
 import windows.config.Size;
-import windows.config.Theme;
 import windows.main.MainPanel;
 import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
@@ -40,7 +39,7 @@ public class Descending extends SortingAlgorithm {
                 pauseSleep();
             }
 
-            setColor(i, Theme.LINE_COLOR);
+            resetColor(i);
         }
 
         onAlgorithmStops();

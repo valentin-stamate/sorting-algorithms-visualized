@@ -33,7 +33,8 @@ public class MainPanel extends Panel {
 
     @Override
     public void draw() {
-        pApplet.fill(panelColor);
+        Color backColor = Theme.mainPanelColor;
+        pApplet.fill(backColor.r, backColor.g, backColor.b);
         pApplet.noStroke();
         pApplet.rect(x, y, width, height);
 
@@ -42,8 +43,8 @@ public class MainPanel extends Panel {
         for (int i = 0; i < vector.length; i++) {
             Color col = color[i];
             pApplet.stroke(col.r, col.g, col.b);
-            if (col == Colors.DEFAULT) {
-                Color defCol = Theme.LINE_COLOR;
+            if (col == Colors.DEFAULT_LINE_COLOR) {
+                Color defCol = Theme.lineColor;
                 pApplet.stroke(defCol.r, defCol.g, defCol.b);
             }
 
@@ -67,7 +68,7 @@ public class MainPanel extends Panel {
 
         for (int i = 0; i < vector.length; i++) {
             vector[i] = (int) mapValueToWindowSize(height, vector.length - 1, vector.length - i - 1);
-            color[i] = Colors.DEFAULT;
+            color[i] = Colors.DEFAULT_LINE_COLOR;
         }
 
         lineWeight = (int) (1.0 * width / vector.length / 1.4);
@@ -133,6 +134,12 @@ public class MainPanel extends Panel {
                     }
 
                     Config.arraySize = controlValue;
+                    break;
+                case Buttons.THEME:
+                    Theme.currentTheme = Theme.currentTheme == Theme.LIGHT_THEME ?
+                            Theme.DARK_THEME : Theme.LIGHT_THEME;
+
+                    Theme.refreshTheme();
                     break;
                 case Buttons.DELAY:
                     Config.delayTime = controlValue;
