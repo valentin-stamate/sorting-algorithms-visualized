@@ -1,5 +1,6 @@
 package windows.main.sorting;
 
+import processing.core.PApplet;
 import windows.main.sorting.colors.Color;
 
 import java.util.Random;
@@ -7,8 +8,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Shuffle extends SortingAlgorithm {
 
-    public Shuffle(int[] vector, Color[] color) {
-        super(vector, color, "Shuffle");
+    public Shuffle(PApplet pApplet, int[] vector, Color[] color) {
+        super(pApplet, vector, color, "Shuffle");
     }
 
     /** INSPIRED FROM : https://stackoverflow.com/q/1519736/10805602 */

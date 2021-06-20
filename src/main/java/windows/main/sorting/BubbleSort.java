@@ -1,13 +1,14 @@
 package windows.main.sorting;
 
-import windows.Theme;
+import processing.core.PApplet;
+import windows.config.Theme;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
 
 public class BubbleSort extends SortingAlgorithm {
 
-    public BubbleSort(int[] vector, Color[] color) {
-        super(vector, color, "Bubble Sort");
+    public BubbleSort(PApplet pApplet, int[] vector, Color[] color) {
+        super(pApplet, vector, color, "Bubble Sort");
     }
 
     @Override
@@ -24,7 +25,10 @@ public class BubbleSort extends SortingAlgorithm {
                     setColor(j, Colors.BLUE);
                     setColor(j + 1, Colors.RED);
 
+                    playSound(vector[j]);
+                    playSound(vector[j + 1]);
                     sleep();
+                    stopSound();
 
                     setColor(j, Theme.LINE_COLOR);
                     setColor(j + 1, Theme.LINE_COLOR);

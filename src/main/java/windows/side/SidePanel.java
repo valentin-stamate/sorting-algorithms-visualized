@@ -2,8 +2,10 @@ package windows.side;
 
 import controlP5.*;
 import processing.core.PApplet;
-import windows.Buttons;
+import windows.config.Buttons;
 import windows.Panel;
+import windows.config.Config;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,18 +87,18 @@ public class SidePanel extends Panel {
                 .setPosition(buttonPosition, buttonSpace * 17);
 
         Slider vectorSizeSlider = cp5.addSlider(Buttons.VECTOR_SIZE)
-                .setRange(100, 1024)
-                .setValue(128)
+                .setRange(Config.MIN_ARRAY_SIZE, Config.MAX_ARRAY_SIZE)
+                .setValue(Config.arraySize)
                 .setSize(30, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 18);
-        vectorSizeSlider.getValueLabel().setText("128");
+        vectorSizeSlider.getValueLabel().setText("" + Config.arraySize);
 
         Slider delaySlider = cp5.addSlider(Buttons.DELAY)
-                .setRange(1, 50)
-                .setValue(20)
+                .setRange(Config.MAX_DELAY_TIME, Config.MAX_DELAY_TIME)
+                .setValue(Config.delayTime)
                 .setSize(30, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 19);
-        delaySlider.getValueLabel().setText("20");
+        delaySlider.getValueLabel().setText("" + Config.delayTime);
 
         /* LISTENER TO CONVERT FLOAT VALUES TO INT */
         /* TAKEN FROM: https://forum.processing.org/two/discussion/2905/controlp5-slider-linked-to-int-variable-doesn-t-show-some-values */

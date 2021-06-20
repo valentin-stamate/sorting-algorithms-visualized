@@ -1,4 +1,4 @@
-package windows;
+package windows.config;
 
 public final class Buttons {
     public final static String PAUSE = "Pause";

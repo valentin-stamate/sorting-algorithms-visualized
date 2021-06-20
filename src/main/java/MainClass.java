@@ -1,8 +1,12 @@
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.sound.SinOsc;
 import windows.Window;
+import windows.config.Config;
 
 public class MainClass extends PApplet {
+
+    private Window window;
 
     public void settings() {
         size(1520, 600, P2D);
@@ -12,14 +16,14 @@ public class MainClass extends PApplet {
         background(25);
         frameRate(60);
 
-        PFont font36 = createFont("Arial", 36);
+        PFont font36 = createFont("Arial", Config.MAX_FONT_SIZE);
         textFont(font36);
         surface.setTitle("Sorting Algorithms Visualized");
 
         strokeCap(SQUARE);
         shapeMode(CENTER);
 
-        Window window = new Window(this);
+        window = new Window(this);
         window.addComponents();
         window.start();
     }
@@ -27,6 +31,13 @@ public class MainClass extends PApplet {
     @Override
     public void draw() {
         background(15);
+    }
+
+    /* TODO: make this work */
+    @Override
+    public void stop() {
+        window.stop();
+        System.out.println("Sketch closed");
     }
 
     public static void main(String... args){

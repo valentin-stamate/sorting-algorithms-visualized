@@ -1,10 +1,12 @@
 package windows.main;
 
 import processing.core.PApplet;
-import windows.Buttons;
+import windows.config.Buttons;
 import windows.Panel;
-import windows.Theme;
+import windows.config.Config;
+import windows.config.Theme;
 import windows.main.sorting.BubbleSort;
+import windows.main.sorting.Shuffle;
 import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
@@ -22,7 +24,7 @@ public class MainPanel extends Panel {
 
     public MainPanel(PApplet pApplet, int x, int y, int width, int height) {
         super(pApplet, x, y, width, height);
-        resizeVector(128);
+        resizeVector(Config.arraySize);
     }
 
     @Override
@@ -71,13 +73,24 @@ public class MainPanel extends Panel {
         sidePanel.addControlListener((name, value) -> {
             switch (name) {
                 case Buttons.BUBBLE_SORT:
-                    sortingAlgorithm = new BubbleSort(vector, color);
+                    sortingAlgorithm = new BubbleSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.SHUFFLE:
+                    sortingAlgorithm = new Shuffle(pApplet, vector, color);
                     sortingAlgorithm.start();
                     break;
                 default:
                     break;
             }
         });
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+
+        sortingAlgorithm.stop();
     }
 
     /* GETTERS AND SETTERS */
@@ -105,7 +118,11 @@ public class MainPanel extends Panel {
         return sortingAlgorithm.getAlgorithm();
     }
 
-    public int getVectorSize() {
-        return vector.length;
+    public int getSwaps() {
+        if (sortingAlgorithm == null) {
+            return 0;
+        }
+
+        return sortingAlgorithm.getSwaps();
     }
 }

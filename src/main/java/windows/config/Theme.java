@@ -1,4 +1,4 @@
-package windows;
+package windows.config;
 
 import windows.main.sorting.colors.Color;
 
