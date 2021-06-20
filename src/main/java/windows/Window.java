@@ -1,6 +1,8 @@
 package windows;
 
 import processing.core.PApplet;
+import windows.config.Config;
+import windows.config.Size;
 import windows.main.MainPanel;
 import windows.side.SidePanel;
 import windows.top.TopPanel;
@@ -31,12 +33,16 @@ public class Window {
         int mainPanelPercentage = 95;
         int sidePanelPercentage = 5;
 
-        int mainPanelWidth = (int)(1.0 * mainPanelPercentage / 100 * windowWidth);
-        int sidePanelWidth = (int)(1.0 * sidePanelPercentage / 100 * windowWidth);
-
         int topPanelHeight = 50;
 
-        MainPanel mainPanel = new MainPanel(pApplet, 0, topPanelHeight, mainPanelWidth, windowHeight - topPanelHeight);
+        int mainPanelWidth = (int)(1.0 * mainPanelPercentage / 100 * windowWidth);
+        int mainPanelHeight = windowHeight - topPanelHeight;
+
+        int sidePanelWidth = (int)(1.0 * sidePanelPercentage / 100 * windowWidth);
+
+        Size.mainWindowHeight = mainPanelHeight;
+
+        MainPanel mainPanel = new MainPanel(pApplet, 0, topPanelHeight, mainPanelWidth, mainPanelHeight);
         TopPanel topPanel = new TopPanel(pApplet, mainPanel, 0, 0, mainPanelWidth, topPanelHeight);
         SidePanel sidePanel = new SidePanel(pApplet, mainPanelWidth, 0, sidePanelWidth, windowHeight);
 

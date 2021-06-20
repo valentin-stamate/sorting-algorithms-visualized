@@ -5,10 +5,7 @@ import windows.config.Buttons;
 import windows.Panel;
 import windows.config.Config;
 import windows.config.Theme;
-import windows.main.sorting.BlankAlgorithm;
-import windows.main.sorting.BubbleSort;
-import windows.main.sorting.Shuffle;
-import windows.main.sorting.SortingAlgorithm;
+import windows.main.sorting.*;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
 import windows.side.SidePanel;
@@ -54,10 +51,8 @@ public class MainPanel extends Panel {
         }
     }
 
-    private double mapValueToWindowSize(int x) {
-        int windowHeight = height - 50;
-        int vectorMaxValue = vector.length - 1;
-
+    public static double mapValueToWindowSize(int windowHeight, int vectorMaxValue, int x) {
+        windowHeight = windowHeight - 50;
         return (1.0 * x / vectorMaxValue) * windowHeight + 5;
     }
 
@@ -66,7 +61,7 @@ public class MainPanel extends Panel {
         color = new Color[newSize];
 
         for (int i = 0; i < vector.length; i++) {
-            vector[i] = (int)mapValueToWindowSize(vector.length - i);
+            vector[i] = (int) mapValueToWindowSize(height, vector.length - 1, vector.length - i - 1);
             color[i] = Colors.DEFAULT;
         }
     }
@@ -93,6 +88,23 @@ public class MainPanel extends Panel {
 
                     sortingAlgorithm = new Shuffle(pApplet, vector, color);
                     sortingAlgorithm.start();
+                    break;
+                case Buttons.ASCENDING:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new Ascending(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.DESCENDING:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new Descending(pApplet, vector, color);
+                    sortingAlgorithm.start();
+
                     break;
                 case Buttons.TOGGLE_SOUND:
                     Config.sound = !Config.sound;
