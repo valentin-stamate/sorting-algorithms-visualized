@@ -1,6 +1,7 @@
-package windows.main.sorting;
+package windows.main.sorting.other;
 
 import processing.core.PApplet;
+import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
 
 /* THIS CLASS IS MADE ONLY TO PREVENT NULL POINTER EXCEPTION */

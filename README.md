@@ -46,3 +46,4 @@ To run directly, download the binaries under under [releases](https://github.com
 ## Resources
 
 * [Add Libraries to Gradle Project](https://stackoverflow.com/a/48930705/10805602)
+* [GeeksForGeeks](https://www.geeksforgeeks.org) sorting algorithms

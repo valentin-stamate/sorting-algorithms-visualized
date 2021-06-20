@@ -6,8 +6,14 @@ import windows.Panel;
 import windows.config.Config;
 import windows.config.Theme;
 import windows.main.sorting.*;
+import windows.main.sorting.algorithms.BubbleSort;
+import windows.main.sorting.algorithms.InsertionSort;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
+import windows.main.sorting.other.Ascending;
+import windows.main.sorting.other.BlankAlgorithm;
+import windows.main.sorting.other.Descending;
+import windows.main.sorting.other.Shuffle;
 import windows.side.SidePanel;
 
 public class MainPanel extends Panel {
@@ -80,6 +86,14 @@ public class MainPanel extends Panel {
                     }
 
                     sortingAlgorithm = new BubbleSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.INSERTION_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new InsertionSort(pApplet, vector, color);
                     sortingAlgorithm.start();
                     break;
                 case Buttons.SHUFFLE:

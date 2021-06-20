@@ -1,7 +1,8 @@
-package windows.main.sorting;
+package windows.main.sorting.other;
 
 import processing.core.PApplet;
 import windows.config.Theme;
+import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
 
