@@ -94,6 +94,9 @@ public class MainPanel extends Panel {
                     sortingAlgorithm = new Shuffle(pApplet, vector, color);
                     sortingAlgorithm.start();
                     break;
+                case Buttons.TOGGLE_SOUND:
+                    Config.sound = !Config.sound;
+                    break;
                 case Buttons.STOP:
                     sortingAlgorithm.stop();
                     break;

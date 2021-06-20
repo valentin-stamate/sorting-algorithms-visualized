@@ -59,6 +59,10 @@ public abstract class SortingAlgorithm implements Runnable {
     }
 
     protected void playSound(int value) {
+        if (!Config.sound) {
+            return;
+        }
+
         int freq = (int) (15 * Math.sqrt(value));
 
         int n = oscList.size();

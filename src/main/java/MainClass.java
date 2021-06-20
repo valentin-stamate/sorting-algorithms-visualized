@@ -9,7 +9,7 @@ public class MainClass extends PApplet {
     private Window window;
 
     public void settings() {
-        size(1520, 630, P2D);
+        size(1520, 640, P2D);
     }
 
     public void setup() {
