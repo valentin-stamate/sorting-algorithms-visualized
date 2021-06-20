@@ -5,42 +5,42 @@ import windows.main.sorting.SortingAlgorithm;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
 
-public class BubbleSort extends SortingAlgorithm {
-
-    public BubbleSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Bubble Sort");
+public class SelectionSort extends SortingAlgorithm {
+    public SelectionSort(PApplet pApplet, int[] vector, Color[] color) {
+        super(pApplet, vector, color, "Selection Sort");
     }
 
     @Override
     public void run() {
         onAlgorithmStart();
 
-        bubbleSort();
+        selectionSort();
 
         onAlgorithmStops();
     }
 
-    private void bubbleSort() {
+    private void selectionSort() {
         int n = vector.length;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n - 1; j++) {
+        for (int i = 0; i < n - 1; i++) {
+
+            setColor(i, Colors.CURRENT_INDEX);
+
+            for (int j = i + 1; j < n; j++) {
                 if (stop) {
                     return;
                 }
 
+                arrayAccess += 2;
                 comparisons++;
-                if (vector[j] > vector[j + 1]) {
-                    arrayAccess += 2;
+                if (vector[i] > vector[j]) {
 
-                    setColor(j, Colors.CURRENT_INDEX);
-                    setColor(j + 1, Colors.SWAPPING_INDEX);
-
-                    playSound(j + 1);
+                    setColor(j, Colors.SWAPPING_INDEX);
+                    playSound(j);
                     sleep();
                     stopSound();
 
-                    swap(j, j + 1);
+                    swap(i, j);
 
                     while (pause) {
                         if (stop) {
@@ -50,9 +50,11 @@ public class BubbleSort extends SortingAlgorithm {
                     }
 
                     resetColor(j);
-                    resetColor(j + 1);
+
                 }
             }
+
+            resetColor(i);
         }
     }
 

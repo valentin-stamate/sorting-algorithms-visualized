@@ -14,6 +14,12 @@ public class InsertionSort extends SortingAlgorithm {
     public void run() {
         onAlgorithmStart();
 
+        insertionSort();
+
+        onAlgorithmStops();
+    }
+
+    private void insertionSort() {
         int n = vector.length;
 
         for (int i = 1; i < n; ++i) {
@@ -24,17 +30,17 @@ public class InsertionSort extends SortingAlgorithm {
 
             setColor(i, Colors.PIVOT_COLOR);
 
+            comparisons += 2;
             while (j >= 0 && vector[j] > current) {
                 if (stop) {
                     return;
                 }
-                comparisons += 2;
                 arrayAccess++;
 
                 setColor(j + 1, Colors.CURRENT_INDEX);
                 setColor(j, Colors.SWAPPING_INDEX);
 
-                playSound(vector[j + 1]);
+                playSound(j + 1);
                 sleep();
                 stopSound();
 
@@ -59,7 +65,6 @@ public class InsertionSort extends SortingAlgorithm {
             vector[j + 1] = current;
             arrayAccess++;
         }
-
-        onAlgorithmStops();
     }
+
 }

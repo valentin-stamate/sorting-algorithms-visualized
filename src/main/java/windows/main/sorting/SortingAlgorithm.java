@@ -34,9 +34,9 @@ public abstract class SortingAlgorithm implements Runnable {
         this.color = color;
         this.algorithm = algorithm;
         this.oscList = new ArrayList<>();
-        this.soundPlaying = new boolean[5];
+        this.soundPlaying = new boolean[6];
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             oscList.add(new TriOsc(pApplet));
         }
 
@@ -68,13 +68,20 @@ public abstract class SortingAlgorithm implements Runnable {
         }
     }
 
-    protected void playSound(int value) {
+    protected void playSound(int index) {
+        int value = vector[index];
         if (!Config.sound) {
             return;
         }
 
-        int freq = (int) (15 * Math.sqrt(value));
+        int freq = (int) (2 * value);
 
+        playFreq(freq);
+        playFreq(freq + 5);
+        playFreq(freq + 10);
+    }
+
+    private void playFreq(int freq) {
         int n = oscList.size();
         for (int i = 0; i < n; i++) {
             if (soundPlaying[i]) {
@@ -160,4 +167,21 @@ public abstract class SortingAlgorithm implements Runnable {
         return running;
     }
 
+    protected int getMax() {
+        int max = vector[0];
+        for (int j : vector) {
+            max = Math.max(max, j);
+        }
+
+        return max;
+    }
+
+    protected int getMin() {
+        int min = vector[0];
+        for (int j : vector) {
+            min = Math.min(min, j);
+        }
+
+        return min;
+    }
 }

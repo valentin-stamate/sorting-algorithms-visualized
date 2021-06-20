@@ -11,4 +11,5 @@ public final class Colors {
     public static final Color PIVOT_COLOR = BLUE;
     public static final Color CURRENT_INDEX = GREEN;
     public static final Color SWAPPING_INDEX = RED;
+    public static final Color ITERATION_COLOR = ORANGE;
 }

@@ -28,7 +28,7 @@ public class Descending extends SortingAlgorithm {
 
             setColor(i, Colors.CURRENT_INDEX);
 
-            playSound(vector[i]);
+            playSound(i);
             sleep();
             stopSound();
 

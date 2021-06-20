@@ -6,8 +6,7 @@ import windows.Panel;
 import windows.config.Config;
 import windows.config.Theme;
 import windows.main.sorting.*;
-import windows.main.sorting.algorithms.BubbleSort;
-import windows.main.sorting.algorithms.InsertionSort;
+import windows.main.sorting.algorithms.*;
 import windows.main.sorting.colors.Color;
 import windows.main.sorting.colors.Colors;
 import windows.main.sorting.other.Ascending;
@@ -95,6 +94,62 @@ public class MainPanel extends Panel {
                     }
 
                     sortingAlgorithm = new InsertionSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.SELECTION_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new SelectionSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.QUICK_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new QuickSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.RADIX_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new RadixSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.MERGE_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new MergeSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.HEAP_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new HeapSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.PIGEONHOLE_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new PigeonholeSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
+                case Buttons.COUNTING_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new CountingSort(pApplet, vector, color);
                     sortingAlgorithm.start();
                     break;
                 case Buttons.SHUFFLE:

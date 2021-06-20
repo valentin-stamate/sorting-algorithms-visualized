@@ -27,7 +27,7 @@ public class Ascending extends SortingAlgorithm {
             arrayAccess++;
 
             setColor(i, Colors.CURRENT_INDEX);
-            playSound(vector[i]);
+            playSound(i);
             sleep();
             stopSound();
 

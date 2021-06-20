@@ -31,7 +31,7 @@ public class Shuffle extends SortingAlgorithm {
             setColor(i, Colors.CURRENT_INDEX);
             setColor(index, Colors.SWAPPING_INDEX);
 
-            playSound(vector[index]);
+            playSound(index);
             sleep();
             stopSound();
 
