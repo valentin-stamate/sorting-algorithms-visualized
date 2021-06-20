@@ -1,10 +1,14 @@
 package windows.main.sorting.colors;
 
 public final class Colors {
-    public static final Color DEFAULT = new Color(0);
+    public static final Color DEFAULT = Color.getColor(0);
 
-    public static final Color GREEN = new Color(0, 121, 107);
-    public static final Color RED = new Color(229, 57, 53);
-    public static final Color BLUE = new Color(3, 169, 244);
-    public static final Color ORANGE = new Color(230, 74, 25);
+    private static final Color GREEN = Color.getColor(0, 121, 107);
+    private static final Color RED = Color.getColor(229, 57, 53);
+    private static final Color BLUE = Color.getColor(3, 169, 244);
+    private static final Color ORANGE = Color.getColor(230, 74, 25);
+
+    public static final Color PIVOT_COLOR = BLUE;
+    public static final Color CURRENT_INDEX = GREEN;
+    public static final Color SWAPPING_INDEX = RED;
 }

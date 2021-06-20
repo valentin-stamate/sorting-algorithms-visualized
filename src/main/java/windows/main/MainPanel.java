@@ -5,6 +5,7 @@ import windows.config.Buttons;
 import windows.Panel;
 import windows.config.Config;
 import windows.config.Theme;
+import windows.main.sorting.BlankAlgorithm;
 import windows.main.sorting.BubbleSort;
 import windows.main.sorting.Shuffle;
 import windows.main.sorting.SortingAlgorithm;
@@ -25,6 +26,7 @@ public class MainPanel extends Panel {
     public MainPanel(PApplet pApplet, int x, int y, int width, int height) {
         super(pApplet, x, y, width, height);
         resizeVector(Config.arraySize);
+        sortingAlgorithm =  new BlankAlgorithm(pApplet, vector, color);
     }
 
     @Override
@@ -70,15 +72,30 @@ public class MainPanel extends Panel {
     }
 
     public void setSidePanelEvents(SidePanel sidePanel) {
-        sidePanel.addControlListener((name, value) -> {
-            switch (name) {
+        sidePanel.addControlListener((event) -> {
+            String controlName = event.getName();
+            int controlValue = (int) event.getValue();
+            Object instance = event.getController();
+
+            switch (controlName) {
                 case Buttons.BUBBLE_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
                     sortingAlgorithm = new BubbleSort(pApplet, vector, color);
                     sortingAlgorithm.start();
                     break;
                 case Buttons.SHUFFLE:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
                     sortingAlgorithm = new Shuffle(pApplet, vector, color);
                     sortingAlgorithm.start();
+                    break;
+                case Buttons.STOP:
+                    sortingAlgorithm.stop();
                     break;
                 default:
                     break;
@@ -95,34 +112,18 @@ public class MainPanel extends Panel {
 
     /* GETTERS AND SETTERS */
     public int getComparisons() {
-        if (sortingAlgorithm == null) {
-            return 0;
-        }
-
         return sortingAlgorithm.getComparisons();
     }
 
     public int getArrayAccess() {
-        if (sortingAlgorithm == null) {
-            return 0;
-        }
-
         return sortingAlgorithm.getArrayAccess();
     }
 
     public String getAlgorithm() {
-        if (sortingAlgorithm == null) {
-            return "";
-        }
-
         return sortingAlgorithm.getAlgorithm();
     }
 
     public int getSwaps() {
-        if (sortingAlgorithm == null) {
-            return 0;
-        }
-
         return sortingAlgorithm.getSwaps();
     }
 }

@@ -1,6 +1,8 @@
 package windows.side;
 
+import controlP5.ControlEvent;
+
 @FunctionalInterface
 public interface ControlListener {
-    void notify(String name, int value);
+    void notify(ControlEvent event);
 }

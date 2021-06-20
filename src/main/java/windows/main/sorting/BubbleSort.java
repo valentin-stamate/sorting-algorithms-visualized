@@ -13,21 +13,26 @@ public class BubbleSort extends SortingAlgorithm {
 
     @Override
     public void run() {
+        onAlgorithmStart();
         int n = vector.length;
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n - 1; j++) {
+                if (stop) {
+                    return;
+                }
+
                 if (vector[j] > vector[j + 1]) {
-                    swap(j, j + 1);
                     comparisons++;
                     arrayAccess += 2;
 
-                    setColor(j, Colors.BLUE);
-                    setColor(j + 1, Colors.RED);
+                    setColor(j, Colors.CURRENT_INDEX);
+                    setColor(j + 1, Colors.SWAPPING_INDEX);
 
                     playSound(vector[j]);
                     playSound(vector[j + 1]);
                     sleep();
+                    swap(j, j + 1);
                     stopSound();
 
                     setColor(j, Theme.LINE_COLOR);
@@ -35,6 +40,8 @@ public class BubbleSort extends SortingAlgorithm {
                 }
             }
         }
+
+        onAlgorithmStops();
     }
 
 }

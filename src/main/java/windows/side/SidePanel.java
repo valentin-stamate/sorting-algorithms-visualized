@@ -34,70 +34,74 @@ public class SidePanel extends Panel {
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace);
 
-        cp5.addButton(Buttons.SHUFFLE)
+        cp5.addButton(Buttons.STOP)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 2);
 
-        cp5.addButton(Buttons.ASCENDING)
+        cp5.addButton(Buttons.SHUFFLE)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(buttonPosition, buttonSpace * 4);
+                .setPosition(buttonPosition, buttonSpace * 3);
 
-        cp5.addButton(Buttons.DESCENDING)
+        cp5.addButton(Buttons.ASCENDING)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 5);
 
-        cp5.addButton(Buttons.BUBBLE_SORT)
+        cp5.addButton(Buttons.DESCENDING)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(buttonPosition, buttonSpace * 7);
+                .setPosition(buttonPosition, buttonSpace * 6);
 
-        cp5.addButton(Buttons.INSERTION_SORT)
+        cp5.addButton(Buttons.BUBBLE_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 8);
 
-        cp5.addButton(Buttons.SELECTION_SORT)
+        cp5.addButton(Buttons.INSERTION_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 9);
 
-        cp5.addButton(Buttons.QUICK_SORT)
+        cp5.addButton(Buttons.SELECTION_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 10);
 
-        cp5.addButton(Buttons.RADIX_SORT)
+        cp5.addButton(Buttons.QUICK_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 11);
 
-        cp5.addButton(Buttons.MERGE_SORT)
+        cp5.addButton(Buttons.RADIX_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 12);
 
-        cp5.addButton(Buttons.HEAP_SORT)
+        cp5.addButton(Buttons.MERGE_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 13);
 
-        cp5.addButton(Buttons.PIGEONHOLE_SORT)
+        cp5.addButton(Buttons.HEAP_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 14);
 
-        cp5.addButton(Buttons.COUNTING_SORT)
+        cp5.addButton(Buttons.PIGEONHOLE_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(buttonPosition, buttonSpace * 15);
 
+        cp5.addButton(Buttons.COUNTING_SORT)
+                .setSize(buttonWidth, buttonHeight)
+                .setPosition(buttonPosition, buttonSpace * 16);
+
         cp5.addButton(Buttons.THEME)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(buttonPosition, buttonSpace * 17);
+                .setPosition(buttonPosition, buttonSpace * 18);
 
         Slider vectorSizeSlider = cp5.addSlider(Buttons.VECTOR_SIZE)
                 .setRange(Config.MIN_ARRAY_SIZE, Config.MAX_ARRAY_SIZE)
                 .setValue(Config.arraySize)
                 .setSize(30, buttonHeight)
-                .setPosition(buttonPosition, buttonSpace * 18);
+                .setPosition(buttonPosition, buttonSpace * 19);
         vectorSizeSlider.getValueLabel().setText("" + Config.arraySize);
 
         Slider delaySlider = cp5.addSlider(Buttons.DELAY)
                 .setRange(Config.MAX_DELAY_TIME, Config.MAX_DELAY_TIME)
                 .setValue(Config.delayTime)
                 .setSize(30, buttonHeight)
-                .setPosition(buttonPosition, buttonSpace * 19);
+                .setPosition(buttonPosition, buttonSpace * 20);
         delaySlider.getValueLabel().setText("" + Config.delayTime);
 
         /* LISTENER TO CONVERT FLOAT VALUES TO INT */
@@ -121,12 +125,8 @@ public class SidePanel extends Panel {
 
         /* REACT TO BUTTON CLICK */
         cp5.addListener((event) -> {
-            String controlName = event.getName();
-            int controlValue = (int) event.getValue();
-            Object instance = event.getController();
-
             for (ControlListener controlListener : controlListenerList) {
-                controlListener.notify(controlName, controlValue);
+                controlListener.notify(event);
             }
         });
     }
