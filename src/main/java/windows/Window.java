@@ -29,8 +29,8 @@ public class Window {
     }
 
     public void addComponents() {
-        int mainPanelPercentage = 95;
-        int sidePanelPercentage = 5;
+        int mainPanelPercentage = 90;
+        int sidePanelPercentage = 10;
 
         int topPanelHeight = 50;
 

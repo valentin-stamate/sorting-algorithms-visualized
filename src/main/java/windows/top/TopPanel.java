@@ -23,15 +23,10 @@ public class TopPanel extends Panel {
         pApplet.noStroke();
         pApplet.rect(x, y, width, height);
 
-        Color textCol = Theme.textColor;
-        pApplet.textSize(Config.MAX_FONT_SIZE);
-        pApplet.fill(textCol.r, textCol.g, textCol.b);
-        pApplet.text(String.format("Array Size: %-7d %5s Delay: %-4s %5s Comparisons: %-7d %5s Array Access: %-7d %5s Swaps: %-7s %5s Algorithm: %s",
+        drawTextLeft(String.format("Array Size: %-7d %5s Delay: %-4s %5s Comparisons: %-7d %5s Array Access: %-7d %5s Swaps: %-7s %5s Algorithm: %s",
                 Config.arraySize, "", Config.delayTime, "", mainPanel.getComparisons(), "", mainPanel.getArrayAccess(), "",
-                mainPanel.getSwaps(), "", mainPanel.getAlgorithm()),
-                10, 30);
+                mainPanel.getSwaps(), "", mainPanel.getAlgorithm()), 10, 30, Config.MAX_FONT_SIZE);
 
-        pApplet.textSize(12);
-        pApplet.text("By Valentin Stamate", width - 116, 42);
+        drawTextLeft("By Valentin Stamate", width - 116, 42, 12);
     }
 }

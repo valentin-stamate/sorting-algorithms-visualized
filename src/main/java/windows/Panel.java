@@ -1,6 +1,9 @@
 package windows;
 
 import processing.core.PApplet;
+import windows.config.Config;
+import windows.config.Theme;
+import windows.main.sorting.colors.Color;
 
 public abstract class Panel {
     protected final int width;
@@ -29,4 +32,22 @@ public abstract class Panel {
     }
 
     public void mouseReleased() { }
+
+    /* TEXT DRAWING */
+    protected void drawTextCenter(String text, int x, int y, int fontSize) {
+        pApplet.textAlign(pApplet.CENTER);
+        drawText(text, x, y, fontSize);
+    }
+
+    protected void drawTextLeft(String text, int x, int y, int fontSize) {
+        pApplet.textAlign(pApplet.LEFT);
+        drawText(text, x, y, fontSize);
+    }
+
+    private void drawText(String text, int x, int y, int fontSize) {
+        Color textCol = Theme.textColor;
+        pApplet.textSize(fontSize);
+        pApplet.fill(textCol.r, textCol.g, textCol.b);
+        pApplet.text(text,x, y);
+    }
 }

@@ -71,6 +71,10 @@ public class MainPanel extends Panel {
         }
 
         lineWeight = (int) (1.0 * width / vector.length / 1.4);
+
+        if (lineWeight == 0) {
+            lineWeight = 1;
+        }
     }
 
     public void setSidePanelEvents(SidePanel sidePanel) {
