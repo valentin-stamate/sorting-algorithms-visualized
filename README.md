@@ -1,6 +1,6 @@
 # Sorting Algorithms Visualized
 
-<img src="https://i.postimg.cc/9MYZ2BPX/Capture.png" alt="">
+<img src="https://i.postimg.cc/0jmRWZLn/Capture.png" alt="">
 
 Now you can see how sorting algorithms work by watching them in real time. You can change the input size and the 
 sorting speed. When the algorithm is running `comparisons` and `array accesses` are updating in real time. 

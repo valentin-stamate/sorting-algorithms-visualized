@@ -43,12 +43,13 @@ public class SidePanel extends Panel {
 
     @Override
     public void draw() {
-        drawTextCenter("O(n^2)", panelCenter, buttonSpace * 2 + textOffset, 12);
+        drawTextCenter("O(n^2)", panelCenter, buttonSpace * 4 + textOffset, 12);
         drawTextCenter("O(n log(n))", panelCenter, buttonSpace * 7 + textOffset, 12);
         drawTextCenter("~O(n)", panelCenter, buttonSpace * 10 + textOffset, 12);
     }
 
     private void initializeButtons() {
+        /* CONTROL BUTTONS */
         cp5.addButton(Buttons.PAUSE)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, margin);
@@ -61,6 +62,7 @@ public class SidePanel extends Panel {
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(center, buttonSpace + margin);
 
+        /* ORDERING BUTTONS */
         cp5.addButton(Buttons.ASCENDING)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, buttonSpace * 3 + margin);
@@ -69,6 +71,7 @@ public class SidePanel extends Panel {
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionB, buttonSpace * 3 + margin);
 
+        /* O(n^2) */
         cp5.addButton(Buttons.BUBBLE_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, buttonSpace * 5 + margin);
@@ -81,30 +84,34 @@ public class SidePanel extends Panel {
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, buttonSpace * 6 + margin);
 
+        /* O(n log(n)) */
         cp5.addButton(Buttons.QUICK_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, buttonSpace * 8 + margin);
 
-        cp5.addButton(Buttons.RADIX_SORT)
-                .setSize(buttonWidth, buttonHeight)
-                .setPosition(positionB, buttonSpace * 8 + margin);
 
         cp5.addButton(Buttons.MERGE_SORT)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(positionA, buttonSpace * 9 + margin);
+                .setPosition(positionB, buttonSpace * 8 + margin);
 
         cp5.addButton(Buttons.HEAP_SORT)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(positionB, buttonSpace * 9 + margin);
+                .setPosition(positionA, buttonSpace * 9 + margin);
 
+        /* ~O(n) */
         cp5.addButton(Buttons.COUNTING_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, buttonSpace * 11 + margin);
 
-        cp5.addButton(Buttons.PIGEONHOLE_SORT)
+        cp5.addButton(Buttons.RADIX_SORT)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionB, buttonSpace * 11 + margin);
 
+        cp5.addButton(Buttons.PIGEONHOLE_SORT)
+                .setSize(buttonWidth, buttonHeight)
+                .setPosition(positionA, buttonSpace * 12 + margin);
+
+        /* CONFIGURATION BUTTONS */
         cp5.addButton(Buttons.THEME)
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, buttonSpace * 19 + margin);
