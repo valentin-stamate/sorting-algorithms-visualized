@@ -84,6 +84,10 @@ public class SidePanel extends Panel {
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(positionA, buttonSpace * 6 + margin);
 
+        cp5.addButton(Buttons.SHELL_SORT)
+                .setSize(buttonWidth, buttonHeight)
+                .setPosition(positionB, buttonSpace * 6 + margin);
+
         /* O(n log(n)) */
         cp5.addButton(Buttons.QUICK_SORT)
                 .setSize(buttonWidth, buttonHeight)

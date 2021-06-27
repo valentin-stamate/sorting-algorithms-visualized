@@ -108,6 +108,14 @@ public class MainPanel extends Panel {
                     sortingAlgorithm = new SelectionSort(pApplet, vector, color);
                     sortingAlgorithm.start();
                     break;
+                case Buttons.SHELL_SORT:
+                    if (sortingAlgorithm.isRunning()) {
+                        return;
+                    }
+
+                    sortingAlgorithm = new ShellSort(pApplet, vector, color);
+                    sortingAlgorithm.start();
+                    break;
                 case Buttons.QUICK_SORT:
                     if (sortingAlgorithm.isRunning()) {
                         return;
