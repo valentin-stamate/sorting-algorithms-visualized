@@ -1,9 +1,9 @@
 import processing.core.PApplet;
 import processing.core.PFont;
-import windows.Window;
-import windows.config.Config;
-import windows.config.Theme;
-import windows.main.sorting.colors.Color;
+import window.Window;
+import window.config.Config;
+import window.config.Theme;
+import window.main.sorting.colors.Color;
 
 public class MainClass extends PApplet {
 
@@ -17,7 +17,7 @@ public class MainClass extends PApplet {
         background(25);
         frameRate(60);
 
-        PFont font36 = createFont("Arial", Config.MAX_FONT_SIZE);
+        PFont font36 = createFont("Arial", Config.FONT_SIZE);
         textFont(font36);
         surface.setTitle("Sorting Algorithms Visualized");
 
