@@ -158,6 +158,14 @@ public class MainPanel extends Panel {
                 sortingAlgorithm = new MergeSort(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
+            case SortingAlgorithms.GNOME_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new GnomeSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
             case SortingAlgorithms.HEAP_SORT:
                 if (sortingAlgorithm.isRunning()) {
                     return;
@@ -180,6 +188,28 @@ public class MainPanel extends Panel {
                 }
 
                 sortingAlgorithm = new CountingSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case SortingAlgorithms.COCKTAIL_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new CocktailSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+            case SortingAlgorithms.ODD_EVEN_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new OddEvenSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+            case SortingAlgorithms.GRAVITY_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new GravitySort(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
             default:

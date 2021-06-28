@@ -27,18 +27,13 @@ public class Window {
     }
 
     public void addComponents() {
-        int mainPanelPercentage = 90;
-        int sidePanelPercentage = 10;
+        int sidePanelWidth = 160;
+        int mainPanelWidth = windowWidth - sidePanelWidth;
 
-        int mainPanelWidth = (int)(1.0 * mainPanelPercentage / 100 * windowWidth);
-        int mainPanelHeight = windowHeight;
+        Size.mainWindowHeight = windowHeight;
 
-        int sidePanelWidth = (int)(1.0 * sidePanelPercentage / 100 * windowWidth);
-
-        Size.mainWindowHeight = mainPanelHeight;
-
-        MainPanel mainPanel = new MainPanel(pApplet, 0, 0, mainPanelWidth, mainPanelHeight);
-        SidePanel sidePanel = new SidePanel(mainPanel, pApplet, mainPanelWidth, 0, sidePanelWidth, windowHeight);
+        MainPanel mainPanel = new MainPanel(pApplet, 0, 0, mainPanelWidth, Size.mainWindowHeight);
+        SidePanel sidePanel = new SidePanel(mainPanel, pApplet, mainPanelWidth, 0, sidePanelWidth, Size.mainWindowHeight);
 
         mainPanel.setSidePanelEvents(sidePanel);
 

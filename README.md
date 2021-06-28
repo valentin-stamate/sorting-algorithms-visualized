@@ -13,10 +13,15 @@ The project is build with `Processing` java library.
 
 ### Sorting Algorithms :
 ```
-• Bubble Sort
-• Insertion Sort
-• Selection Sort
-• Quick Sort
+* Bubble Sort
+* Odd-Even Sort
+* Insertion Sort
+* Selection Sort
+* Cocktail Sort
+* Gnome Sort
+* Shell Sort
+* Gravity Sort
+* Quick Sort
 * Merge Sort
 * Heap Sort
 * Radix Sort
@@ -45,4 +50,5 @@ all the necessary libraries, except processing library that is imported via Grad
 
 ## Resources
 
-* [GeeksForGeeks](https://www.geeksforgeeks.org) : documentation for sorting algorithms
+* [GeeksForGeeks](https://www.geeksforgeeks.org) : Documentation for Sorting Algorithms
+* [MrMusAddict](https://youtu.be/MneHbUXyKHg) : Gravity Sort Visualization

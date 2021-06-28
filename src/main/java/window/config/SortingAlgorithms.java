@@ -5,7 +5,7 @@ public class SortingAlgorithms {
     public final static String BUBBLE_SORT = "Bubble";
     public final static String INSERTION_SORT = "Insertion";
     public final static String SELECTION_SORT = "Selection";
-    public final static String COCKTAIL_SHAKER_SORT = "Cocktail";
+    public final static String COCKTAIL_SORT = "Cocktail";
     public final static String ODD_EVEN_SORT = "Odd Even";
     public final static String GNOME_SORT = "Gnome";
     public final static String COMB_SORT = "Comb";
@@ -31,9 +31,9 @@ public class SortingAlgorithms {
             BUBBLE_SORT,
             INSERTION_SORT,
             SELECTION_SORT,
-//            COCKTAIL_SHAKER_SORT,
-//            ODD_EVEN_SORT,
-//            GNOME_SORT,
+            COCKTAIL_SORT,
+            ODD_EVEN_SORT,
+            GNOME_SORT,
 //            COMB_SORT,
 //            CIRCLE_SORT,
 //            CYCLE_SORT,
@@ -50,7 +50,7 @@ public class SortingAlgorithms {
 //            BITONIC_SORT,
             COUNTING_SORT,
             PIGEONHOLE_SORT,
-//            GRAVITY_SORT,
+            GRAVITY_SORT,
 //            BOGO_SORT
     };
 

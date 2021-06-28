@@ -27,6 +27,7 @@ public class ShellSort extends SortingAlgorithm {
         for (int gap = n / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < n; i += 1) {
                 int temp = vector[i];
+                arrayAccess++;
 
                 /* FOR VISUALIZATION */
                 Stack<Integer> stack = new Stack<>();
@@ -36,6 +37,9 @@ public class ShellSort extends SortingAlgorithm {
                     if (stop) {
                         return;
                     }
+
+                    comparisons++;
+                    arrayAccess++;
 
                     stack.push(j);
 
@@ -52,6 +56,7 @@ public class ShellSort extends SortingAlgorithm {
                     }
 
                     vector[j] = vector[j - gap];
+                    arrayAccess += 2;
                 }
 
                 while (!stack.empty()) {
@@ -60,6 +65,7 @@ public class ShellSort extends SortingAlgorithm {
 
 
                 vector[j] = temp;
+                arrayAccess++;
             }
         }
     }
