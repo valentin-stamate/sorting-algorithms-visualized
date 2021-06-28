@@ -14,11 +14,11 @@ public class SortingAlgorithms {
     public final static String SMOOTH_SORT = "Smooth";
     public final static String SHELL_SORT = "Shell";
     public final static String QUICK_SORT = "Quick";
-    public final static String STABLE_QUICK_SORT = "Stable Quick";
     public final static String RADIX_SORT = "Radix";
     public final static String MERGE_SORT = "Merge";
     public final static String BOTTOM_UP_MERGE_SORT = "Bottom Up Merge";
-    public final static String IN_PLACE_MERGE_SORT = "In Place Merge";
+    public final static String IN_PLACE_MERGE_SORT_ONE = "In Place Merge 1";
+    public final static String IN_PLACE_MERGE_SORT_TWO = "In Place Merge 2";
     public final static String LAZY_STABLE_SORT = "Lazy Stable";
     public final static String HEAP_SORT = "Heap";
     public final static String BITONIC_SORT = "Bitonic";
@@ -40,11 +40,11 @@ public class SortingAlgorithms {
 //            SMOOTH_SORT,
             SHELL_SORT,
             QUICK_SORT,
-//            STABLE_QUICK_SORT,
             RADIX_SORT,
             MERGE_SORT,
 //            BOTTOM_UP_MERGE_SORT,
-//            IN_PLACE_MERGE_SORT,
+            IN_PLACE_MERGE_SORT_ONE,
+            IN_PLACE_MERGE_SORT_TWO,
 //            LAZY_STABLE_SORT,
             HEAP_SORT,
 //            BITONIC_SORT,

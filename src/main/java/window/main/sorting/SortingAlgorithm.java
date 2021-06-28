@@ -60,6 +60,7 @@ public abstract class SortingAlgorithm implements Runnable {
         try {
             Thread.sleep(Config.delayTime);
         } catch (InterruptedException e) {
+            System.out.println("Error");
             e.printStackTrace();
         }
     }

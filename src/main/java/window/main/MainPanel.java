@@ -197,6 +197,7 @@ public class MainPanel extends Panel {
 
                 sortingAlgorithm = new CocktailSort(pApplet, vector, color);
                 sortingAlgorithm.start();
+                break;
             case SortingAlgorithms.ODD_EVEN_SORT:
                 if (sortingAlgorithm.isRunning()) {
                     return;
@@ -204,12 +205,29 @@ public class MainPanel extends Panel {
 
                 sortingAlgorithm = new OddEvenSort(pApplet, vector, color);
                 sortingAlgorithm.start();
+                break;
             case SortingAlgorithms.GRAVITY_SORT:
                 if (sortingAlgorithm.isRunning()) {
                     return;
                 }
 
                 sortingAlgorithm = new GravitySort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case SortingAlgorithms.IN_PLACE_MERGE_SORT_ONE:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new InPlaceMergeSortOne(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case SortingAlgorithms.IN_PLACE_MERGE_SORT_TWO:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new InPlaceMergeSortTwo(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
             default:

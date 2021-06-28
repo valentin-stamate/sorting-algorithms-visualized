@@ -87,7 +87,7 @@ public class SidePanel extends Panel {
 
     private void initializeButtons() {
         final int listWidth = (int) (0.8 * width);
-        final int listHeight = 280;
+        final int listHeight = 240;
 
         final int buttonWidth = 60;
         final int buttonHeight = 20;
