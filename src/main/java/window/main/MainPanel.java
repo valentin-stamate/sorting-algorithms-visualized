@@ -230,6 +230,39 @@ public class MainPanel extends Panel {
                 sortingAlgorithm = new InPlaceMergeSortTwo(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
+            case SortingAlgorithms.BITONIC_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                int currentSize = Config.arraySize;
+
+                int newSize = 1;
+                while (newSize * 2 <= currentSize) {
+                    newSize *= 2;
+                }
+
+                Config.arraySize = newSize;
+
+                sortingAlgorithm = new BitonicSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case SortingAlgorithms.CIRCLE_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new CircleSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case SortingAlgorithms.BOGO_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new BogoSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
             default:
                 break;
         }

@@ -35,7 +35,7 @@ public class SortingAlgorithms {
             ODD_EVEN_SORT,
             GNOME_SORT,
 //            COMB_SORT,
-//            CIRCLE_SORT,
+            CIRCLE_SORT,
 //            CYCLE_SORT,
 //            SMOOTH_SORT,
             SHELL_SORT,
@@ -47,11 +47,11 @@ public class SortingAlgorithms {
             IN_PLACE_MERGE_SORT_TWO,
 //            LAZY_STABLE_SORT,
             HEAP_SORT,
-//            BITONIC_SORT,
+            BITONIC_SORT,
             COUNTING_SORT,
             PIGEONHOLE_SORT,
             GRAVITY_SORT,
-//            BOGO_SORT
+            BOGO_SORT
     };
 
 }

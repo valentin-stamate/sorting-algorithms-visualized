@@ -21,13 +21,16 @@ The project is build with `Processing` java library.
 * Gnome Sort
 * Shell Sort
 * Gravity Sort
+* Bitonic Sort
 * Quick Sort
 * Merge Sort
 * In-Place Merge Sort
+* Circle Sort
 * Heap Sort
 * Radix Sort
 * Counting Sort
 * Pigeonhole Sort
+* Bogo Sort
 ```
 ## How To Run
 
@@ -52,4 +55,6 @@ all the necessary libraries, except processing library that is imported via Grad
 ## Resources
 
 * [GeeksForGeeks](https://www.geeksforgeeks.org) : Documentation for Sorting Algorithms
+* [RosettaCode](https://rosettacode.org/wiki/Sorting_Algorithms/Circle_Sort) : Documentation for Sorting Algorithms
 * [MrMusAddict](https://youtu.be/MneHbUXyKHg) : Gravity Sort Visualization
+

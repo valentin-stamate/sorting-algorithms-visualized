@@ -60,7 +60,6 @@ public abstract class SortingAlgorithm implements Runnable {
         try {
             Thread.sleep(Config.delayTime);
         } catch (InterruptedException e) {
-            System.out.println("Error");
             e.printStackTrace();
         }
     }
@@ -188,6 +187,16 @@ public abstract class SortingAlgorithm implements Runnable {
         }
 
         return min;
+    }
+
+    protected boolean isSorted() {
+        for (int i = 0; i < vector.length - 2; i++) {
+            if (vector[i] > vector[i + 1]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public String getTimeComplexity() {
