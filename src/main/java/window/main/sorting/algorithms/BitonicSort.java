@@ -59,6 +59,8 @@ public class BitonicSort extends SortingAlgorithm {
     }
 
     private void compAndSwap(int i, int j, int dir) {
+        comparisons += 2;
+        arrayAccess += 4;
         if ( (vector[i] > vector[j] && dir == 1) || (vector[i] < vector[j] && dir == 0)) {
             setColor(i, Colors.ITERATION_COLOR);
             setColor(j, Colors.SWAPPING_INDEX);

@@ -41,6 +41,9 @@ public class CircleSort extends SortingAlgorithm {
         int mid = (hi - lo) / 2;
 
         while (lo < hi) {
+
+            arrayAccess += 2;
+            comparisons++;
             if (vector[lo] > vector[hi]) {
 
                 setColor(lo, Colors.CURRENT_INDEX);
@@ -68,6 +71,8 @@ public class CircleSort extends SortingAlgorithm {
             hi--;
         }
 
+        comparisons++;
+        arrayAccess += 2;
         if (lo == hi && vector[lo] > vector[hi + 1]) {
 
             setColor(lo, Colors.CURRENT_INDEX);
