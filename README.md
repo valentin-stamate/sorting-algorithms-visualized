@@ -23,6 +23,7 @@ The project is build with `Processing` java library.
 * Shell Sort
 * Gravity Sort
 * Bitonic Sort
+* Smooth Sort
 * Quick Sort
 * Merge Sort
 * In-Place Merge Sort

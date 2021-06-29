@@ -37,7 +37,7 @@ public class SortingAlgorithms {
 //            COMB_SORT,
             CIRCLE_SORT,
             CYCLE_SORT,
-//            SMOOTH_SORT,
+            SMOOTH_SORT,
             SHELL_SORT,
             QUICK_SORT,
             RADIX_SORT,

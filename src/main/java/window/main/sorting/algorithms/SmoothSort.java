@@ -3,6 +3,7 @@ package window.main.sorting.algorithms;
 import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
+import window.main.sorting.colors.Colors;
 
 public class SmoothSort extends SortingAlgorithm {
     /* LEONARDO NUMBERS */
@@ -35,6 +36,12 @@ public class SmoothSort extends SortingAlgorithm {
         int pshift = 1;
 
         while (head < hi) {
+            if (stop) {
+                return;
+            }
+
+            setColor(head, Colors.PIVOT_COLOR);
+
             if ((p & 3) == 3) {
 
                 sift(pshift, head);
@@ -58,12 +65,18 @@ public class SmoothSort extends SortingAlgorithm {
             }
 
             p |= 1;
+
+            resetColor(head);
             head++;
         }
 
         trinkle(p, pshift, head, false);
 
         while (pshift != 1 || p != 1) {
+            if (stop) {
+                return;
+            }
+
             if (pshift <= 1) {
                 int trail = Integer.numberOfTrailingZeros(p & ~1);
                 p >>>= trail;
@@ -77,6 +90,7 @@ public class SmoothSort extends SortingAlgorithm {
                 trinkle(p, pshift, head - 1, true);
             }
 
+            animateIndex(head);
             head--;
         }
     }
@@ -87,6 +101,10 @@ public class SmoothSort extends SortingAlgorithm {
         arrayAccess++;
 
         while (pshift > 1) {
+            if (stop) {
+                return;
+            }
+
             int rt = head - 1;
             int lf = head - 1 - LP[pshift - 2];
 
@@ -100,16 +118,25 @@ public class SmoothSort extends SortingAlgorithm {
             arrayAccess++;
             if (vector[lf] >= vector[rt]) {
                 arrayAccess += 2;
+
+                animateIndex(lf);
                 vector[head] = vector[lf];
+
                 head = lf;
                 pshift -= 1;
             } else {
                 arrayAccess += 2;
+
+                animateIndex(rt);
                 vector[head] = vector[rt];
+
                 head = rt;
                 pshift -= 2;
             }
+
         }
+
+        animateIndex(head);
 
         vector[head] = val;
         arrayAccess++;
@@ -121,6 +148,10 @@ public class SmoothSort extends SortingAlgorithm {
         arrayAccess++;
 
         while (p != 1) {
+            if (stop) {
+                return;
+            }
+
             int stepson = head - LP[pshift];
 
             arrayAccess++;
@@ -141,6 +172,8 @@ public class SmoothSort extends SortingAlgorithm {
             }
 
             arrayAccess += 2;
+
+            animateIndex(stepson);
             vector[head] = vector[stepson];
 
             head = stepson;
@@ -152,6 +185,7 @@ public class SmoothSort extends SortingAlgorithm {
 
         if (!isTrusty) {
 
+            animateIndex(head);
             vector[head] = val;
 
             arrayAccess++;
