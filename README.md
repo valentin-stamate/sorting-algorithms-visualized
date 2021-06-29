@@ -27,6 +27,8 @@ The project is build with `Processing` java library.
 * Quick Sort
 * Merge Sort
 * In-Place Merge Sort
+* Iterative Merge Sort(Bottom Up)
+* Comb Sort
 * Circle Sort
 * Heap Sort
 * Radix Sort

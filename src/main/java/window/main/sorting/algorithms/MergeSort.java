@@ -108,20 +108,7 @@ public class MergeSort extends SortingAlgorithm {
 
             vector[k] = R[j];
 
-            setColor(k, Colors.CURRENT_INDEX);
-
-            playSound(k);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(k);
+            animateIndex(k);
 
             j++;
             k++;

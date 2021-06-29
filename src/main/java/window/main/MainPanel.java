@@ -279,6 +279,22 @@ public class MainPanel extends Panel {
                 sortingAlgorithm = new SmoothSort(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
+            case SortingAlgorithms.COMB_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new CombSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case SortingAlgorithms.ITERATIVE_MERGE_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new IterativeMergeSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
             default:
                 break;
         }
