@@ -237,12 +237,18 @@ public class MainPanel extends Panel {
 
                 int currentSize = Config.arraySize;
 
-                int newSize = 1;
-                while (newSize * 2 <= currentSize) {
-                    newSize *= 2;
-                }
+                /* IF IT'S NOT POWER OF TWO */
+                if ((currentSize & (currentSize - 1)) != 0) {
+                    int newSize = 1;
+                    while (newSize * 2 <= currentSize) {
+                        newSize *= 2;
+                    }
 
-                Config.arraySize = newSize;
+                    Config.arraySize = newSize;
+
+                    resizeVector(newSize);
+                    return;
+                }
 
                 sortingAlgorithm = new BitonicSort(pApplet, vector, color);
                 sortingAlgorithm.start();

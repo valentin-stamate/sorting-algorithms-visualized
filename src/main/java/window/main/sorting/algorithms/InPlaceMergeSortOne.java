@@ -1,13 +1,15 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
 
 public class InPlaceMergeSortOne extends SortingAlgorithm {
     public InPlaceMergeSortOne(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "In-Place Merge Sort", "O(nlog(n)^2)", "O(1)");
+        super(pApplet, vector, color, SortingAlgorithms.IN_PLACE_MERGE_SORT_ONE, Complexities.N_LOG_2_N, Complexities.C);
     }
 
     @Override

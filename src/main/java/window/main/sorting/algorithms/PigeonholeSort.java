@@ -1,13 +1,14 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
 
 public class PigeonholeSort extends SortingAlgorithm {
     public PigeonholeSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Pigeonhole Sort", "O(n+2^k)", "O(2^k)");
+        super(pApplet, vector, color, SortingAlgorithms.PIGEONHOLE_SORT, Complexities.N_2_POW_K, Complexities.TWO_POW_K);
     }
 
     @Override

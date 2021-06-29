@@ -3,9 +3,11 @@ package window.main.sorting;
 import processing.core.PApplet;
 import processing.sound.TriOsc;
 import window.config.Config;
+import window.config.InputType;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public abstract class SortingAlgorithm implements Runnable {
@@ -62,7 +64,7 @@ public abstract class SortingAlgorithm implements Runnable {
             if (stop) {
                 return;
             }
-            pauseSleep();
+            sleep(Config.PAUSE_DELAY_TIME);
         }
 
         resetColor(i);
@@ -86,7 +88,7 @@ public abstract class SortingAlgorithm implements Runnable {
             if (stop) {
                 return;
             }
-            pauseSleep();
+            sleep(Config.PAUSE_DELAY_TIME);
         }
 
         resetColor(index);
@@ -96,8 +98,12 @@ public abstract class SortingAlgorithm implements Runnable {
         int aux = vector[i];
         vector[i] = vector[j];
         vector[j] = aux;
+
+        arrayAccess += 4;
+        swaps++;
     }
 
+    /* TODO: see if it's worth using these */
     protected void changeVectorIndex(int index, int changingIndex) {
         vector[index] = vector[changingIndex];
         arrayAccess += 2;
@@ -110,19 +116,35 @@ public abstract class SortingAlgorithm implements Runnable {
 
     /* UTIL */
     protected void sleep() {
+        int delayTime = Config.delayTime;
+
+        /* UPDATE DELAY TIME TO HAVE A CONSTANT LOOP TIME*/
+        if (algorithm.equals(InputType.SHUFFLE) ||
+                algorithm.equals(InputType.ASCENDING) ||
+                algorithm.equals(InputType.DESCENDING)) {
+
+            int rd = ((int) (Math.random() * 1000));
+
+            if (rd % 3 == 0) {
+                return;
+            }
+
+            delayTime = getSleepTimeForOneIteration();
+        }
+
+        sleep(delayTime);
+    }
+
+    protected void sleep(int ms) {
         try {
-            Thread.sleep(Config.delayTime);
+            Thread.sleep(ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    protected void pauseSleep() {
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private int getSleepTimeForOneIteration() {
+        return (int) Math.ceil(1000.0 / Config.arraySize);
     }
 
     protected void playSound(int index) {
@@ -163,6 +185,35 @@ public abstract class SortingAlgorithm implements Runnable {
         }
     }
 
+    protected void playFinalAnimation() {
+        if (algorithm.equals(InputType.SHUFFLE) ||
+            algorithm.equals(InputType.ASCENDING) ||
+            algorithm.equals(InputType.DESCENDING)) {
+            return;
+        }
+
+        int n = vector.length;
+        int delay = getSleepTimeForOneIteration();
+
+        for (int i = 0; i < n; i++) {
+            setColor(i, Colors.CURRENT_INDEX);
+            playSound(i);
+
+            if (delay == 1 && i % 3 != 0) {
+                stopSound();
+                continue;
+            }
+
+            sleep(delay);
+            stopSound();
+        }
+
+        for (int i = 0; i < n; i++) {
+            resetColor(i);
+        }
+
+    }
+
     /* CONTROL */
     public void start() {
         Thread thread = new Thread(this);
@@ -176,6 +227,10 @@ public abstract class SortingAlgorithm implements Runnable {
     }
 
     protected void onAlgorithmStops() {
+        if (!stop) {
+            playFinalAnimation();
+        }
+
         stop = false;
         pause = false;
         running = false;

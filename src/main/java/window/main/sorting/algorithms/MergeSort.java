@@ -1,6 +1,8 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
@@ -8,7 +10,7 @@ import window.main.sorting.colors.Colors;
 public class MergeSort extends SortingAlgorithm {
 
     public MergeSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Merge Sort", "O(nlog(n))", "O(n)");
+        super(pApplet, vector, color, SortingAlgorithms.MERGE_SORT, Complexities.N_LOG_N, Complexities.N);
     }
 
     @Override

@@ -1,13 +1,15 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
 
 public class BitonicSort extends SortingAlgorithm {
     public BitonicSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Bitonic Sort", "log(n)^2", "nlog(n)^2");
+        super(pApplet, vector, color, SortingAlgorithms.BITONIC_SORT, Complexities.LOG_2_N, Complexities.N_LOG_2_N);
     }
 
     @Override

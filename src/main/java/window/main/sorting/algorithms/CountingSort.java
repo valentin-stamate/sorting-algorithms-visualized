@@ -1,12 +1,14 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 
 public class CountingSort extends SortingAlgorithm {
     public CountingSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Counting Sort", "O(n+k)", "O(n+k)");
+        super(pApplet, vector, color, SortingAlgorithms.COUNTING_SORT, Complexities.N_PL_K, Complexities.N_PL_K);
     }
 
     @Override

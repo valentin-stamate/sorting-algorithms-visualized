@@ -2,6 +2,7 @@ package window.config;
 
 public class Config {
     public static final int FONT_SIZE = 11;
+    public static final int PAUSE_DELAY_TIME = 100;
 
     public static final int MIN_DELAY_TIME = 1;
     public static int delayTime = 20;

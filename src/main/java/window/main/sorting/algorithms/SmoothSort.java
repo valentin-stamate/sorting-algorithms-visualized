@@ -1,6 +1,8 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
@@ -16,7 +18,7 @@ public class SmoothSort extends SortingAlgorithm {
     };
 
     public SmoothSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Smooth Sort", "nlog(n)", "O(1)");
+        super(pApplet, vector, color, SortingAlgorithms.SMOOTH_SORT, Complexities.N_LOG_N, Complexities.N);
     }
 
     @Override

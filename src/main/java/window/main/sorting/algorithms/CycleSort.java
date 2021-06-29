@@ -1,13 +1,15 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
 
 public class CycleSort extends SortingAlgorithm {
     public CycleSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Cycle Sort", "O(n^2)", "O(1)");
+        super(pApplet, vector, color, SortingAlgorithms.CYCLE_SORT, Complexities.N_2, Complexities.C);
     }
 
     @Override

@@ -1,12 +1,14 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 
 public class GravitySort extends SortingAlgorithm {
     public GravitySort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Gravity Sort", "O(n*max)", "O(n*max)");
+        super(pApplet, vector, color, SortingAlgorithms.GRAVITY_SORT, Complexities.N_ML_MAX, Complexities.N_ML_MAX);
     }
 
     @Override

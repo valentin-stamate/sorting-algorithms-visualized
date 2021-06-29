@@ -1,13 +1,16 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.Config;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
 
 public class InPlaceMergeSortTwo extends SortingAlgorithm {
     public InPlaceMergeSortTwo(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "In-Place Merge Sort", "O(n^2)", "O(1)");
+        super(pApplet, vector, color, SortingAlgorithms.IN_PLACE_MERGE_SORT_TWO, Complexities.N_2, Complexities.C);
     }
 
     @Override
@@ -87,7 +90,7 @@ public class InPlaceMergeSortTwo extends SortingAlgorithm {
                     if (stop) {
                         return;
                     }
-                    pauseSleep();
+                    sleep(Config.PAUSE_DELAY_TIME);
                 }
 
                 resetColor(start);

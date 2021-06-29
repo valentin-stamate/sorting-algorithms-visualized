@@ -1,6 +1,9 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.Config;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
@@ -8,7 +11,7 @@ import java.util.Stack;
 
 public class ShellSort extends SortingAlgorithm {
     public ShellSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Shell Sort", "O(nlog(n)^2)", "O(n)");
+        super(pApplet, vector, color, SortingAlgorithms.SHELL_SORT, Complexities.N_LOG_2_N, Complexities.N);
     }
 
     @Override
@@ -51,7 +54,7 @@ public class ShellSort extends SortingAlgorithm {
                         if (stop) {
                             return;
                         }
-                        pauseSleep();
+                        sleep(Config.PAUSE_DELAY_TIME);
                     }
 
                     vector[j] = vector[j - gap];

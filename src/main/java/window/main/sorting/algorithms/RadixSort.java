@@ -1,13 +1,16 @@
 package window.main.sorting.algorithms;
 
 import processing.core.PApplet;
+import window.config.Complexities;
+import window.config.Config;
+import window.config.SortingAlgorithms;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
 
 public class RadixSort extends SortingAlgorithm {
     public RadixSort(PApplet pApplet, int[] vector, Color[] color) {
-        super(pApplet, vector, color, "Radix Sort", "O(n*k/d)", "O(n+2^d)");
+        super(pApplet, vector, color, SortingAlgorithms.RADIX_SORT, Complexities.N_ML_K_DIV_D, Complexities.N_PL_2_POW_D);
     }
 
     @Override
@@ -80,7 +83,7 @@ public class RadixSort extends SortingAlgorithm {
                 if (stop) {
                     return;
                 }
-                pauseSleep();
+                sleep(Config.PAUSE_DELAY_TIME);
             }
 
             resetColor(i);
