@@ -41,36 +41,19 @@ public class InPlaceMergeSortOne extends SortingAlgorithm {
         }
 
         int gap = end - start + 1;
-        for (gap = nextGap(gap); gap > 0; gap = nextGap(gap)) {
-            if (stop) {
-                return;
-            }
 
+        for (gap = nextGap(gap); gap > 0; gap = nextGap(gap)) {
             for (int i = start; i + gap <= end; i++) {
+                if (stop) {
+                    return;
+                }
+
                 int j = i + gap;
 
                 arrayAccess += 2;
                 comparisons++;
+
                 if (vector[i] > vector[j]) {
-
-                    setColor(i, Colors.CURRENT_INDEX);
-                    setColor(j, Colors.SWAPPING_INDEX);
-                    playSound(i);
-                    playSound(j);
-
-                    sleep();
-                    stopSound();
-
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-
-                    resetColor(i);
-                    resetColor(j);
-
                     swap(i, j);
                 }
             }

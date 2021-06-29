@@ -21,6 +21,7 @@ public class BogoSort extends SortingAlgorithm {
     private void bogoSort() {
         while(!isSorted()) {
             shuffle();
+
             playSound((int)(Math.random() * 10000) % (vector.length));
             sleep();
             stopSound();
@@ -30,7 +31,7 @@ public class BogoSort extends SortingAlgorithm {
     private void shuffle() {
         int i = vector.length - 1;
         while(i > 0) {
-            swap(i--,(int)(Math.random() * i));
+            swapWithNoEffects(i--, (int)(Math.random() * i));
         }
     }
 

@@ -3,8 +3,6 @@ package window.main.sorting.other;
 import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
-
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -26,25 +24,7 @@ public class Shuffle extends SortingAlgorithm {
             }
 
             int index = rnd.nextInt(i + 1);
-            swap(index, i);
-
-            setColor(i, Colors.CURRENT_INDEX);
-            setColor(index, Colors.SWAPPING_INDEX);
-
-            playSound(index);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
-            resetColor(index);
-
+            swap(i, index);
         }
 
         onAlgorithmStops();

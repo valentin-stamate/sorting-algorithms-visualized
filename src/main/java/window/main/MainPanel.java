@@ -271,6 +271,14 @@ public class MainPanel extends Panel {
                 sortingAlgorithm = new CycleSort(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
+            case SortingAlgorithms.SMOOTH_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new SmoothSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
             default:
                 break;
         }

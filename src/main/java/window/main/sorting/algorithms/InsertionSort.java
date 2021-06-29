@@ -30,32 +30,19 @@ public class InsertionSort extends SortingAlgorithm {
 
             setColor(i, Colors.PIVOT_COLOR);
 
-            comparisons += 2;
+            comparisons++;
             while (j >= 0 && vector[j] > current) {
                 if (stop) {
                     return;
                 }
+
                 arrayAccess++;
+                comparisons++;
 
-                setColor(j + 1, Colors.CURRENT_INDEX);
-                setColor(j, Colors.SWAPPING_INDEX);
-
-                playSound(j + 1);
-                sleep();
-                stopSound();
-
-                while (pause) {
-                    if (stop) {
-                        return;
-                    }
-                    pauseSleep();
-                }
+                animateIndex(j + 1);
 
                 vector[j + 1] = vector[j];
                 arrayAccess += 2;
-
-                resetColor(j);
-                resetColor(j + 1);
 
                 j = j - 1;
             }

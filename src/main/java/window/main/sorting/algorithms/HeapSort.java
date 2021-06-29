@@ -28,9 +28,7 @@ public class HeapSort extends SortingAlgorithm {
             }
 
             setColor(i, Colors.PIVOT_COLOR);
-
             heapify(n, i);
-
             resetColor(i);
         }
 
@@ -39,29 +37,10 @@ public class HeapSort extends SortingAlgorithm {
                 return;
             }
 
-            setColor(0, Colors.SWAPPING_INDEX);
-            setColor(i, Colors.CURRENT_INDEX);
-
             swap(0, i);
 
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(0);
-            resetColor(i);
-
             setColor(i, Colors.CURRENT_INDEX);
-
             heapify(i, 0);
-
             resetColor(i);
         }
     }
@@ -88,26 +67,7 @@ public class HeapSort extends SortingAlgorithm {
         }
 
         if (largest != i) {
-
-            setColor(i, Colors.ITERATION_COLOR);
-            setColor(largest, Colors.SWAPPING_INDEX);
-
             swap(i, largest);
-
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
-            resetColor(largest);
-
             heapify(n, largest);
         }
     }

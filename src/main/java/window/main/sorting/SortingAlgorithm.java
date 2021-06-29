@@ -46,16 +46,69 @@ public abstract class SortingAlgorithm implements Runnable {
 
     }
 
-    /* UTIL */
-    synchronized protected void swap(int i, int j) {
-        int aux = vector[i];
-        vector[i] = vector[j];
-        vector[j] = aux;
+    /* VECTOR CHANGING METHODS */
+    protected void swap(int i, int j) {
+        /* ANIMATION AND SOUND */
+        setColor(i, Colors.CURRENT_INDEX);
+        setColor(j, Colors.SWAPPING_INDEX);
+        playSound(i);
+        playSound(j);
 
+        sleep();
+
+        stopSound();
+
+        while (pause) {
+            if (stop) {
+                return;
+            }
+            pauseSleep();
+        }
+
+        resetColor(i);
+        resetColor(j);
+
+        /* THE ACTUAL SWAP */
+        swapWithNoEffects(i, j);
+
+        /* UPDATING PARAMETERS */
         arrayAccess += 4;
         swaps++;
     }
 
+    protected void animateIndex(int index) {
+        setColor(index, Colors.ITERATION_COLOR);
+        playSound(index);
+        sleep();
+        stopSound();
+
+        while (pause) {
+            if (stop) {
+                return;
+            }
+            pauseSleep();
+        }
+
+        resetColor(index);
+    }
+
+    protected void swapWithNoEffects(int i, int j) {
+        int aux = vector[i];
+        vector[i] = vector[j];
+        vector[j] = aux;
+    }
+
+    protected void changeVectorIndex(int index, int changingIndex) {
+        vector[index] = vector[changingIndex];
+        arrayAccess += 2;
+    }
+
+    protected void changeVectorValue(int index, int value) {
+        vector[index] = value;
+        arrayAccess++;
+    }
+
+    /* UTIL */
     protected void sleep() {
         try {
             Thread.sleep(Config.delayTime);

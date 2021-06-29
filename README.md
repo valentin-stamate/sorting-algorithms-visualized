@@ -58,4 +58,6 @@ all the necessary libraries, except processing library that is imported via Grad
 * [GeeksForGeeks](https://www.geeksforgeeks.org) : Documentation for Sorting Algorithms
 * [RosettaCode](https://rosettacode.org/wiki/Sorting_Algorithms/Circle_Sort) : Documentation for Sorting Algorithms
 * [MrMusAddict](https://youtu.be/MneHbUXyKHg) : Gravity Sort Visualization
+* [WikiBooks](https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Smoothsort) : Smooth Sort
+
 

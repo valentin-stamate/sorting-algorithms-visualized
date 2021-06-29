@@ -39,6 +39,10 @@ public class BitonicSort extends SortingAlgorithm {
     }
 
     private void bitonicMerge(int low, int cnt, int dir) {
+        if (stop) {
+            return;
+        }
+
         if (cnt > 1) {
             int k = cnt / 2;
             for (int i = low; i < low + k; i++) {
@@ -49,7 +53,7 @@ public class BitonicSort extends SortingAlgorithm {
                 compAndSwap(i, i + k, dir);
             }
 
-            setColor(k, Colors.ITERATION_COLOR);
+            setColor(k, Colors.PIVOT_COLOR);
 
             bitonicMerge(low, k, dir);
             bitonicMerge(low + k, k, dir);
@@ -65,20 +69,6 @@ public class BitonicSort extends SortingAlgorithm {
             setColor(i, Colors.ITERATION_COLOR);
             setColor(j, Colors.SWAPPING_INDEX);
 
-            playSound(i);
-            playSound(j);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
-            resetColor(j);
             swap(i, j);
         }
     }

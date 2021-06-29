@@ -28,36 +28,19 @@ public class GnomeSort extends SortingAlgorithm {
                 return;
             }
 
-            comparisons+=2;
+            comparisons += 2;
+
             if (index == 0) {
                 index++;
             }
 
             comparisons++;
             arrayAccess +=2;
+
             if (vector[index] >= vector[index - 1]) {
                 index++;
             } else {
-                setColor(index, Colors.CURRENT_INDEX);
-                setColor(index - 1, Colors.SWAPPING_INDEX);
-
-                playSound(index);
-                playSound(index - 1);
-                sleep();
-                stopSound();
-
-                while (pause) {
-                    if (stop) {
-                        return;
-                    }
-                    pauseSleep();
-                }
-
                 swap(index, index - 1);
-
-                resetColor(index);
-                resetColor(index - 1);
-
                 index--;
             }
         }

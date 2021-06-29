@@ -21,6 +21,10 @@ public class QuickSort extends SortingAlgorithm {
     }
 
     void quickSort(int low, int high) {
+        if (stop) {
+            return;
+        }
+
         comparisons++;
         if (low < high) {
             int pi = partition(low, high);
@@ -54,25 +58,8 @@ public class QuickSort extends SortingAlgorithm {
             comparisons++;
             arrayAccess++;
             if (vector[j] < pivot) {
-
                 i++;
-
-                setColor(i, Colors.SWAPPING_INDEX);
-
-                playSound(i);
-
-                sleep();
-                stopSound();
-
-                while (pause) {
-                    if (stop) {
-                        return 0;
-                    }
-                    pauseSleep();
-                }
-
                 swap(i, j);
-                resetColor(i);
             }
 
             resetColor(j);

@@ -3,7 +3,6 @@ package window.main.sorting.algorithms;
 import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
 
 public class GravitySort extends SortingAlgorithm {
     public GravitySort(PApplet pApplet, int[] vector, Color[] color) {
@@ -36,6 +35,7 @@ public class GravitySort extends SortingAlgorithm {
             int i = n - 1;
 
             comparisons++;
+
             while (grid[i][val] && i > 0) {
                 i--;
             }
@@ -49,24 +49,6 @@ public class GravitySort extends SortingAlgorithm {
 
                 comparisons++;
                 if (grid[j][val]) {
-
-                    setColor(i, Colors.ITERATION_COLOR);
-                    setColor(j, Colors.SWAPPING_INDEX);
-                    playSound(i);
-                    playSound(j);
-                    sleep();
-                    stopSound();
-
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-
-                    resetColor(i);
-                    resetColor(j);
-
                     swap(grid, i, j);
                     swap(i, j);
 

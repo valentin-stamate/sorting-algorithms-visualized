@@ -37,6 +37,7 @@ public class CycleSort extends SortingAlgorithm {
             for (int i = cycleStart + 1; i < vector.length; i++) {
                 comparisons++;
                 arrayAccess++;
+
                 if (vector[i] < val) {
                     pos++;
                 }
@@ -54,19 +55,8 @@ public class CycleSort extends SortingAlgorithm {
                 pos++;
             }
 
-            setColor(pos, Colors.SWAPPING_INDEX);
-            playSound(pos);
-            sleep();
-            stopSound();
 
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(pos);
+            animateIndex(pos);
             playSound(cycleStart);
 
             int tmp = vector[pos];
@@ -90,25 +80,13 @@ public class CycleSort extends SortingAlgorithm {
                     pos++;
                 }
 
-                setColor(pos, Colors.SWAPPING_INDEX);
-                playSound(pos);
-                sleep();
-                stopSound();
-
-                while (pause) {
-                    if (stop) {
-                        return;
-                    }
-                    pauseSleep();
-                }
-
-                resetColor(pos);
+                animateIndex(pos);
                 playSound(cycleStart);
-
 
                 tmp = vector[pos];
                 vector[pos] = val;
                 val = tmp;
+
                 arrayAccess += 2;
             }
 

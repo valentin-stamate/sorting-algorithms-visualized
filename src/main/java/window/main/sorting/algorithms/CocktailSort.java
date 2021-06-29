@@ -3,7 +3,6 @@ package window.main.sorting.algorithms;
 import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
 
 public class CocktailSort extends SortingAlgorithm {
     public CocktailSort(PApplet pApplet, int[] vector, Color[] color) {
@@ -36,27 +35,7 @@ public class CocktailSort extends SortingAlgorithm {
                 comparisons++;
 
                 if (vector[i] > vector[i + 1]) {
-
-                    setColor(i, Colors.CURRENT_INDEX);
-                    setColor(i + 1, Colors.SWAPPING_INDEX);
-
-                    playSound(i);
-                    playSound(i + 1);
-                    sleep();
-                    stopSound();
-
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-
                     swap(i, i + 1);
-
-                    resetColor(i);
-                    resetColor(i + 1);
-
                     swapped = true;
                 }
             }
@@ -78,27 +57,7 @@ public class CocktailSort extends SortingAlgorithm {
                 comparisons++;
 
                 if (vector[i] > vector[i + 1]) {
-
-                    setColor(i, Colors.CURRENT_INDEX);
-                    setColor(i + 1, Colors.SWAPPING_INDEX);
-
-                    playSound(i);
-                    playSound(i + 1);
-                    sleep();
-                    stopSound();
-
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-
                     swap(i, i + 1);
-
-                    resetColor(i);
-                    resetColor(i + 1);
-
                     swapped = true;
                 }
             }

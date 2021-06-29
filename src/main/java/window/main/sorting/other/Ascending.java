@@ -5,7 +5,6 @@ import window.config.Size;
 import window.main.MainPanel;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
 
 public class Ascending extends SortingAlgorithm {
     public Ascending(PApplet pApplet, int[] vector, Color[] color) {
@@ -26,19 +25,7 @@ public class Ascending extends SortingAlgorithm {
             vector[i] = (int) MainPanel.mapValueToWindowSize(Size.mainWindowHeight, n - 1, i);
             arrayAccess++;
 
-            setColor(i, Colors.CURRENT_INDEX);
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
+            animateIndex(i);
         }
 
         onAlgorithmStops();

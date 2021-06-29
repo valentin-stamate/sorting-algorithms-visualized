@@ -21,6 +21,10 @@ public class MergeSort extends SortingAlgorithm {
     }
 
     void mergeSort(int l, int r) {
+        if (stop) {
+            return;
+        }
+
         comparisons++;
         if (l < r) {
 
@@ -38,6 +42,10 @@ public class MergeSort extends SortingAlgorithm {
     }
 
     void merge(int l, int m, int r) {
+        if (stop) {
+            return;
+        }
+
         int n1 = m - l + 1;
         int n2 = r - m;
 
@@ -59,12 +67,12 @@ public class MergeSort extends SortingAlgorithm {
         int k = l;
 
         while (i < n1 && j < n2) {
-            comparisons++;
-            arrayAccess++;
-
             if (stop) {
                 return;
             }
+
+            comparisons++;
+            arrayAccess++;
 
             if (L[i] <= R[j]) {
                 vector[k] = L[i];
@@ -75,20 +83,7 @@ public class MergeSort extends SortingAlgorithm {
                 j++;
             }
 
-            setColor(k, Colors.CURRENT_INDEX);
-
-            playSound(k);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(k);
+            animateIndex(k);
 
             k++;
         }
@@ -100,20 +95,7 @@ public class MergeSort extends SortingAlgorithm {
 
             vector[k] = L[i];
 
-            setColor(k, Colors.CURRENT_INDEX);
-
-            playSound(k);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(k);
+            animateIndex(k);
 
             i++;
             k++;

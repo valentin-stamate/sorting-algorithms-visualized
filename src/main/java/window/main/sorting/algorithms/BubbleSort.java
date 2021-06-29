@@ -3,7 +3,6 @@ package window.main.sorting.algorithms;
 import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
 
 public class BubbleSort extends SortingAlgorithm {
 
@@ -30,27 +29,10 @@ public class BubbleSort extends SortingAlgorithm {
                 }
 
                 comparisons++;
+                arrayAccess += 2;
+
                 if (vector[j] > vector[j + 1]) {
-                    arrayAccess += 2;
-
-                    setColor(j, Colors.CURRENT_INDEX);
-                    setColor(j + 1, Colors.SWAPPING_INDEX);
-
-                    playSound(j + 1);
-                    sleep();
-                    stopSound();
-
                     swap(j, j + 1);
-
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-
-                    resetColor(j);
-                    resetColor(j + 1);
                 }
             }
         }

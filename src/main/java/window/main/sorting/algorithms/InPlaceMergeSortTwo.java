@@ -73,12 +73,14 @@ public class InPlaceMergeSortTwo extends SortingAlgorithm {
                     index--;
                 }
 
+                /* START: ANIMATION */
                 setColor(start, Colors.CURRENT_INDEX);
                 setColor(start2, Colors.SWAPPING_INDEX);
-
                 playSound(start);
                 playSound(start2);
+
                 sleep();
+
                 stopSound();
 
                 while (pause) {
@@ -90,6 +92,7 @@ public class InPlaceMergeSortTwo extends SortingAlgorithm {
 
                 resetColor(start);
                 resetColor(start2);
+                /* END: ANIMATION */
 
                 vector[start] = value;
                 arrayAccess++;

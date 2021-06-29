@@ -3,7 +3,6 @@ package window.main.sorting.algorithms;
 import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
 
 public class CountingSort extends SortingAlgorithm {
     public CountingSort(PApplet pApplet, int[] vector, Color[] color) {
@@ -31,23 +30,10 @@ public class CountingSort extends SortingAlgorithm {
                 return;
             }
 
-            ++count[vector[i]];
-
-            setColor(i, Colors.ITERATION_COLOR);
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
-
             arrayAccess++;
+
+            ++count[vector[i]];
+            animateIndex(i);
         }
 
         for (int i = 1; i < max; ++i) {
@@ -59,24 +45,11 @@ public class CountingSort extends SortingAlgorithm {
                 return;
             }
 
+            arrayAccess++;
+
             buffer[count[vector[i]] - 1] = vector[i];
             --count[vector[i]];
-
-            setColor(i, Colors.ITERATION_COLOR);
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
-
-            arrayAccess++;
+            animateIndex(i);
         }
 
         for (int i = 0; i < n; ++i) {
@@ -84,24 +57,11 @@ public class CountingSort extends SortingAlgorithm {
                 return;
             }
 
+            arrayAccess++;
+
             vector[i] = buffer[i];
-
-            setColor(i, Colors.ITERATION_COLOR);
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
-
+            animateIndex(i);
         }
-
     }
 
 }

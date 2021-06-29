@@ -34,23 +34,7 @@ public class SelectionSort extends SortingAlgorithm {
                 arrayAccess += 2;
                 comparisons++;
                 if (vector[i] > vector[j]) {
-
-                    setColor(j, Colors.SWAPPING_INDEX);
-                    playSound(j);
-                    sleep();
-                    stopSound();
-
                     swap(i, j);
-
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-
-                    resetColor(j);
-
                 }
             }
 

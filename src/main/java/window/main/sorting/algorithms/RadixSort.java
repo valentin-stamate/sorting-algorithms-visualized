@@ -38,20 +38,8 @@ public class RadixSort extends SortingAlgorithm {
                 return;
             }
 
-            setColor(i, Colors.ITERATION_COLOR);
+            animateIndex(i);
 
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
             count[(vector[i] / exp) % 10]++;
             arrayAccess++;
         }
@@ -65,20 +53,7 @@ public class RadixSort extends SortingAlgorithm {
                 return;
             }
 
-            setColor(i, Colors.ITERATION_COLOR);
-
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
+            animateIndex(i);
 
             int value = vector[i];
 

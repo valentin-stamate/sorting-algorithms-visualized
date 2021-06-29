@@ -35,19 +35,7 @@ public class PigeonholeSort extends SortingAlgorithm {
 
             phole[vector[i] - min]++;
 
-            setColor(i, Colors.ITERATION_COLOR);
-            playSound(i);
-            sleep();
-            stopSound();
-
-            while (pause) {
-                if (stop) {
-                    return;
-                }
-                pauseSleep();
-            }
-
-            resetColor(i);
+            animateIndex(i);
 
             arrayAccess++;
         }
@@ -61,22 +49,9 @@ public class PigeonholeSort extends SortingAlgorithm {
                 }
 
                 vector[index] = j + min;
-
-                setColor(index, Colors.CURRENT_INDEX);
-                playSound(index);
-                sleep();
-                stopSound();
-
-                while (pause) {
-                    if (stop) {
-                        return;
-                    }
-                    pauseSleep();
-                }
-
-                resetColor(index);
-
                 arrayAccess++;
+
+                animateIndex(index);
 
                 index++;
             }

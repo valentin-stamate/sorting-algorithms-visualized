@@ -3,7 +3,6 @@ package window.main.sorting.algorithms;
 import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
-import window.main.sorting.colors.Colors;
 
 public class OddEvenSort extends SortingAlgorithm {
     public OddEvenSort(PApplet pApplet, int[] vector, Color[] color) {
@@ -34,22 +33,6 @@ public class OddEvenSort extends SortingAlgorithm {
                 arrayAccess += 2;
                 comparisons++;
                 if (vector[i] > vector[i + 1]) {
-                    setColor(i, Colors.CURRENT_INDEX);
-                    setColor(i + 1, Colors.SWAPPING_INDEX);
-
-                    playSound(i);
-                    playSound(i + 1);
-                    sleep();
-                    stopSound();
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-                    resetColor(i);
-                    resetColor(i + 1);
-
                     swap(i, i + 1);
 
                     isSorted = false;
@@ -64,22 +47,6 @@ public class OddEvenSort extends SortingAlgorithm {
                 arrayAccess += 2;
                 comparisons++;
                 if (vector[i] > vector[i + 1]) {
-                    setColor(i, Colors.CURRENT_INDEX);
-                    setColor(i + 1, Colors.SWAPPING_INDEX);
-
-                    playSound(i);
-                    playSound(i + 1);
-                    sleep();
-                    stopSound();
-                    while (pause) {
-                        if (stop) {
-                            return;
-                        }
-                        pauseSleep();
-                    }
-                    resetColor(i);
-                    resetColor(i + 1);
-
                     swap(i, i + 1);
 
                     isSorted = false;
@@ -87,4 +54,5 @@ public class OddEvenSort extends SortingAlgorithm {
             }
         }
     }
+
 }

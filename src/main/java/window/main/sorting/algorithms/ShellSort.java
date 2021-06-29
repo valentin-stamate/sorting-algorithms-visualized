@@ -4,7 +4,6 @@ import processing.core.PApplet;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
-
 import java.util.Stack;
 
 public class ShellSort extends SortingAlgorithm {
@@ -62,7 +61,6 @@ public class ShellSort extends SortingAlgorithm {
                 while (!stack.empty()) {
                     resetColor(stack.pop());
                 }
-
 
                 vector[j] = temp;
                 arrayAccess++;
