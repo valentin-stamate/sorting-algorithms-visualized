@@ -18,6 +18,7 @@ The project is build with `Processing` java library.
 * Insertion Sort
 * Selection Sort
 * Cocktail Sort
+* Cycle Sort
 * Gnome Sort
 * Shell Sort
 * Gravity Sort

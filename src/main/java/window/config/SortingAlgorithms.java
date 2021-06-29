@@ -36,7 +36,7 @@ public class SortingAlgorithms {
             GNOME_SORT,
 //            COMB_SORT,
             CIRCLE_SORT,
-//            CYCLE_SORT,
+            CYCLE_SORT,
 //            SMOOTH_SORT,
             SHELL_SORT,
             QUICK_SORT,

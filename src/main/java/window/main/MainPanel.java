@@ -263,6 +263,14 @@ public class MainPanel extends Panel {
                 sortingAlgorithm = new BogoSort(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
+            case SortingAlgorithms.CYCLE_SORT:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new CycleSort(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
             default:
                 break;
         }
