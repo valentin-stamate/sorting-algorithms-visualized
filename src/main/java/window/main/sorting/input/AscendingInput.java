@@ -1,4 +1,4 @@
-package window.main.sorting.other;
+package window.main.sorting.input;
 
 import processing.core.PApplet;
 import window.config.Complexities;
@@ -8,8 +8,8 @@ import window.main.MainPanel;
 import window.main.sorting.SortingAlgorithm;
 import window.main.sorting.colors.Color;
 
-public class Ascending extends SortingAlgorithm {
-    public Ascending(PApplet pApplet, int[] vector, Color[] color) {
+public class AscendingInput extends SortingAlgorithm {
+    public AscendingInput(PApplet pApplet, int[] vector, Color[] color) {
         super(pApplet, vector, color, InputType.ASCENDING, Complexities.N, Complexities.C);
     }
 

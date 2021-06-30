@@ -28,10 +28,10 @@ public class SortingAlgorithms {
 
     public final static String[] SORTING_ALGORITHMS = new String[] {
             BUBBLE_SORT,
+            ODD_EVEN_SORT,
             INSERTION_SORT,
             SELECTION_SORT,
             COCKTAIL_SORT,
-            ODD_EVEN_SORT,
             GNOME_SORT,
             COMB_SORT,
             CIRCLE_SORT,

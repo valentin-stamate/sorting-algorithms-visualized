@@ -12,5 +12,5 @@ public class Config {
     public static int arraySize = 128;
     public static final int MAX_ARRAY_SIZE = 2000;
 
-    public static boolean sound = false;
+    public static boolean sound = true;
 }

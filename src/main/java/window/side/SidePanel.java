@@ -2,11 +2,8 @@ package window.side;
 
 import controlP5.*;
 import processing.core.PApplet;
-import window.config.Controls;
+import window.config.*;
 import window.Panel;
-import window.config.Config;
-import window.config.SortingAlgorithms;
-import window.config.Theme;
 import window.main.MainPanel;
 import window.main.sorting.colors.Color;
 import window.side.events.ControlListener;
@@ -16,7 +13,11 @@ import java.util.List;
 
 public class SidePanel extends Panel {
 
-    private final ControlP5 cp5;
+    private final ControlP5 buttonControlIp5;
+    private final ControlP5 inputControlP5;
+    private final ControlP5 sortingControlIp5;
+    private final ControlP5 sliderControlIp5;
+
     private final List<window.side.events.ControlListener> controlListenerList;
 
     private final int rows = 40;
@@ -25,18 +26,22 @@ public class SidePanel extends Panel {
     private final int columnSize;
     private final int padding = 10;
 
-    private final int infoListWidth = 154;
+    private final int infoListHeight;
 
     private final MainPanel mainPanel;
 
     public SidePanel(MainPanel mainPanel, PApplet pApplet, int x, int y, int width, int height) {
         super(pApplet, x, y, width, height);
         this.mainPanel = mainPanel;
-        this.cp5 = new ControlP5(pApplet);
+        this.buttonControlIp5 = new ControlP5(pApplet);
+        this.inputControlP5 = new ControlP5(pApplet);
+        this.sortingControlIp5 = new ControlP5(pApplet);
+        this.sliderControlIp5 = new ControlP5(pApplet);
         this.controlListenerList = new ArrayList<>();
 
         this.rowSize = (height - padding * 2) / rows;
         this.columnSize = (width - padding * 2) / columns;
+        this.infoListHeight = rowSize * 10;
 
         initializeButtons();
     }
@@ -46,7 +51,7 @@ public class SidePanel extends Panel {
         Color col = Theme.infoPanelColor;
         pApplet.fill(col.r, col.g, col.b);
         pApplet.noStroke();
-        pApplet.rect(x, y, width, infoListWidth);
+        pApplet.rect(x, y, width, infoListHeight);
 
         drawTextLeft(String.format("Algorithm: %s", mainPanel.getAlgorithm()),
                 x + columnSize * 0 + padding,
@@ -87,7 +92,6 @@ public class SidePanel extends Panel {
 
     private void initializeButtons() {
         final int listWidth = (int) (0.8 * width);
-        final int listHeight = 240;
 
         final int buttonWidth = 60;
         final int buttonHeight = 20;
@@ -95,52 +99,46 @@ public class SidePanel extends Panel {
         final int panelCenter = x + width / 2;
 
         /* BUTTONS */
-        cp5.addButton(Controls.PAUSE)
+        buttonControlIp5.addButton(Controls.PAUSE)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(x + columnSize * 0 + padding, y + rowSize * 11 + padding);
+                .setPosition(x + columnSize * 0 + padding, y + rowSize * 10 + padding);
 
-        cp5.addButton(Controls.STOP)
+        buttonControlIp5.addButton(Controls.STOP)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(x + columnSize * 1 + padding + 10, y + rowSize * 11 + padding);
+                .setPosition(x + columnSize * 1 + padding + 10, y + rowSize * 10 + padding);
 
-        cp5.addButton(Controls.SHUFFLE)
+        buttonControlIp5.addButton(Controls.THEME)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(x + columnSize * 0 + padding, y + rowSize * 13 + padding);
+                .setPosition(x + columnSize * 0 + padding, y + rowSize * 12 + padding);
 
-        cp5.addButton(Controls.THEME)
+        buttonControlIp5.addButton(Controls.TOGGLE_SOUND)
                 .setSize(buttonWidth, buttonHeight)
-                .setPosition(x + columnSize * 1 + padding + 10, y + rowSize * 13 + padding);
+                .setPosition(x + columnSize * 1 + padding + 10, y + rowSize * 12 + padding);
 
-        cp5.addButton(Controls.TOGGLE_SOUND)
-                .setSize(buttonWidth, buttonHeight)
-                .setPosition(x + columnSize * 0 + padding, y + rowSize * 15 + padding);
-
-        cp5.addButton(Controls.ASCENDING)
-                .setSize(buttonWidth, buttonHeight)
-                .setPosition(x + columnSize * 0 + padding, y + rowSize * 17 + padding);
-
-        cp5.addButton(Controls.DESCENDING)
-                .setSize(buttonWidth, buttonHeight)
-                .setPosition(x + columnSize * 1 + padding + 10, y + rowSize * 17 + padding);
-
-        /* LIST */
-        ListBox listBox = cp5.addListBox("Sorting Algorithms")
-                .setPosition(panelCenter - (int) (1.0 * listWidth / 2), y + rowSize * 20 + padding)
-                .setSize(listWidth, listHeight)
+        /* LISTS */
+       inputControlP5.addListBox("Input Type")
+                .setPosition(panelCenter - (int) (1.0 * listWidth / 2), y + rowSize * 15 + padding)
+                .setSize(listWidth, 4 * 15 + 5)
                 .setItemHeight(15)
-                .setBarHeight(15);
+                .setBarHeight(20)
+                .addItems(InputType.INPUT_TYPES);
 
-        listBox.addItems(SortingAlgorithms.SORTING_ALGORITHMS);
+        sortingControlIp5.addListBox("Sorting Algorithm")
+                .setPosition(panelCenter - (int) (1.0 * listWidth / 2), y + rowSize * 20 + padding)
+                .setSize(listWidth, 16 * 15 + 5)
+                .setItemHeight(15)
+                .setBarHeight(20)
+                .addItems(SortingAlgorithms.SORTING_ALGORITHMS);
 
         /* SLIDERS */
-        Slider vectorSizeSlider = cp5.addSlider(Controls.VECTOR_SIZE)
+        Slider vectorSizeSlider = sliderControlIp5.addSlider(Controls.VECTOR_SIZE)
                 .setRange(Config.MIN_ARRAY_SIZE, Config.MAX_ARRAY_SIZE)
                 .setValue(Config.arraySize)
                 .setSize(30, buttonHeight)
                 .setPosition(x + columnSize * 0 + padding, y + rowSize * 38 + padding);
         vectorSizeSlider.getValueLabel().setText("" + Config.arraySize);
 
-        Slider delaySlider = cp5.addSlider(Controls.DELAY)
+        Slider delaySlider = sliderControlIp5.addSlider(Controls.DELAY)
                 .setRange(Config.MIN_DELAY_TIME, Config.MAX_DELAY_TIME)
                 .setValue(Config.delayTime)
                 .setSize(30, buttonHeight)
@@ -167,9 +165,27 @@ public class SidePanel extends Panel {
         delaySlider.addCallback(callbackListener);
 
         /* REACT TO CLICKS */
-        cp5.addListener((event) -> {
+        buttonControlIp5.addListener((event) -> {
             for (ControlListener controlListener : controlListenerList) {
-                controlListener.notify(event);
+                controlListener.notify(event, Controls.TYPE_BUTTON);
+            }
+        });
+
+        inputControlP5.addListener((event) -> {
+            for (ControlListener controlListener : controlListenerList) {
+                controlListener.notify(event, Controls.TYPE_INPUT_TYPE);
+            }
+        });
+
+        sortingControlIp5.addListener((event) -> {
+            for (ControlListener controlListener : controlListenerList) {
+                controlListener.notify(event, Controls.TYPE_SORTING);
+            }
+        });
+
+        sliderControlIp5.addListener((event) -> {
+            for (ControlListener controlListener : controlListenerList) {
+                controlListener.notify(event, Controls.TYPE_SLIDER);
             }
         });
     }

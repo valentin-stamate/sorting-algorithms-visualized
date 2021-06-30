@@ -1,23 +1,18 @@
 package window.main;
 
-import controlP5.Button;
 import controlP5.ControlEvent;
-import controlP5.ListBox;
-import controlP5.Slider;
 import processing.core.PApplet;
-import window.config.Controls;
+import window.config.*;
 import window.Panel;
-import window.config.Config;
-import window.config.SortingAlgorithms;
-import window.config.Theme;
 import window.main.sorting.*;
 import window.main.sorting.algorithms.*;
 import window.main.sorting.colors.Color;
 import window.main.sorting.colors.Colors;
-import window.main.sorting.other.Ascending;
-import window.main.sorting.other.BlankAlgorithm;
-import window.main.sorting.other.Descending;
-import window.main.sorting.other.Shuffle;
+import window.main.sorting.input.AscendingInput;
+import window.main.sorting.input.SinWaveInput;
+import window.main.sorting.other.Blank;
+import window.main.sorting.input.DescendingInput;
+import window.main.sorting.input.ShuffleInput;
 import window.side.SidePanel;
 
 public class MainPanel extends Panel {
@@ -32,7 +27,7 @@ public class MainPanel extends Panel {
     public MainPanel(PApplet pApplet, int x, int y, int width, int height) {
         super(pApplet, x, y, width, height);
         resizeVector(Config.arraySize);
-        sortingAlgorithm =  new BlankAlgorithm(pApplet, vector, color);
+        sortingAlgorithm =  new Blank(pApplet, vector, color);
     }
 
     @Override
@@ -83,21 +78,62 @@ public class MainPanel extends Panel {
     }
 
     public void setSidePanelEvents(SidePanel sidePanel) {
-        sidePanel.addControlListener((event) -> {
-            Object instance = event.getController();
-
-            if (instance instanceof ListBox) {
-                onListItemSelected(event);
-            } else if (instance instanceof Slider) {
-                onSliderValueChanged(event);
-            } else if (instance instanceof Button) {
+        sidePanel.addControlListener((event, type) -> {
+            if (type == Controls.TYPE_BUTTON) {
                 onButtonPressed(event);
+            } else if (type == Controls.TYPE_INPUT_TYPE) {
+                onInputTypeSelected(event);
+            } else if (type == Controls.TYPE_SORTING) {
+                onSortingAlgorithmSelected(event);
+            } else if (type == Controls.TYPE_SLIDER) {
+                onSliderValueChanged(event);
             }
-
         });
     }
 
-    private void onListItemSelected(ControlEvent event) {
+    private void onInputTypeSelected(ControlEvent event) {
+        int index = (int) event.getValue();
+        String listItemName = InputType.INPUT_TYPES[index];
+
+        switch (listItemName) {
+            case InputType.SHUFFLE:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new ShuffleInput(pApplet, vector, color);
+                sortingAlgorithm.start();
+                System.out.println("Shuffle");
+                break;
+            case InputType.ASCENDING:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new AscendingInput(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case InputType.DESCENDING:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new DescendingInput(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+            case InputType.SIN_WAVE:
+                if (sortingAlgorithm.isRunning()) {
+                    return;
+                }
+
+                sortingAlgorithm = new SinWaveInput(pApplet, vector, color);
+                sortingAlgorithm.start();
+                break;
+        }
+
+    }
+
+    private void onSortingAlgorithmSelected(ControlEvent event) {
         int index = (int) event.getValue();
         String listItemName = SortingAlgorithms.SORTING_ALGORITHMS[index];
 
@@ -310,31 +346,6 @@ public class MainPanel extends Panel {
         String buttonName = event.getName();
 
         switch (buttonName) {
-            case Controls.SHUFFLE:
-                if (sortingAlgorithm.isRunning()) {
-                    return;
-                }
-
-                sortingAlgorithm = new Shuffle(pApplet, vector, color);
-                sortingAlgorithm.start();
-                break;
-            case Controls.ASCENDING:
-                if (sortingAlgorithm.isRunning()) {
-                    return;
-                }
-
-                sortingAlgorithm = new Ascending(pApplet, vector, color);
-                sortingAlgorithm.start();
-                break;
-            case Controls.DESCENDING:
-                if (sortingAlgorithm.isRunning()) {
-                    return;
-                }
-
-                sortingAlgorithm = new Descending(pApplet, vector, color);
-                sortingAlgorithm.start();
-
-                break;
             case Controls.TOGGLE_SOUND:
                 Config.sound = !Config.sound;
                 break;
@@ -386,7 +397,7 @@ public class MainPanel extends Panel {
     public void mouseReleased() {
         if (Config.arraySize != vector.length) {
             resizeVector(Config.arraySize);
-            sortingAlgorithm = new BlankAlgorithm(pApplet, vector, color);
+            sortingAlgorithm = new Blank(pApplet, vector, color);
         }
     }
 

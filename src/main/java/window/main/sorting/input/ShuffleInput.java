@@ -1,4 +1,4 @@
-package window.main.sorting.other;
+package window.main.sorting.input;
 
 import processing.core.PApplet;
 import window.config.Complexities;
@@ -8,9 +8,9 @@ import window.main.sorting.colors.Color;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Shuffle extends SortingAlgorithm {
+public class ShuffleInput extends SortingAlgorithm {
 
-    public Shuffle(PApplet pApplet, int[] vector, Color[] color) {
+    public ShuffleInput(PApplet pApplet, int[] vector, Color[] color) {
         super(pApplet, vector, color, InputType.SHUFFLE, Complexities.N, Complexities.C);
     }
 

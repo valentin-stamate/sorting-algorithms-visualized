@@ -121,7 +121,8 @@ public abstract class SortingAlgorithm implements Runnable {
         /* UPDATE DELAY TIME TO HAVE A CONSTANT LOOP TIME*/
         if (algorithm.equals(InputType.SHUFFLE) ||
                 algorithm.equals(InputType.ASCENDING) ||
-                algorithm.equals(InputType.DESCENDING)) {
+                algorithm.equals(InputType.DESCENDING) ||
+                algorithm.equals(InputType.SIN_WAVE)) {
 
             int rd = ((int) (Math.random() * 1000));
 
@@ -153,7 +154,7 @@ public abstract class SortingAlgorithm implements Runnable {
             return;
         }
 
-        int freq = (int) (2 * value);
+        int freq = (int) (2 * Math.pow(value, 0.92)) + 50;
 
         playFreq(freq);
         playFreq(freq + 5);
@@ -188,7 +189,8 @@ public abstract class SortingAlgorithm implements Runnable {
     protected void playFinalAnimation() {
         if (algorithm.equals(InputType.SHUFFLE) ||
             algorithm.equals(InputType.ASCENDING) ||
-            algorithm.equals(InputType.DESCENDING)) {
+            algorithm.equals(InputType.DESCENDING) ||
+            algorithm.equals(InputType.SIN_WAVE)) {
             return;
         }
 

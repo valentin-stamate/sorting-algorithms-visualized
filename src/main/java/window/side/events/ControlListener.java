@@ -4,5 +4,5 @@ import controlP5.ControlEvent;
 
 @FunctionalInterface
 public interface ControlListener {
-    void notify(ControlEvent event);
+    void notify(ControlEvent event, int type);
 }

@@ -1,17 +1,25 @@
-# Sorting Algorithms Visualized
+# Conquering The Sorting Algorithms
 
-<img src="https://i.postimg.cc/0jmRWZLn/Capture.png" alt="">
+<img src="https://i.postimg.cc/4dSCkkxb/Capture.png" alt="">
 
 Now you can see how sorting algorithms work by watching them in real time. You can change the input size and the 
-sorting speed. When the algorithm is running `comparisons` and `array accesses` are updating in real time. 
-If you want to learn these algorithms, learning them on paper is good practice but for a more intuitive way 
-I also recommend their visualization.
+sorting speed. When the algorithm is running `comparisons`, `array accesses` and `swaps` are updating in real time. 
+If you want to learn these algorithms, learning them on paper is a good practice but for a more intuitive way 
+I also recommend their visualization, and it's also fun to watch.
 
 ## About
 
 The project is build with `Processing` java library.
 
-### Sorting Algorithms :
+### Input Types:
+```
+* Ascending
+* Descending
+* Sin Wave
+```
+
+
+### Sorting Algorithms:
 ```
 * Bubble Sort
 * Odd-Even Sort
