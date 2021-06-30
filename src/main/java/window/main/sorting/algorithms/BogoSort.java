@@ -44,6 +44,7 @@ public class BogoSort extends SortingAlgorithm {
 
     private void shuffle() {
         int i = vector.length - 1;
+
         while(i > 0) {
             swapWithNoEffects(i--, (int)(Math.random() * i));
         }
