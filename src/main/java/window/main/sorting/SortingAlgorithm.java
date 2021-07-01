@@ -48,6 +48,9 @@ public abstract class SortingAlgorithm implements Runnable {
 
     }
 
+    @Override
+    public abstract void run();
+
     /* VECTOR CHANGING METHODS */
     protected void swap(int i, int j) {
         /* ANIMATION AND SOUND */
@@ -246,6 +249,10 @@ public abstract class SortingAlgorithm implements Runnable {
         running = false;
 
         stopSound();
+    }
+
+    public boolean isStopped() {
+        return stop;
     }
 
     public void togglePause() {

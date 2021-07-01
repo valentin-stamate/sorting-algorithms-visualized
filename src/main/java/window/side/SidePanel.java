@@ -115,16 +115,20 @@ public class SidePanel extends Panel {
                 .setSize(buttonWidth, buttonHeight)
                 .setPosition(x + columnSize * 1 + padding + 10, y + rowSize * 12 + padding);
 
+        buttonControlIp5.addButton(Controls.AUTO)
+                .setSize(buttonWidth, buttonHeight)
+                .setPosition(x + columnSize * 0 + padding, y + rowSize * 14 + padding);
+
         /* LISTS */
        inputControlP5.addListBox("Input Type")
-                .setPosition(panelCenter - (int) (1.0 * listWidth / 2), y + rowSize * 15 + padding)
+                .setPosition(panelCenter - (int) (1.0 * listWidth / 2), y + rowSize * 16 + padding)
                 .setSize(listWidth, 4 * 15 + 5)
                 .setItemHeight(15)
                 .setBarHeight(20)
                 .addItems(InputType.INPUT_TYPES);
 
         sortingControlIp5.addListBox("Sorting Algorithm")
-                .setPosition(panelCenter - (int) (1.0 * listWidth / 2), y + rowSize * 20 + padding)
+                .setPosition(panelCenter - (int) (1.0 * listWidth / 2), y + rowSize * 21 + padding)
                 .setSize(listWidth, 16 * 15 + 5)
                 .setItemHeight(15)
                 .setBarHeight(20)

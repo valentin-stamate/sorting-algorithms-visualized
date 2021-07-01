@@ -40,7 +40,14 @@ public class MainPanel extends Panel {
         float lineSpace = 1.0f * width / vector.length;
 
         for (int i = 0; i < vector.length; i++) {
-            Color col = color[i];
+
+            Color col = Colors.DEFAULT_LINE_COLOR;
+
+            /* yeah, sometimes it crashed */
+            try {
+                col = color[i];
+            } catch (Exception e) { }
+
             pApplet.stroke(col.r, col.g, col.b);
             if (col == Colors.DEFAULT_LINE_COLOR) {
                 Color defCol = Theme.lineColor;
@@ -56,6 +63,22 @@ public class MainPanel extends Panel {
         }
     }
 
+    @Override
+    public void stop() {
+        super.stop();
+
+        sortingAlgorithm.stop();
+    }
+
+    @Override
+    public void mouseReleased() {
+        if (Config.arraySize != vector.length) {
+            resizeVector(Config.arraySize);
+            sortingAlgorithm = new Blank(pApplet, vector, color);
+        }
+    }
+
+    /* VECTOR MANIPULATION */
     public static double mapValueToWindowSize(int windowHeight, int vectorMaxValue, int x) {
         windowHeight = windowHeight - 50;
         return (1.0 * x / vectorMaxValue) * windowHeight + 5;
@@ -64,9 +87,10 @@ public class MainPanel extends Panel {
     public void resizeVector(int newSize) {
         vector = new int[newSize];
         color = new Color[newSize];
+        int n = vector.length;
 
-        for (int i = 0; i < vector.length; i++) {
-            vector[i] = (int) mapValueToWindowSize(height, vector.length - 1, vector.length - i - 1);
+        for (int i = 0; i < n; i++) {
+            vector[i] = (int) MainPanel.mapValueToWindowSize(Size.mainWindowHeight, n - 1, i);
             color[i] = Colors.DEFAULT_LINE_COLOR;
         }
 
@@ -77,11 +101,55 @@ public class MainPanel extends Panel {
         }
     }
 
+    /* AUTO MODE */
+    private void loopAlgorithms() {
+        new Thread(() -> {
+            Config.setAutoRunning(true);
+
+            for (String algorithm : SortingAlgorithms.SORTING_ALGORITHMS) {
+                int idealVectorSize = SortingAlgorithms.idealParameters.get(algorithm)[0];
+                int idealDelay = SortingAlgorithms.idealParameters.get(algorithm)[1];
+
+                Config.delayTime = idealDelay;
+                Config.arraySize = idealVectorSize;
+                resizeVector(Config.arraySize);
+
+                startInputType(InputType.SHUFFLE);
+                waitTillAlgorithmStops();
+
+                if (!Config.isAutoRunning()) {
+                    break;
+                }
+
+                sleep(500);
+
+                startAlgorithm(algorithm);
+                waitTillAlgorithmStops();
+
+                if (!Config.isAutoRunning()) {
+                    break;
+                }
+
+                sleep(500);
+            }
+
+            Config.setAutoRunning(false);
+        }).start();
+
+    }
+
+    /* USER INTERACTION */
     public void setSidePanelEvents(SidePanel sidePanel) {
         sidePanel.addControlListener((event, type) -> {
             if (type == Controls.TYPE_BUTTON) {
                 onButtonPressed(event);
-            } else if (type == Controls.TYPE_INPUT_TYPE) {
+            }
+
+            if (Config.isAutoRunning()) {
+                return;
+            }
+
+            if (type == Controls.TYPE_INPUT_TYPE) {
                 onInputTypeSelected(event);
             } else if (type == Controls.TYPE_SORTING) {
                 onSortingAlgorithmSelected(event);
@@ -93,9 +161,26 @@ public class MainPanel extends Panel {
 
     private void onInputTypeSelected(ControlEvent event) {
         int index = (int) event.getValue();
-        String listItemName = InputType.INPUT_TYPES[index];
+        String inputType = InputType.INPUT_TYPES[index];
 
-        switch (listItemName) {
+        startInputType(inputType);
+    }
+
+    private void onSortingAlgorithmSelected(ControlEvent event) {
+        int index = (int) event.getValue();
+        String algorithm = SortingAlgorithms.SORTING_ALGORITHMS[index];
+
+        startAlgorithm(algorithm);
+    }
+
+    private void onButtonPressed(ControlEvent event) {
+        String buttonName = event.getName();
+
+        startButtonPressed(buttonName);
+    }
+
+    private void startInputType(String inputType) {
+        switch (inputType) {
             case InputType.SHUFFLE:
                 if (sortingAlgorithm.isRunning()) {
                     return;
@@ -103,7 +188,6 @@ public class MainPanel extends Panel {
 
                 sortingAlgorithm = new ShuffleInput(pApplet, vector, color);
                 sortingAlgorithm.start();
-                System.out.println("Shuffle");
                 break;
             case InputType.ASCENDING:
                 if (sortingAlgorithm.isRunning()) {
@@ -131,13 +215,11 @@ public class MainPanel extends Panel {
                 break;
         }
 
+        sleep(10);
     }
 
-    private void onSortingAlgorithmSelected(ControlEvent event) {
-        int index = (int) event.getValue();
-        String listItemName = SortingAlgorithms.SORTING_ALGORITHMS[index];
-
-        switch (listItemName) {
+    private void startAlgorithm(String algorithm) {
+        switch (algorithm) {
             case SortingAlgorithms.BUBBLE_SORT:
                 if (sortingAlgorithm.isRunning()) {
                     return;
@@ -337,20 +419,19 @@ public class MainPanel extends Panel {
                 sortingAlgorithm = new IterativeMergeSort(pApplet, vector, color);
                 sortingAlgorithm.start();
                 break;
-            default:
-                break;
         }
+
+        sleep(10);
     }
 
-    private void onButtonPressed(ControlEvent event) {
-        String buttonName = event.getName();
-
+    private void startButtonPressed(String buttonName) {
         switch (buttonName) {
             case Controls.TOGGLE_SOUND:
                 Config.sound = !Config.sound;
                 break;
             case Controls.STOP:
                 sortingAlgorithm.stop();
+                Config.setAutoRunning(false);
                 break;
             case Controls.THEME:
                 Theme.currentTheme = Theme.currentTheme == Theme.LIGHT_THEME ?
@@ -360,6 +441,12 @@ public class MainPanel extends Panel {
                 break;
             case Controls.PAUSE:
                 sortingAlgorithm.togglePause();
+                break;
+            case Controls.AUTO:
+                if (!Config.isAutoRunning()) {
+                    loopAlgorithms();
+                }
+                break;
             default:
                 break;
         }
@@ -385,19 +472,18 @@ public class MainPanel extends Panel {
         }
     }
 
-
-    @Override
-    public void stop() {
-        super.stop();
-
-        sortingAlgorithm.stop();
+    /* UTIL */
+    private void sleep(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void mouseReleased() {
-        if (Config.arraySize != vector.length) {
-            resizeVector(Config.arraySize);
-            sortingAlgorithm = new Blank(pApplet, vector, color);
+    private void waitTillAlgorithmStops() {
+        while (sortingAlgorithm.isRunning()) {
+            sleep(200);
         }
     }
 

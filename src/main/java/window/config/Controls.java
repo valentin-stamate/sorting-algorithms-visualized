@@ -12,5 +12,6 @@ public final class Controls {
     public final static String DELAY = "Delay";
     public static final String THEME = "Theme";
     public static final String TOGGLE_SOUND = "Sound";
+    public static final String AUTO = "Auto";
 
 }

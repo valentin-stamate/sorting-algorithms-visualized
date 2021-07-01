@@ -46,7 +46,6 @@ public class Window {
         if (pApplet.width != windowWidth || pApplet.height != windowHeight) {
             windowWidth = pApplet.width;
             windowHeight = pApplet.height;
-            System.out.println("resize");
         }
     }
 
