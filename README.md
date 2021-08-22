@@ -1,6 +1,6 @@
 # Conquering The Sorting Algorithms
 
-<img src="https://i.postimg.cc/4dSCkkxb/Capture.png" alt="">
+<a href="https://youtu.be/H3cHQoTk7xA" target="_blank"><img src="https://i.postimg.cc/4dSCkkxb/Capture.png" alt=""></a>
 
 Now you can see how sorting algorithms work by watching them in real time. You can change the input size and the 
 sorting speed. When the algorithm is running `comparisons`, `array accesses` and `swaps` are updating in real time. 
